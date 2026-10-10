@@ -26,6 +26,27 @@ def field(data, dotted):
     return data
 
 
+def guarantee_value(result):
+    exponent = result['exponent']
+    multiplier = Fraction(result.get('multiplier', 1))
+    if not isinstance(exponent, int) or exponent < 0 or multiplier <= 0:
+        raise ValueError('Expected a positive multiplier and nonnegative integer exponent')
+    value = multiplier / 2**exponent
+    if value > 1:
+        raise ValueError('Simplified guarantee exceeds one')
+    return value
+
+
+def guarantee_text(result):
+    guarantee_value(result)
+    multiplier = Fraction(result.get('multiplier', 1))
+    power = '2^-'+str(result['exponent'])
+    if multiplier == 1:
+        return power
+    prefix = str(multiplier) if multiplier.denominator == 1 else '('+str(multiplier)+')'
+    return prefix+'*'+power
+
+
 def load(root=ROOT):
     registry = json.loads(local_path(root, 'results/registry.json').read_text())
     if registry.get('schema') != 1:
@@ -46,9 +67,9 @@ def load(root=ROOT):
         coefficient = Fraction(field(cert, result['coefficient_field']))
         if coefficient != Fraction(result['coefficient']):
             raise ValueError('Registry/certificate coefficient mismatch: '+result['id'])
-        if field(cert, result['guarantee_field']) != '2^-'+str(result['exponent']):
+        if field(cert, result['guarantee_field']) != guarantee_text(result):
             raise ValueError('Registry/certificate guarantee mismatch: '+result['id'])
-        if not 0 < coefficient <= 1 or coefficient <= Fraction(1, 2**result['exponent']):
+        if not 0 < coefficient <= 1 or coefficient <= guarantee_value(result):
             raise ValueError('Coefficient does not exceed its stated simplified guarantee')
         for check in result.get('checks', []):
             local_path(root, check['script'])

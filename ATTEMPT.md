@@ -48,7 +48,7 @@ away independence. [Detailed argument](proofs/joint_residual.md),
 
 ## Rank-charged entropy and the versioned paper
 
-The new [record](results/rank-charged.md) executes two attacks: charge witness
+The [rank-charged record](results/rank-charged.md) executes two attacks: charge witness
 entropy to nominal rank while retaining the density cutoff, then charge
 generator entropy to expected density-sample size too. The latter removes
 the cutoff and its exceptional-event term. The numerical search uses 16
@@ -61,3 +61,35 @@ coefficient `583/2`. Every changed later-cost factor and the small-group
 term is carried through the final proof. The conservative certificate is
 `1.0374747334 * 2^-32`; the proof is integrated into the shared framework and
 selected record. [Same-agent audit](proofs/rank_charged_audit.md).
+
+## Retained bases, additive accounting, and projection
+
+Executed three cumulative attacks in the
+[selected argument](results/retained-bases.md):
+
+1. Reconstruct old retained occurrences by greedy contraction. Canonical
+   generators are forced in the first stream and witnesses in the second,
+   reducing the basis/type factor from `48^j*4^z` to `6^j`.
+2. Keep the integrated tail's `1/lambda` term additive per group. Sum its
+   geometric weights and explicitly charge it to the maximum branch, instead
+   of paying for it as a linear group-size error.
+3. Project witnesses and residual tests onto `Y`, the fixed comparison
+   optimum after filtering. This changes the family count to
+   `binom(n,j)*binom(y,z)*6^j*S_(j+z)(2y)` and the entropy charge to
+   `n*u+y*(w+2v)`. The optimum is only an analysis device.
+
+The [search](experiments/search_retained_basis.py) used 16 deterministic
+starts per cumulative mode. The recorded best multiples of `2^-32` were
+about 1.05091 (prior formula), 1.30073 (retained bases), 1.71820 (additive
+accounting), and 1.78594 (projection). These are numerical evidence, not
+universal bounds or global optima. [Recorded output](experiments/retained_basis_search_output.json).
+
+The exact dyadic tuple certifies approximately `1.77884758 * 2^-32`, using
+`42n+27` initial fair bits. Both tilt inequalities have exact integer-power
+cross-checks; the decay has a separate positive-series lower bound. A
+coarse decay substituted into the first tilt fails, so the unrounded
+log enclosure is essential there. The finite checks include reconstruction,
+omitted second-stream generators, strict projection savings, adaptive mask
+selection, and an additive-error negative control. The universal written
+argument and [same-agent audit](proofs/retained_basis_audit.md) remain subject
+to independent review.

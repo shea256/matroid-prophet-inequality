@@ -57,6 +57,13 @@ not reassembled against a changed current framework.
    Python checks use the standard library. Render and inspect the resulting
    PDF, update provenance and the run log, then submit a PR.
 
+A result may specify a positive rational `multiplier` (default `1`) alongside
+its nonnegative integer `exponent`. The simplified threshold is
+`multiplier * 2^-exponent`; for example, `"multiplier": "7/4"` and
+`"exponent": 32` require the certificate text `(7/4)*2^-32`. The registry
+checks the exact coefficient against this scaled threshold, and the builder
+uses it consistently in the paper, metadata, headline, and history.
+
 The stable generated entry points are `manuscript.md`, `tex/manuscript.tex`,
 `manuscript.pdf`, `results/current.json`, `RESULT.md`, `IMPROVEMENTS.md`, and
 the marked current-result block in README. Edit their source records instead

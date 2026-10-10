@@ -75,3 +75,13 @@ Markdown, nine-page PDF, LaTeX, result metadata, and build/check receipts.
 Its six files have a separate SHA-256 manifest. Original relative links retain
 their original repository context; the pinned commit provides full navigation.
 The package validator verifies these bytes alongside the 23 earlier artifacts.
+
+## Rank-charged publication above `2^-32`
+
+The [rank-charged snapshot](rank-charged/README.md) preserves 16 publication
+artifacts from [commit ff4187f](https://github.com/shea256/matroid-prophet-inequality/tree/ff4187f03456fe54e8dc0a68e691fdc15f6c707f),
+the head of PR #2 when this snapshot was prepared. These include the
+11-page PDF, Markdown, LaTeX, selected registry and result records, shared
+paper sources, and build/check receipts. Its SHA-256 manifest is checked
+alongside the previous 29 preserved artifacts. The snapshot records a
+committed publication state, without asserting when its PR was merged.

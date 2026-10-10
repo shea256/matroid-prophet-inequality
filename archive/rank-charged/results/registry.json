@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "current": "rank-charged",
+  "paper_title": "Sharper One-Sample Matroid Prophet Inequalities",
+  "authors": [
+    "Ryan Shea"
+  ],
+  "repository": "https://github.com/shea256/matroid-prophet-inequality",
+  "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "framework": "paper/framework.md",
+  "attribution": "paper/attribution.md",
+  "results": [
+    {
+      "id": "parameter-refinement",
+      "title": "Parameter refinement",
+      "exponent": 63,
+      "status": "historical",
+      "coefficient": "105391776668216973667425/696898287454081973172991196020261297061888",
+      "certificate": "archive/2026-10-10/verification/constants_output.json",
+      "coefficient_field": "chosen_parameters.ratio",
+      "guarantee_field": "certified_simplified_ratio",
+      "change": "Refined source parameters, affine branch mixing, and finite rounding offsets.",
+      "proof": "archive/2026-10-10/proofs/parameter_refinement.md",
+      "checks": [
+        {
+          "script": "archive/2026-10-10/verification/certify_constants.py",
+          "reference": "archive/2026-10-10/verification/constants_output.json"
+        }
+      ],
+      "date": "2026-10-10",
+      "record": "results/parameter-refinement.md",
+      "independent_review_completed": false,
+      "formalization_completed": false
+    },
+    {
+      "id": "logarithmic-hazard",
+      "title": "Logarithmic hazard potential",
+      "exponent": 43,
+      "status": "historical",
+      "coefficient": "25618620910087559025/216345186630601448946989472415744",
+      "certificate": "archive/2026-10-10/verification/hazard_constants_output.json",
+      "coefficient_field": "parameters.ratio",
+      "guarantee_field": "simplified_guarantee",
+      "change": "Introduced a logarithmic hazard potential and tighter residual accounting.",
+      "proof": "archive/2026-10-10/proofs/hazard_potential.md",
+      "checks": [
+        {
+          "script": "archive/2026-10-10/verification/certify_hazard_constants.py",
+          "reference": "archive/2026-10-10/verification/hazard_constants_output.json"
+        }
+      ],
+      "date": "2026-10-10",
+      "record": "results/logarithmic-hazard.md",
+      "independent_review_completed": false,
+      "formalization_completed": false
+    },
+    {
+      "id": "quadratic-hazard",
+      "title": "Quadratic hazard potential",
+      "exponent": 36,
+      "status": "historical",
+      "coefficient": "9652683394380719/637507023635152349901619200",
+      "certificate": "verification/reference/quadratic_constants_output.json",
+      "coefficient_field": "certified_coefficient_lower_bound",
+      "guarantee_field": "simplified_guarantee",
+      "change": "A quadratic exit potential, integrated residual tail, and revised masks and finite phases.",
+      "proof": "https://github.com/shea256/matroid-prophet-inequality/blob/669e97c863aa7863c93258a5a1e2c6d9165b2d2b/manuscript.md",
+      "checks": [
+        {
+          "script": "verification/certify_quadratic_constants.py",
+          "reference": "verification/reference/quadratic_constants_output.json"
+        }
+      ],
+      "date": "2026-10-10",
+      "record": "results/quadratic-hazard.md",
+      "independent_review_completed": false,
+      "formalization_completed": false
+    },
+    {
+      "id": "joint-residual",
+      "title": "Joint residual encoding",
+      "exponent": 34,
+      "status": "historical",
+      "coefficient": "14995972860899/244123247301151948800000",
+      "certificate": "verification/reference/joint_residual_constants_output.json",
+      "coefficient_field": "certified_coefficient_lower_bound",
+      "guarantee_field": "simplified_guarantee",
+      "change": "Shared generator variables across two pivot tests and charged a density-sample cutoff.",
+      "proof": "proofs/joint_residual.md",
+      "archive": "archive/joint-residual",
+      "checks": [
+        {
+          "script": "verification/certify_joint_residual.py",
+          "reference": "verification/reference/joint_residual_constants_output.json"
+        }
+      ],
+      "date": "2026-10-10",
+      "record": "results/joint-residual.md",
+      "independent_review_completed": false,
+      "formalization_completed": false
+    },
+    {
+      "id": "rank-charged",
+      "title": "Rank-charged residual entropy",
+      "exponent": 32,
+      "status": "proposed",
+      "coefficient": "773895463001/3203794364409053184000",
+      "certificate": "verification/reference/rank_charged_constants_output.json",
+      "coefficient_field": "certified_coefficient_lower_bound",
+      "guarantee_field": "simplified_guarantee",
+      "change": "The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff.",
+      "proof": "results/rank-charged.md",
+      "checks": [
+        {
+          "script": "verification/certify_rank_charged.py",
+          "reference": "verification/reference/rank_charged_constants_output.json"
+        },
+        {
+          "script": "verification/check_rank_charged.py",
+          "reference": "verification/reference/rank_charged_checks_output.json"
+        }
+      ],
+      "date": "2026-10-10",
+      "record": "results/rank-charged.md",
+      "independent_review_completed": false,
+      "formalization_completed": false
+    }
+  ],
+  "shared_checks": [
+    {
+      "script": "verification/check_quadratic_hazard.py",
+      "reference": "verification/reference/quadratic_hazard_output.json"
+    },
+    {
+      "script": "verification/check_quadratic_ingredients.py",
+      "reference": "verification/reference/quadratic_ingredients_output.json"
+    },
+    {
+      "script": "verification/check_joint_residual.py",
+      "reference": "verification/reference/joint_residual_checks_output.json"
+    }
+  ],
+  "extended_checks": [
+    {
+      "script": "verification/finite_checks.py",
+      "reference": "verification/reference/finite_output.json"
+    },
+    {
+      "script": "verification/check_online_rule.py",
+      "reference": "verification/reference/online_output.json"
+    }
+  ]
+}

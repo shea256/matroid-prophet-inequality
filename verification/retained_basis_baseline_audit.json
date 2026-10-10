@@ -1,0 +1,59 @@
+{
+  "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "verified_artifacts": [
+    {
+      "path": "CONTENTS.md",
+      "sha256": "cc7c0b8a1cdedd845a777e77cf682657308503daf8346c1349e06e9259d063c2"
+    },
+    {
+      "path": "lean/docs/111.md",
+      "sha256": "738413ac4597f53c1b01a5cbc6c649f7a763337f5a843c200ca004d6375ff0b2"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/introduction.tex",
+      "sha256": "44440d00c57115f10131a8d854fcb7ab19df16da270687b0d2ac01fff7e02002"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/setup.tex",
+      "sha256": "0252ceb139653ed30be09f0d7d791f2023d4fe036af532201f2153c39853aa69"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/algorithm.tex",
+      "sha256": "328b8b2d435919f8d019f6c7f65130cd2e7be1ef8a7bb09ae2ef993cb0c3be71"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/safety.tex",
+      "sha256": "c2caa1e2f80835b42b0009da9e5a79b12493bed58c0f6c82d77ce0a8a9091c6a"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/transfer.tex",
+      "sha256": "d1941d858edbc5b80df829d1c923fe3d0c2b97d3a03a55fe57367ae0df247892"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/accounting.tex",
+      "sha256": "07021eaab1c40f6d1bccdc8ca9de6c643c320874cae2759dae126cfd2e9afbe1"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/secretary.tex",
+      "sha256": "6b68aa130f8ad993c23ccd7237fae369c348c60ad6a84309bd5800b3691ee96f"
+    }
+  ],
+  "date": "2026-10-10",
+  "project_baseline": {
+    "pull_request": 2,
+    "state": "OPEN",
+    "head": "ff4187f03456fe54e8dc0a68e691fdc15f6c707f",
+    "coefficient": "773895463001/3203794364409053184000"
+  },
+  "primary_versions_checked": {
+    "https://arxiv.org/abs/2609.19118": "v1, 2026-09-16; fixed arrival order independent of samples/values",
+    "https://arxiv.org/abs/2609.14555": "v2, 2026-09-29; random-order secretary setting"
+  },
+  "search_queries": [
+    "\"matroid prophet\" \"almighty\" improvement 2026",
+    "\"One Sample Suffices for Matroid Prophet\" correction",
+    "\"firsttimelifer\" \"2\" \"47\" matroid"
+  ],
+  "scope": "Source hash and version refresh; no exhaustive priority search or independently compiled Lean proof",
+  "external_47_writeup": "Not located; proof and strongest coefficient remain unverified"
+}

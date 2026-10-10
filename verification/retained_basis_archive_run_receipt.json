@@ -1,0 +1,44 @@
+{
+  "python": "3.9.25",
+  "platform": "Linux",
+  "archive_manifest_sha256": "90e1186e3b7faf064cd99098cf30b4e1b9e8b840cf855e0bb1cc690741751e58",
+  "archived_files_checked": 23,
+  "all_snapshot_artifacts_checked": 45,
+  "full_suite": false,
+  "checks": [
+    {
+      "script": "archive/2026-10-10/verification/certify_constants.py",
+      "reference": "archive/2026-10-10/verification/constants_output.json",
+      "script_sha256": "74e5952aff84b66d7371c87b5bcd85cd58a83d03fe754a586146af97d079de89",
+      "seconds": 0.022,
+      "result": "PASS; fresh JSON equals preserved reference"
+    },
+    {
+      "script": "archive/2026-10-10/verification/certify_hazard_constants.py",
+      "reference": "archive/2026-10-10/verification/hazard_constants_output.json",
+      "script_sha256": "b83dba031799830502c78e41e558c8bfda778490f54073250a397260e4f47a7a",
+      "seconds": 0.019,
+      "result": "PASS; fresh JSON equals preserved reference"
+    },
+    {
+      "script": "archive/2026-10-10/verification/check_hazard_potential.py",
+      "reference": "archive/2026-10-10/verification/hazard_potential_output.json",
+      "script_sha256": "9758fd1e1800a3672f9258f39e0a6ba448b73624f9f8dacb22248e3fa231a0be",
+      "seconds": 0.733,
+      "result": "PASS; fresh JSON equals preserved reference"
+    }
+  ],
+  "seconds": 0.788,
+  "scope": "Historical scalar and finite checks; not independent review or universal formalization",
+  "package": {
+    "local_links_checked": 172,
+    "immutable_artifacts_checked": 45,
+    "current_result": "retained-bases",
+    "generated_text_verified": true,
+    "paper_input_hashes_verified": true,
+    "paper_hash_verified": true,
+    "source_hash_verified": true,
+    "result": "PASS (package validation, not a proof check)"
+  },
+  "result": "PASS"
+}

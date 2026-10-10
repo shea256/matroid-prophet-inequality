@@ -22,13 +22,17 @@ Its existing licenses and author notices remain applicable.
 
 The written refinement introduces a quadratic conditional-probability
 potential and uses it to prove a `1/2` expected-exit-hazard bound. A repeated-OR
-example shows sharpness for the abstract query hypotheses. The current follow-up adds a joint affine encoding of both residual tests
-and a density-size cutoff with an explicit exceptional-event charge. The
-current refinement instead weights both counts and charges their entropy to
-nominal rank and expected density-sample size, removing that cutoff. It retains
-an integrated residual tail, changed mask probabilities, affine branch mixing,
-and finer finite rational rounding phases. The finite-offset technique itself
-is standard; no new rounding principle is claimed.
+example shows sharpness for the abstract query hypotheses. Later versions
+add joint affine encoding and rank-charged residual entropy. The current
+version reconstructs retained old bases by contraction, exploits forced
+retention, projects witnesses and tested labels onto the comparison optimum,
+and pays the fixed tail error with the maximum branch. The resulting
+coefficient is about 71.46% larger than the preceding exact certificate.
+
+Greedy contraction, exponential weighting, union bounds, binomial estimates,
+and finite-offset rounding are established methods. The claimed contribution
+is their stated application and the resulting quantitative argument; no new
+general principle is claimed for these methods.
 
 The exact verifiers and paper packaging were developed in the Open Math
 Problems project and extracted for this standalone repository at the
