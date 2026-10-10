@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "current": "rank-charged",
+  "current": "retained-bases",
   "paper_title": "Sharper One-Sample Matroid Prophet Inequalities",
   "authors": [
     "Ryan Shea"
@@ -103,7 +103,7 @@
       "id": "rank-charged",
       "title": "Rank-charged residual entropy",
       "exponent": 32,
-      "status": "proposed",
+      "status": "historical",
       "coefficient": "773895463001/3203794364409053184000",
       "certificate": "verification/reference/rank_charged_constants_output.json",
       "coefficient_field": "certified_coefficient_lower_bound",
@@ -122,6 +122,34 @@
       ],
       "date": "2026-10-10",
       "record": "results/rank-charged.md",
+      "independent_review_completed": false,
+      "formalization_completed": false,
+      "archive": "archive/rank-charged"
+    },
+    {
+      "id": "retained-bases",
+      "title": "Retained bases and projected residuals",
+      "exponent": 32,
+      "multiplier": "7/4",
+      "status": "proposed",
+      "coefficient": "548933908320757/1325382348737372749824000",
+      "certificate": "verification/reference/retained_basis_constants_output.json",
+      "coefficient_field": "certified_coefficient_lower_bound",
+      "guarantee_field": "simplified_guarantee",
+      "change": "Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee.",
+      "proof": "results/retained-bases.md",
+      "checks": [
+        {
+          "script": "verification/certify_retained_basis.py",
+          "reference": "verification/reference/retained_basis_constants_output.json"
+        },
+        {
+          "script": "verification/check_retained_basis.py",
+          "reference": "verification/reference/retained_basis_checks_output.json"
+        }
+      ],
+      "date": "2026-10-10",
+      "record": "results/retained-bases.md",
       "independent_review_completed": false,
       "formalization_completed": false
     }

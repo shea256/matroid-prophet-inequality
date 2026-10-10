@@ -12,7 +12,11 @@ sources and hashes are recorded in [the baseline](../BASELINE.md).
 
 This project's quadratic potential, joint affine encoding, and application
 of weighted residual counting refine that construction's quantitative
-analysis. Exponential weighting, union bounds, finite-offset rounding,
+analysis. The current version reconstructs old retained bases by contraction,
+uses forced retained occurrences, projects witnesses onto the comparison
+optimum, and pays the tail's additive constant through the maximum branch.
+Greedy scanning in a contracted matroid is standard; the claimed refinement
+is its application and the resulting quantitative accounting here. Exponential weighting, union bounds, finite-offset rounding,
 and binomial estimates are established methods; no new general principle
 is claimed for them. Each version retains its specific evidence and source
 credit in the result registry and archives.

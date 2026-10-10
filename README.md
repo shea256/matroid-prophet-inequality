@@ -7,16 +7,16 @@ By **Ryan Shea**. A living research project on
 
 **[Read the latest paper (PDF)](manuscript.pdf)** · [Read online](manuscript.md) · [LaTeX source](tex/manuscript.tex)
 
-Current result: **[Rank-charged residual entropy](results/rank-charged.md)**, 2026-10-10.
+Current result: **[Retained bases and projected residuals](results/retained-bases.md)**, 2026-10-10.
 
 ```math
 \mathbb E[\mathrm{reward}]\ge C_\star\mathbb E[\mathrm{OPT}],\qquad
-C_\star=\frac{773895463001}{3203794364409053184000}>2^{-32}.
+C_\star=\frac{548933908320757}{1325382348737372749824000}>\frac{7}{4}\, 2^{-32}.
 ```
 
-The exact certificate is approximately **3.93235 times** the preceding [`2^-34` certificate](results/joint-residual.md). This compares guaranteed fractions, not measured performance. The construction uses **`36n+23` fair bits**.
+The exact certificate is approximately **1.71459 times** the preceding [`2^-32` certificate](results/rank-charged.md) (**71.46% higher**). This compares guaranteed fractions, not measured performance. The construction uses **`42n+27` fair bits**.
 
-The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff.
+Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee.
 
 **Written proof with same-agent verification; independent mathematical review and formalization pending.** Finite checks accompany the written proof; they do not prove
 its universal assertions. No priority or confirmed best-known-bound claim

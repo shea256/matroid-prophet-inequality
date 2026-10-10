@@ -2,6 +2,7 @@
 import copy
 import json
 from pathlib import Path
+from fractions import Fraction
 import shutil
 import subprocess
 import sys
@@ -11,7 +12,7 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import build_manuscript as paper
-from result_registry import ROOT, archive_hashes, load
+from result_registry import ROOT, archive_hashes, load, guarantee_text
 from validate_repository import validate
 
 
@@ -67,7 +68,30 @@ class PaperWorkflow(unittest.TestCase):
         self.save(data)
         generated = json.loads(paper.generated(self.root)['results/current.json'])
         self.assertEqual(generated['result_id'], data['current'])
-        self.assertEqual(generated['simplified_guarantee'], '2^-'+str(self.selected(data)['exponent']))
+        self.assertEqual(generated['simplified_guarantee'], guarantee_text(self.selected(data)))
+
+    def test_multiplier_must_match_certificate(self):
+        data = self.registry()
+        selected = self.selected(data)
+        selected['multiplier'] = str(Fraction(selected.get('multiplier', 1)) + 1)
+        self.save(data)
+        with self.assertRaisesRegex(ValueError, 'guarantee mismatch'):
+            load(self.root)
+
+    def test_coefficient_must_exceed_scaled_guarantee(self):
+        data = self.registry()
+        selected = self.selected(data)
+        # This is above 2^-32 but below (7/4)*2^-32. A validator that ignores
+        # the multiplier would incorrectly accept the matching certificate.
+        selected.update(coefficient='3/8589934592', exponent=32, multiplier='7/4')
+        cert_path = self.root/selected['certificate']
+        cert = json.loads(cert_path.read_text())
+        cert[selected['coefficient_field']] = selected['coefficient']
+        cert[selected['guarantee_field']] = guarantee_text(selected)
+        cert_path.write_text(json.dumps(cert))
+        self.save(data)
+        with self.assertRaisesRegex(ValueError, 'does not exceed'):
+            load(self.root)
 
     def test_paths_cannot_escape_repository(self):
         data = self.registry()

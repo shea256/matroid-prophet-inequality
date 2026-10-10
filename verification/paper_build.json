@@ -1,26 +1,27 @@
 {
   "pdf": "manuscript.pdf",
-  "bytes": 241053,
-  "sha256": "512ec792519fc0cd1b0612783582c0605c6ad5ad5be7b9cea1bb2df94a6522aa",
+  "bytes": 255060,
+  "sha256": "1971ec056165181874a561b70efe10ea6aacd4009f9768cf575dff8847ad1e31",
   "source": "tex/manuscript.tex",
-  "source_sha256": "89d221934b31b64d7ef350df8fee48fca2645aa49f0291d5d9dcad06bf58d2b4",
+  "source_sha256": "2ce35154ff28d190cbbf72c1230deb3acadc6feb652f62fefee43dafca980d74",
   "markdown": "manuscript.md",
-  "markdown_sha256": "9c3f24e0d4deed98afc9638bba85be5bffee2ca61dac4d9722c93254e6014f35",
+  "markdown_sha256": "2433efe9c14b75a3769ed7323e36583452433fac5e21ce9aa8a2eea15fa19465",
   "passes": 3,
   "warnings": [],
   "inputs": {
     "archive/2026-10-10/verification/constants_output.json": "004f3ab5b0cc9284b3787a29edca8faf741e1a02a16074b03fc29462760e0275",
     "archive/2026-10-10/verification/hazard_constants_output.json": "12165032ea7411c407185add80d092d53d7253f43586d3db0bc4d539ef4dd162",
-    "paper/attribution.md": "2ec10b286471325181dea0b88f9e84e0dbcf261c718d24b1dc39e45f104f8b0e",
-    "paper/framework.md": "5cc199d5873f4a9d68ed02d428c4bc19da527015064dd76fa4f50ed9398eb7c5",
-    "results/rank-charged.md": "8e14ebe9f08099d5f5e18ae5d2130410a9e199420356efa6f1ed1ea3e45cbbf9",
-    "results/registry.json": "bfe1c6566c2cd55fa4744849ad5696763caa1429f50ca1c131608ae33dcc40b1",
-    "scripts/build_manuscript.py": "c83bd5c4966598caff4dceed9327a9ba3047ae49674accdc7c7202202bba6bfd",
-    "scripts/result_registry.py": "5715009d9a2c08d8f7a925100c855e5c9839553305aa67d43fdeb592cd6e4015",
+    "paper/attribution.md": "00110482d7731cb7774abe5175906b13dc74f35dfaf9d76de512855723ed43ad",
+    "paper/framework.md": "40b6dbe13ff9c51e0261398e6f3645684dbd8a5ce4a5bab2dc2794c119e983c9",
+    "results/registry.json": "869917a2069083f28adbe03bf6cca39c25584d3c2020d4dfbca49ca1ee0a4f70",
+    "results/retained-bases.md": "0a0a0b742bd6fd0d47036849af9f5bd9b3c51c2144c7bf0511a7502dd23dd0b0",
+    "scripts/build_manuscript.py": "32aa3573ff830220fdcc8813a3d2c814a8a00d0feb37877957e8f2f09d4c22c6",
+    "scripts/result_registry.py": "fb4c68d9f125c2c7582a6fa9efdd25df6b02e12faaf2ed775bc7bb6022638f91",
     "tex/preamble.tex": "d3e096bcd2def9ad993833ab02853ca8f2fd0a8b968084e21fda5bf5b320a9cc",
     "verification/reference/joint_residual_constants_output.json": "a874a68a51249652ccfd3272f6e9c3c42b4bacfcc3aa1acdfbf4d38d5bc2c40a",
     "verification/reference/quadratic_constants_output.json": "28df0d92ce8f9a62824ad5af25a4da84ff4006e83111202858734c752af703e2",
-    "verification/reference/rank_charged_constants_output.json": "ccb1b738a7f6de14d90bffba3b0b140ceb6eaf2f67671d9a01e8e7a115238516"
+    "verification/reference/rank_charged_constants_output.json": "ccb1b738a7f6de14d90bffba3b0b140ceb6eaf2f67671d9a01e8e7a115238516",
+    "verification/reference/retained_basis_constants_output.json": "7e94a95e88fb3f0421232e1457144dfc2014a34f877448c4e586ac11aa24ebde"
   },
   "pandoc": "pandoc 3.12.1"
 }

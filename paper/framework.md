@@ -295,11 +295,15 @@ bound.
 
 ## From a rank estimate to the final guarantee
 
-The selected result must supply constants $K>0$ and $\epsilon\ge0$ such that, for each
+Earlier versions use $a_0=0$ and $\bar\gamma=\rho/4$. The current refinement
+keeps a fixed additive error and pays for it with the maximum branch.
+
+The selected result must supply constants $K>0$, $\epsilon,a_0\ge0$, and
+$0<\bar\gamma\le\rho/4$ such that, for each
 true group of size $n_i\ge\kappa$ ,
 
 $$
-\mathbb E[z_i\mid H]\ge\frac{\gamma|Y_i|-\epsilon n_i}{K},\qquad\gamma=\rho/4.
+\mathbb E[z_i\mid H]\ge\frac{\bar\gamma|Y_i|-\epsilon n_i-a_0}{K}.
 $$
 
 The source's later-path cost, including unlisted groups by domination, obeys
@@ -312,8 +316,8 @@ Independent focal test thinning therefore gives
 
 $$
 \mathbb E[\lambda_i\mid H]\ge\frac tK\left[
-\gamma|Y_i|-(\epsilon+Kt)n_i-
-(Kt+K\rho/\kappa)\sum_{j>i}n_j\right].
+\bar\gamma|Y_i|-(\epsilon+Kt)n_i-
+(Kt+K\rho/\kappa)\sum_{j>i}n_j-a_0\right].
 $$
 
 Both changed cost factors are essential when $K\ne\kappa$ . For general filter rate $h$
@@ -334,7 +338,7 @@ Set $\beta=(B-1)/B$ and
 
 $$
 L_0=\epsilon+Kt+\frac{Kt+K\rho/\kappa}{B-1},\qquad
-s=(1-h)(\gamma-L_0/h).
+s=(1-h)(\bar\gamma-L_0/h).
 $$
 
 For every fixed seed and arrival permutation, the source order-uniform rank bound
@@ -349,14 +353,16 @@ $$
 
 The weighted higher-group cost is at most $u(U)/(B-1)$ . Discarding groups smaller than
 $\kappa$ loses comparison mass at most $\kappa m_*/\beta$ , where $m_*$ is the largest
-rounded nonloop weight. Applying the filter identities yields
+rounded nonloop weight. The geometric sum of the weights of analyzed groups
+is at most $m_*/\beta$, so their additive errors contribute at most
+$t a_0m_*/K$. Applying the filter identities yields
 
 $$
 \mathbb E_R\min_\pi\mathrm{reward}_{\mathrm{main}}
-\ge\frac{\beta t s}{K}W-\frac{t\gamma\kappa}{K}m_*.
+\ge\frac{\beta t s}{K}W-\frac{t(\bar\gamma\kappa+a_0)}{K}m_*.
 $$
 
-If $(1-t)t\gamma\kappa/K\le t/4$ , the maximum branch cancels the negative term. This
+If $(1-t)t(\bar\gamma\kappa+a_0)/K\le t/4$ , the maximum branch cancels the negative term. This
 condition is checked by the selected result's exact certificate. For positive $x$ , let
 $k=\lfloor\log_\theta x\rfloor$ . Across the $L$ phases its rounded values are
 $\theta^{k-r}$ , once each for $r=0,\ldots,L-1$ . Since $\theta^k\ge x/\theta$ , the

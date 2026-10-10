@@ -11,6 +11,8 @@ Build and publication checks are separate from mathematical verification.
 
 | Check | Scope |
 |---|---|
+| `certify_retained_basis.py` | Exact log intervals, integer-power tilt cross-checks, independent positive-series decay bound, projected rank interface, additive cancellation, old/new coefficients, and 42n+27 seed count |
+| `check_retained_basis.py` | 74,881 interleavings, 3,349 basis families, 45,824 projected encodings/charges, forced/omitted occurrences, adaptive tails, and an additive-error negative control |
 | `certify_rank_charged.py` | Exact log enclosures, both tilt inequalities, rank/density charges, final error/slack, coefficient, branch mixture, and seed count |
 | `check_rank_charged.py` | 78 weighted generating bounds, 972 adaptive tail bounds, 216 integrated expectations, 45,824 actual path charges, two omitted-charge negative controls |
 | `certify_joint_residual.py` | Retained exact `2^-34` coefficient, cutoff exception, and changed probabilities |
@@ -20,7 +22,7 @@ Build and publication checks are separate from mathematical verification.
 | `check_quadratic_ingredients.py` | Adaptive Boolean queries, biased filters, selected residual expectations, phase boundaries, and abstract sharpness |
 | Archived scalar certificates | Original `2^-63` and `2^-43` finite arithmetic assertions |
 
-The new path checker uses threshold 2 and small stress penalties `1/4,1/2`
+The retained-basis path checker uses an empty filter mask, threshold 2 and small stress penalties `1/4,1/2`
 to exercise nonzero generators, witness ranks, and excess residuals. Its
 negative controls are abstract scalar examples, not hard matroid instances.
 The adaptive family check lets a selector inspect the entire mask before
@@ -42,8 +44,9 @@ performance of the final competitive guarantee.
 
 `python3 -B scripts/check_archive.py` verifies unchanged archival artifacts
 and runs the earlier archive's default three checks; `--full` also runs its
-exhaustive structural checks. The 23 initial artifacts and six-file
-`2^-34` publication snapshot have recorded hashes.
+exhaustive structural checks. The 23 initial artifacts, six-file `2^-34`
+publication snapshot, and 16-file rank-charged snapshot have recorded hashes
+(45 preserved artifacts in total).
 
 ## Generated publication checks
 
@@ -55,7 +58,7 @@ links. Historical documents retain their original relative-link context;
 their current indexes and immutable hashes are validated.
 
 `python3 -B -m unittest discover -s scripts/tests` tests rejection of coefficient
-mismatches, unfinished selections, path escapes, stale headlines, changed
+mismatches, scaled-threshold errors, unfinished selections, path escapes, stale headlines, changed
 paper inputs/PDFs, and modified archives. It also checks that a bigger candidate
 does not select itself and a failed compilation preserves publication outputs.
 These are software regression tests, not mathematical proof checks.

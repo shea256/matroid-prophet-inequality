@@ -17,7 +17,7 @@ import subprocess
 import tempfile
 from urllib.parse import urlsplit
 
-from result_registry import ROOT, CERTIFICATE_FIELDS, load, local_path
+from result_registry import ROOT, CERTIFICATE_FIELDS, load, local_path, guarantee_text
 
 
 def digest(path):
@@ -27,6 +27,12 @@ def digest(path):
 def tex_fraction(value):
     q = Fraction(value)
     return str(q.numerator) if q.denominator == 1 else rf'\frac{{{q.numerator}}}{{{q.denominator}}}'
+
+
+def guarantee_tex(result):
+    multiplier = Fraction(result.get('multiplier', 1))
+    prefix = '' if multiplier == 1 else tex_fraction(multiplier)+r'\, '
+    return prefix+rf'2^{{-{result["exponent"]}}}'
 
 
 def rebase(text, source, root):
@@ -48,7 +54,7 @@ def history_table(registry):
     rows = ['| Result | Guarantee | Change | Review stage |',
             '|---|---:|---|---|']
     for r in registry['results']:
-        guarantee = '$>2^{-'+str(r['exponent'])+'}$' if r['status'] != 'candidate' else 'Unselected candidate'
+        guarantee = '$>'+guarantee_tex(r)+'$' if r['status'] != 'candidate' else 'Unselected candidate'
         review = 'Written proof; independent review pending' if r['status'] != 'candidate' else 'Incomplete'
         rows.append(f"| [{r['title']}]({r['record']}) | {guarantee} | {r['change']} | {review} |")
     return '\n'.join(rows)
@@ -62,10 +68,11 @@ def generated(root=ROOT):
     previous = max(predecessors, key=lambda r: Fraction(r['coefficient'])) if predecessors else None
     gain = float(coefficient/Fraction(previous['coefficient'])) if previous else None
     review = 'Written proof with same-agent verification; independent mathematical review and formalization pending.'
-    exp, seed = current['exponent'], cert['seed_bits']
-    formula = rf'C_\star={tex_fraction(coefficient)}>2^{{-{exp}}}'
+    seed = cert['seed_bits']
+    formula = rf'C_\star={tex_fraction(coefficient)}>{guarantee_tex(current)}'
     previous_text = (f"The exact certificate is approximately **{gain:.5f} times** the preceding "
-                     f"[`2^-{previous['exponent']}` certificate]({previous['record']}). "
+                     f"[`{guarantee_text(previous)}` certificate]({previous['record']}) "
+                     f"(**{(gain-1)*100:.2f}% higher**). "
                      'This compares guaranteed fractions, not measured performance.' if previous else '')
     front = f'''# {registry['paper_title']}
 
@@ -161,7 +168,7 @@ is made. These paper links remain stable as results are updated.
 
 <!-- Generated from results/registry.json and the selected certificate. -->
 
-**Written theorem claim: a guarantee greater than `2^-{exp}`** in the original
+**Written theorem claim: a guarantee greater than `{guarantee_text(current)}`** in the original
 one-sample, full-seed almighty-adversary model. The exact conservative
 coefficient is `{current['coefficient']}`, with `{seed}` initial fair bits.
 
