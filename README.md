@@ -1,8 +1,11 @@
 # One-sample matroid prophet inequalities: a sharper guarantee
 
-A research project on **OpenAI Math Problem #111**, improving the quantitative
+A research project on **[OpenAI Math Problem #111](https://github.com/openai/math/blob/main/lean/docs/111.md)**, improving the quantitative
 guarantee for one-sample selection on arbitrary finite matroids against an
 adversary that sees every sample, value, and random seed bit.
+
+The original construction is in
+[OpenAI's accompanying paper](https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf).
 
 **[Read the paper (PDF)](manuscript.pdf)** · [Read online](manuscript.md) · [LaTeX source](tex/manuscript.tex)
 
@@ -112,5 +115,12 @@ python3 -B verification/fetch_sources.py
 This work was developed with AI assistance using Codex. Same-agent second
 passes are not independent peer review. The paper and stable entry points
 will be updated as the proof is reviewed or improved; earlier public versions
-remain available in Git history. The [MIT license](LICENSE) preserves the
-original project notice; cited external works retain their own terms.
+remain available in Git history.
+
+## License
+
+This project is distributed under the [Apache License 2.0](LICENSE).
+The inherited [MIT copyright and permission notice](LICENSES/MIT.txt) from
+the Open Math Problems project is retained. See [NOTICE](NOTICE) and
+[attribution](ATTRIBUTION.md) for provenance; cited external works retain
+their own terms.

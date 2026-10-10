@@ -15,7 +15,8 @@ to that source. The manuscript identifies these dependencies explicitly.
 Pinned artifact URLs and SHA-256 hashes are in
 [source_manifest.json](verification/source_manifest.json). Upstream manuscripts
 and Lean files are fetched into an ignored cache, not redistributed here.
-Their existing licenses and author notices remain applicable.
+The upstream repository's [root license is Apache 2.0](https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/LICENSE).
+Its existing licenses and author notices remain applicable.
 
 ## This project's claimed contribution
 
@@ -29,8 +30,12 @@ is standard; no new rounding principle is claimed.
 
 The exact verifiers and paper packaging were developed in the Open Math
 Problems project and extracted for this standalone repository at the
-maintainer's request. The existing MIT notice is preserved. This repository
-is maintained under [shea256](https://github.com/shea256); repository ownership
+maintainer's request. At the maintainer's direction, this standalone project
+is now distributed under [Apache 2.0](LICENSE). The inherited
+[MIT copyright and permission notice](LICENSES/MIT.txt) is preserved;
+[NOTICE](NOTICE) records both origins. The MIT notice came from Open Math
+Problems, not from OpenAI's repository. This repository is maintained under
+[shea256](https://github.com/shea256); repository ownership
 and commit authorship are not independent evidence of mathematical authorship
 or review.
 

@@ -1,0 +1,22 @@
+One-sample matroid prophet inequalities: a sharper guarantee
+
+Copyright (c) 2026 Open Math Problems contributors
+
+This project is distributed under the Apache License, Version 2.0.
+
+The initial standalone package was extracted from:
+https://github.com/shea256/open-math-problems
+Its inherited MIT copyright and permission notice is retained in
+LICENSES/MIT.txt. The change of project license does not remove that notice
+or withdraw permissions previously granted under MIT.
+
+The mathematical foundation is OpenAI's "One Sample Suffices for Matroid
+Prophet Inequalities against an Almighty Adversary", September 23, 2026:
+https://github.com/openai/math/tree/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb
+That repository's root license is Apache 2.0. The source construction and
+the dependencies retained by this refinement are credited in ATTRIBUTION.md
+and the manuscript. The original upstream manuscripts and Lean files are
+retrieved into an ignored cache and are not bundled in this repository.
+
+The refinement's changes are described in ATTRIBUTION.md and IMPROVEMENTS.md.
+These acknowledgments do not imply endorsement or independent review.

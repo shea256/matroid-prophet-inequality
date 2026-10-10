@@ -55,3 +55,27 @@ Only the selected proof, documentation, verification code, references, and
 small generated artifacts are included. Original repository history, unrelated
 research, local caches, and credentials are excluded. The user explicitly
 requested private visibility before repository creation.
+
+## Apache 2.0 and upstream links — October 10, 2026
+
+At the maintainer's request, replaced the root license with the Apache 2.0
+text from the pinned OpenAI/math revision
+`fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb`. Its SHA-256 is
+`c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4`.
+The downloaded text matches the Apache Software Foundation's canonical
+license apart from whitespace. The upstream root directory has no NOTICE
+file. The original MIT copyright and permission notice was preserved byte
+for byte in [LICENSES/MIT.txt](LICENSES/MIT.txt), with provenance recorded in
+[NOTICE](NOTICE). README, attribution, and contributor instructions now
+identify Apache 2.0 as the project license.
+
+The README's opening reference now links directly to OpenAI's dedicated #111
+page, with an adjacent link to the pinned original manuscript. The upstream
+problem entry and the dedicated page were checked for the correct title and
+model. No theorem, verifier, manuscript source, or PDF was modified.
+
+Executed `python3 -B scripts/run_checks.py`,
+`python3 -B scripts/validate_repository.py`, and `git diff --check`.
+All three current verification programs and package checks passed. Byte
+comparisons confirmed that LICENSE matches the pinned upstream license and
+LICENSES/MIT.txt matches the previous commit's MIT license.
