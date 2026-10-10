@@ -5,10 +5,11 @@ Audit date: October 10, 2026. Pinned OpenAI/math revision:
 
 The source manuscript derives `2^-293`, stronger than its `2^-310` headline.
 The immediate comparison for the current refinement is the preceding
-`>2^-32` rank-charged certificate at
-[commit ff4187f](https://github.com/shea256/matroid-prophet-inequality/tree/ff4187f03456fe54e8dc0a68e691fdc15f6c707f),
-submitted in [PR #2](https://github.com/shea256/matroid-prophet-inequality/pull/2).
-Its exact coefficient is `773895463001/3203794364409053184000`. Both versions
+`>(7/4)*2^-32` retained-basis certificate at
+[merged master 6d94154](https://github.com/shea256/matroid-prophet-inequality/tree/6d94154ae9961733b7604918a2d3b642d218d61e),
+following [PR #4](https://github.com/shea256/matroid-prophet-inequality/pull/4)
+and the README update in [PR #5](https://github.com/shea256/matroid-prophet-inequality/pull/5).
+Its exact coefficient is `548933908320757/1325382348737372749824000`. Both versions
 have written proofs and same-agent checks; independent review is pending.
 These are the documented comparisons. The audit does not establish an
 exhaustive strongest-current-result or priority claim.
@@ -46,9 +47,9 @@ an independently reproduced formal proof are separate evidence stages.
 |---|---|---|
 | Density/path construction | `lem:density`, `lem:paths`, `lem:generators` | Same structural arguments, smaller threshold |
 | Reverse exposure | `eq:reverse-map`, `eq:departing-query` | New quadratic transaction and exit potential |
-| Hybrid safety | `eq:hybrid-containment`, `eq:birth-safety-probability` | Same coupling; equal guard/test rates retained |
-| Residual encoding | `lem:pivot-patterns`, `lem:pattern-family` | Shared variables, retained-basis reconstruction, and projected witnesses |
-| Residual tail | `eq:residual-tail` | Weighted projected families and a separately charged additive tail error |
+| Hybrid safety | `eq:hybrid-containment`, `eq:birth-safety-probability` | Same coupling and equal guard/test rates; safety conditioned on activation membership |
+| Residual encoding | `lem:pivot-patterns`, `lem:pattern-family` | Shared variables, retained bases, projected witnesses, and fixed activation scores |
+| Residual tail | `eq:residual-tail` | Joint mask membership with the overlap correction; additive tail error still charged |
 | Candidate filter | `lem:filter` | Rate `3/4`, with both expectation factors recalculated |
 | Rank cost | `lem:all-orders`, `lem:rank-cost`, `lem:thinning` | Same deterministic/conditional lemmas; density rate `3/8` and effective rank coefficient charged exactly |
 | Rounding and branches | Source geometric levels and maximum branch | 256 rational phases and affine mixture |
@@ -94,7 +95,7 @@ checks, with independent mathematical review pending.
 
 ## Baseline for the retained-basis update
 
-The selected coefficient
+That version's coefficient
 `548933908320757/1325382348737372749824000` is approximately
 `1.71459364062` times the exact PR #2 coefficient, a **71.46% increase**.
 It exceeds `(7/4)*2^-32` and remains below `2^-31`. The certificate
@@ -111,3 +112,20 @@ almighty-adversary guarantee. No proof of the external `2^-47` announcement
 was located. These findings remain a scoped comparison, not an exhaustive
 novelty claim. The historical receipt also records PR #2's state at that audit;
 it does not assert its current merge status.
+
+## Baseline for the activation-split update
+
+The selected coefficient is
+`8003458533570087953/16807475946150704657203200000`, approximately
+`1.14973122069` times the exact retained-basis coefficient: **14.97% higher**.
+It exceeds `(51/50)*2^-31` and remains below `2^-30`. The scalar verifier
+reruns the preceding verifier before comparing coefficients. The preceding
+publication and sources are preserved in the
+[retained-basis snapshot](archive/retained-bases/README.md), with 17 unchanged
+artifacts from merged commit `6d94154`.
+
+The [activation source refresh](verification/activation_baseline_audit.json)
+again checked nine primary artifacts and both related arXiv versions. Their
+model distinctions remain as above; the pinned OpenAI revision was unchanged.
+No supporting proof for the external announcement was located in that scoped
+search. No exhaustive priority or best-known-bound claim is made.

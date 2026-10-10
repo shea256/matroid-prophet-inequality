@@ -7,16 +7,16 @@ By **Ryan Shea**. A living research project on
 
 **[Read the latest paper (PDF)](manuscript.pdf)** · [Read online](manuscript.md) · [LaTeX source](tex/manuscript.tex)
 
-Current result: **[Retained bases and projected residuals](results/retained-bases.md)**, 2026-10-10.
+Current result: **[Activation generators and joint mask membership](results/activation-split.md)**, 2026-10-10.
 
 ```math
 \mathbb E[\mathrm{reward}]\ge C_\star\mathbb E[\mathrm{OPT}],\qquad
-C_\star=\frac{548933908320757}{1325382348737372749824000}>\frac{7}{4}\, 2^{-32}.
+C_\star=\frac{8003458533570087953}{16807475946150704657203200000}>\frac{51}{50}\, 2^{-31}.
 ```
 
-The exact certificate is approximately **1.71459 times** the preceding [`2^-32` certificate](results/rank-charged.md) (**71.46% higher**). This compares guaranteed fractions, not measured performance. The construction uses **`42n+27` fair bits**.
+The exact certificate is approximately **1.14973 times** the preceding [`(7/4)*2^-32` certificate](results/retained-bases.md) (**14.97% higher**). This compares guaranteed fractions, not measured performance. The construction uses **`40n+26` fair bits**.
 
-Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee.
+Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above $2^{-31}$.
 
 **Progress since the original announcement**
 
@@ -25,7 +25,8 @@ Retained-basis reconstruction, projected witnesses, and an additive maximum-bran
 | [Initial announced result](results/quadratic-hazard.md) | $>2^{-36}$ | 1× |
 | [Joint residual encoding](results/joint-residual.md) | $>2^{-34}$ | ≈ 4.06× |
 | [Rank-charged residual entropy](results/rank-charged.md) | $>2^{-32}$ | ≈ 15.95× |
-| **[Retained bases and projected residuals](results/retained-bases.md)** | **$>\frac{7}{4}\, 2^{-32}$** | **≈ 27.35×** |
+| [Retained bases and projected residuals](results/retained-bases.md) | $>\frac{7}{4}\, 2^{-32}$ | ≈ 27.35× |
+| **[Activation generators and joint mask membership](results/activation-split.md)** | **$>\frac{51}{50}\, 2^{-31}$** | **≈ 31.45×** |
 
 Gains compare the exact coefficients. Earlier $2^{-63}$ and $2^{-43}$
 checkpoints remain in the [full development history](IMPROVEMENTS.md).

@@ -26,8 +26,11 @@ example shows sharpness for the abstract query hypotheses. Later versions
 add joint affine encoding and rank-charged residual entropy. The current
 version reconstructs retained old bases by contraction, exploits forced
 retention, projects witnesses and tested labels onto the comparison optimum,
-and pays the fixed tail error with the maximum branch. The resulting
-coefficient is about 71.46% larger than the preceding exact certificate.
+and pays the fixed tail error with the maximum branch. It now conditions
+safety on activation membership, fixes activation-generator scores, and
+uses joint mask membership with the necessary overlap correction. The
+resulting coefficient is about 14.97% larger than the preceding exact
+retained-basis certificate and crosses `2^-31`.
 
 Greedy contraction, exponential weighting, union bounds, binomial estimates,
 and finite-offset rounding are established methods. The claimed contribution

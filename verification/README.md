@@ -11,6 +11,8 @@ Build and publication checks are separate from mathematical verification.
 
 | Check | Scope |
 |---|---|
+| `certify_activation_split.py` | Exact joint-membership tilts by log intervals and integer powers, positive-series decay cross-check, activation charge cancellation, old/new coefficients, and 40n+26 seed count |
+| `check_activation_split.py` | 2,222 exact joint mask probabilities, 70,296 projected encodings/charges, 140,592 fixed-activation basis checks, 2,716 conditional safety bounds, and adaptive excess tails |
 | `certify_retained_basis.py` | Exact log intervals, integer-power tilt cross-checks, independent positive-series decay bound, projected rank interface, additive cancellation, old/new coefficients, and 42n+27 seed count |
 | `check_retained_basis.py` | 74,881 interleavings, 3,349 basis families, 45,824 projected encodings/charges, forced/omitted occurrences, adaptive tails, and an additive-error negative control |
 | `certify_rank_charged.py` | Exact log enclosures, both tilt inequalities, rank/density charges, final error/slack, coefficient, branch mixture, and seed count |
@@ -21,6 +23,15 @@ Build and publication checks are separate from mathematical verification.
 | `check_quadratic_hazard.py` | 4,916 local and 3,153 global quadratic inequalities on 170 small matroid/weight cases |
 | `check_quadratic_ingredients.py` | Adaptive Boolean queries, biased filters, selected residual expectations, phase boundaries, and abstract sharpness |
 | Archived scalar certificates | Original `2^-63` and `2^-43` finite arithmetic assertions |
+
+The activation path checker uses all 1,400 filter configurations on 170
+small matroid/weight instances, threshold 2, and guard/test rate `1/4`.
+It includes 184 omitted active second-stream generators, 504,544 affine
+signs, and positive residual, rank, and generator charges. Separate mask
+tests use both stress rates and the final `rho=3/8`, `t=11/2^17` rates.
+Adaptive selectors see the entire mask; 26 of 40 integrated-expectation
+cases have strictly positive excess. A negative control rejects naive
+multiplication of generator and residual membership probabilities.
 
 The retained-basis path checker uses an empty filter mask, threshold 2 and small stress penalties `1/4,1/2`
 to exercise nonzero generators, witness ranks, and excess residuals. Its
@@ -45,8 +56,8 @@ performance of the final competitive guarantee.
 `python3 -B scripts/check_archive.py` verifies unchanged archival artifacts
 and runs the earlier archive's default three checks; `--full` also runs its
 exhaustive structural checks. The 23 initial artifacts, six-file `2^-34`
-publication snapshot, and 16-file rank-charged snapshot have recorded hashes
-(45 preserved artifacts in total).
+publication snapshot, 16-file rank-charged snapshot, and 17-file
+retained-basis snapshot have recorded hashes (62 preserved artifacts in total).
 
 ## Generated publication checks
 

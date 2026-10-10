@@ -85,3 +85,11 @@ the head of PR #2 when this snapshot was prepared. These include the
 paper sources, and build/check receipts. Its SHA-256 manifest is checked
 alongside the previous 29 preserved artifacts. The snapshot records a
 committed publication state, without asserting when its PR was merged.
+
+## Retained-basis publication above `(7/4)*2^-32`
+
+The [retained-basis snapshot](retained-bases/README.md) preserves 17 publication
+artifacts from [merged commit 6d94154](https://github.com/shea256/matroid-prophet-inequality/tree/6d94154ae9961733b7604918a2d3b642d218d61e).
+These include the 12-page PDF, Markdown, LaTeX, result registry and records,
+shared paper sources, and build/check receipts. Its manifest is checked
+alongside the previous 45 artifacts, for 62 immutable artifacts in total.

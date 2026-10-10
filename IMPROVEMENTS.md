@@ -10,8 +10,9 @@
 | [Joint residual encoding](results/joint-residual.md) | $>2^{-34}$ | Shared generator variables across two pivot tests and charged a density-sample cutoff. | Written proof; independent review pending |
 | [Rank-charged residual entropy](results/rank-charged.md) | $>2^{-32}$ | The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff. | Written proof; independent review pending |
 | [Retained bases and projected residuals](results/retained-bases.md) | $>\frac{7}{4}\, 2^{-32}$ | Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee. | Written proof; independent review pending |
+| [Activation generators and joint mask membership](results/activation-split.md) | $>\frac{51}{50}\, 2^{-31}$ | Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above $2^{-31}$. | Written proof; independent review pending |
 
-The registry explicitly selects `retained-bases`. Historical records and
+The registry explicitly selects `activation-split`. Historical records and
 certificates remain unchanged. Review status and mathematical validity are
 distinct: these records have written proofs and same-agent checks, with
 independent review and formalization pending. No priority claim is made.
@@ -50,4 +51,10 @@ The refinement weights residual families by generator and witness counts, charge
 
 Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee.
 
-[Result record](results/retained-bases.md) · [Certificate](verification/reference/retained_basis_constants_output.json)
+[Result record](results/retained-bases.md) · [Certificate](verification/reference/retained_basis_constants_output.json) · [Preserved publication](archive/retained-bases/README.md)
+
+## 2026-10-10 — Activation generators and joint mask membership
+
+Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above $2^{-31}$.
+
+[Result record](results/activation-split.md) · [Certificate](verification/reference/activation_constants_output.json)

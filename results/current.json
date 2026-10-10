@@ -1,6 +1,6 @@
 {
-  "result_id": "retained-bases",
-  "title": "Retained bases and projected residuals",
+  "result_id": "activation-split",
+  "title": "Activation generators and joint mask membership",
   "authors": [
     "Ryan Shea"
   ],
@@ -8,22 +8,22 @@
   "review_status": "Written proof with same-agent verification; independent mathematical review and formalization pending.",
   "independent_review_completed": false,
   "lean_formalization_completed": false,
-  "simplified_guarantee": "(7/4)*2^-32",
-  "certified_coefficient_lower_bound": "548933908320757/1325382348737372749824000",
-  "seed_bits": "42n+27",
+  "simplified_guarantee": "(51/50)*2^-31",
+  "certified_coefficient_lower_bound": "8003458533570087953/16807475946150704657203200000",
+  "seed_bits": "40n+26",
   "parameters": {
-    "kappa": 192,
+    "kappa": 176,
     "density_rate": "3/8",
     "filter_rate": "3/4",
-    "guard_and_test_rate": "21/262144",
+    "guard_and_test_rate": "11/131072",
     "mesh": "261/256",
     "phases": 256,
-    "main_probability": "262123/262144"
+    "main_probability": "131061/131072"
   },
   "base": "(261/256)^256 > 140",
-  "certificate": "verification/reference/retained_basis_constants_output.json",
+  "certificate": "verification/reference/activation_constants_output.json",
   "registry": "results/registry.json",
-  "record": "results/retained-bases.md",
+  "record": "results/activation-split.md",
   "paper": "manuscript.pdf",
   "proof": "manuscript.md",
   "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
