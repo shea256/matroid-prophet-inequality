@@ -7,7 +7,7 @@
     "repository": "https://github.com/shea256/matroid-prophet-inequality",
     "input_hashes": {
       "results/registry.json": "98a3e0de5bb4705969ffd4ec6e1011eae61a69c7805e57eac3c11f63f10a5466",
-      "scripts/build_progress_graphic.py": "f4173977fb523a05605a3dcf4cf2ae6cae31964878e25f32e804ff5997950703"
+      "scripts/build_progress_graphic.py": "07dc58be4f5b2e84f060478e1b554ddc02a2df7855845df25360fccc039d4fd9"
     },
     "rows": [
       {
@@ -65,6 +65,6 @@
   "matplotlib": "3.9.4",
   "artifacts": {
     "png": "386b478c96a80b5bab1ebc517cf5ad3608f7adffa263a56065acf582db59f851",
-    "svg": "bcc0e189e807b9bc6ffde2be9ed50243d047c46babc270e8cb4a3c159b075844"
+    "svg": "5125b3314c956547ecaa0639eef092a7d3273836124302b2132c7e0b5d383825"
   }
 }

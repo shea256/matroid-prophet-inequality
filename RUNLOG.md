@@ -415,12 +415,14 @@ so this update uses a separate branch, `shea256/readme-progress-graphic`,
 from merged master.
 
 Generated `assets/guarantee-progress.png` (2560 by 1440, 256833 bytes) and
-an SVG (100082 bytes) with Matplotlib 3.9.4 in an ignored local virtualenv.
+an SVG (98839 bytes) with Matplotlib 3.9.4 in an ignored local virtualenv.
 The chart reads exact registry coefficients: a logarithmic comparison with
 the derived OpenAI bound and a linear view of gains since the announcement.
 Its horizontal axis is a refinement sequence; all displayed project dates
 are October 10. Exact ratios and the greater-than-2^262 source comparison
-were recalculated. The rendered graphic was inspected for labels and layout.
+were recalculated. The rendered graphic was inspected for labels and layout. Trailing
+whitespace in the SVG export was normalized before final diff validation;
+regeneration preserved the PNG bytes exactly.
 
 The [data receipt](assets/guarantee-progress.json) binds the registry and
 renderer inputs plus both image hashes. Added standard-library freshness

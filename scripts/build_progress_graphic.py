@@ -170,6 +170,9 @@ def render(root=ROOT):
     fig.savefig(root/(ASSET+'.svg'), metadata={'Date': None,
                 'Title': 'Progress on OpenAI Problem #111',
                 'Description': 'Exact guarantee comparisons in the same one-sample, full-seed adversary model.'})
+    # Matplotlib path commands end in spaces; keep generated text diff-clean.
+    svg = root/(ASSET+'.svg')
+    svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
     plt.close(fig)
     receipt = dict(data=data, matplotlib=matplotlib.__version__,
                    artifacts={ext: digest(root/(ASSET+'.'+ext)) for ext in ('png', 'svg')})
