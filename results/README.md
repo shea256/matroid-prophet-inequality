@@ -64,6 +64,14 @@ its nonnegative integer `exponent`. The simplified threshold is
 checks the exact coefficient against this scaled threshold, and the builder
 uses it consistently in the paper, metadata, headline, and history.
 
+The README's progress table starts at the registry's `announcement_baseline`
+(the original announced `quadratic-hazard` result) and runs through `current`.
+It excludes unfinished candidates and computes each gain from the exact
+coefficient divided by the baseline coefficient, rounded to two decimal
+places for display. The selected row is emphasized; earlier research
+checkpoints remain in the full development history. New incorporated results
+appear automatically when `current` advances.
+
 The stable generated entry points are `manuscript.md`, `tex/manuscript.tex`,
 `manuscript.pdf`, `results/current.json`, `RESULT.md`, `IMPROVEMENTS.md`, and
 the marked current-result block in README. Edit their source records instead

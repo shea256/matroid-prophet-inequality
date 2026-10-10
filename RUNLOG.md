@@ -332,3 +332,25 @@ visually inspected. Package validation checked 172 local links, all 45
 immutable artifacts, and current paper input/output hashes before this log
 entry. These are same-agent arithmetic, finite, and publication checks;
 independent mathematical review and formalization remain pending.
+
+## README progress table — October 10, 2026
+
+After PR #4 merged into `master` at `9bd129a`, added the requested four-row
+progress table below the current result. It starts with the originally
+announced quadratic-hazard certificate, highlights the selected result,
+and links the earlier research checkpoints to the full development history.
+The builder generates rows from the result registry and divides exact
+coefficients before rounding display gains to two decimals: 1×, 4.06×,
+15.95×, and 27.35×. The registry names the announcement baseline explicitly
+so subsequent selected refinements update the table automatically.
+
+Ran the full paper build to refresh its input hashes, then the default
+11-program verification suite (18.67 seconds, fresh JSON equal to all
+references), all 13 workflow tests, the read-only build check, package
+validation, and `git diff --check`. Package validation covered 177 local
+links and all 45 immutable artifacts. Independently recalculated displayed
+ratios directly from the certificate files. The manuscript Markdown,
+LaTeX, PDF, current result metadata, and full development history are
+byte-identical to their versions on `master`; only README presentation,
+its generation/configuration, workflow documentation, and build-input
+hashes changed. This does not change any mathematical claim or review stage.

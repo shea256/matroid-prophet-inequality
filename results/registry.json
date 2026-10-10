@@ -177,5 +177,6 @@
       "script": "verification/check_online_rule.py",
       "reference": "verification/reference/online_output.json"
     }
-  ]
+  ],
+  "announcement_baseline": "quadratic-hazard"
 }
