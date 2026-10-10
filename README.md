@@ -18,6 +18,18 @@ The exact certificate is approximately **1.71459 times** the preceding [`2^-32` 
 
 Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee.
 
+**Progress since the original announcement**
+
+| Version | Guarantee | Gain over initial result |
+|---|---:|---:|
+| [Initial announced result](results/quadratic-hazard.md) | $>2^{-36}$ | 1× |
+| [Joint residual encoding](results/joint-residual.md) | $>2^{-34}$ | ≈ 4.06× |
+| [Rank-charged residual entropy](results/rank-charged.md) | $>2^{-32}$ | ≈ 15.95× |
+| **[Retained bases and projected residuals](results/retained-bases.md)** | **$>\frac{7}{4}\, 2^{-32}$** | **≈ 27.35×** |
+
+Gains compare the exact coefficients. Earlier $2^{-63}$ and $2^{-43}$
+checkpoints remain in the [full development history](IMPROVEMENTS.md).
+
 **Written proof with same-agent verification; independent mathematical review and formalization pending.** Finite checks accompany the written proof; they do not prove
 its universal assertions. No priority or confirmed best-known-bound claim
 is made. These paper links remain stable as results are updated.

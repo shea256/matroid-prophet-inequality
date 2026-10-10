@@ -60,6 +60,33 @@ def history_table(registry):
     return '\n'.join(rows)
 
 
+
+def progress_table(registry):
+    """Compare incorporated results with the original announced certificate."""
+    entries = registry['results']
+    ids = [r['id'] for r in entries]
+    start = ids.index(registry['announcement_baseline'])
+    end = ids.index(registry['current'])
+    baseline = entries[start]
+    if baseline['status'] == 'candidate' or start > end:
+        raise ValueError('Announcement baseline must be incorporated before the current result')
+    coefficient = Fraction(baseline['coefficient'])
+    rows = ['| Version | Guarantee | Gain over initial result |',
+            '|---|---:|---:|']
+    for r in entries[start:end+1]:
+        if r['status'] == 'candidate':
+            continue
+        initial = r['id'] == baseline['id']
+        title = 'Initial announced result' if initial else r['title']
+        ratio = Fraction(r['coefficient']) / coefficient
+        gain = '1×' if initial else f'≈ {float(ratio):.2f}×'
+        cells = [f"[{title}]({r['record']})", '$>'+guarantee_tex(r)+'$', gain]
+        if r['id'] == registry['current']:
+            cells = ['**'+cell+'**' for cell in cells]
+        rows.append('| '+' | '.join(cells)+' |')
+    return '\n'.join(rows)
+
+
 def generated(root=ROOT):
     registry, current, cert = load(root)
     coefficient = Fraction(current['coefficient'])
@@ -141,6 +168,13 @@ Current result: **[{current['title']}]({current['record']})**, {current['date']}
 {previous_text} The construction uses **`{seed}` fair bits**.
 
 {current['change']}
+
+**Progress since the original announcement**
+
+{progress_table(registry)}
+
+Gains compare the exact coefficients. Earlier $2^{{-63}}$ and $2^{{-43}}$
+checkpoints remain in the [full development history](IMPROVEMENTS.md).
 
 **{review}** Finite checks accompany the written proof; they do not prove
 its universal assertions. No priority or confirmed best-known-bound claim
