@@ -1,0 +1,30 @@
+{
+  "result_id": "quadratic-hazard-2026-10-10",
+  "title": "A quadratic hazard potential and a one-sample matroid prophet guarantee above 2^-36",
+  "date": "2026-10-10",
+  "review_status": "Written proof with same-agent verification; independent review and formalization pending",
+  "independent_review_completed": false,
+  "lean_formalization_completed": false,
+  "simplified_guarantee": "2^-36",
+  "certified_coefficient_lower_bound": "9652683394380719/637507023635152349901619200",
+  "seed_bits": "38n+23",
+  "parameters": {
+    "kappa": "2048",
+    "t": "1/65536",
+    "density_rate": "5/8",
+    "filter_rate": "3/4",
+    "gamma": "5/32",
+    "main_probability": "65535/65536",
+    "mesh": "69/64",
+    "phases": "64",
+    "decay": "153597/327680",
+    "entropy_plus_one": "473/10",
+    "error": "248756209/5033066496"
+  },
+  "base": "(69/64)^64 > 120",
+  "paper": "manuscript.pdf",
+  "proof": "manuscript.md",
+  "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "announced_comparator": "2^-47; proof unavailable; strongest derived coefficient unknown",
+  "novelty_status": "Unresolved; no priority or best-known-bound claim"
+}

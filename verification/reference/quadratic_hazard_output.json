@@ -1,0 +1,22 @@
+{
+  "counts": {
+    "matroid_weight_instances": 170,
+    "positive_certificate_checks": 22399,
+    "failure_depletion_checks": 14605,
+    "quadratic_resource_checks": 4916,
+    "quadratic_drift_checks": 4916,
+    "unit_hazard_nodes": 3438,
+    "global_quadratic_checks": 3153,
+    "group_prefixes": 1029,
+    "depleted_event_comparisons": 7794,
+    "zero_hazard_nodes": 786
+  },
+  "guard_rate": "1/4",
+  "density_threshold": 2,
+  "filter_mask": "H empty",
+  "smallest_observed_mean_exit_hazard": "2653/4096",
+  "negative_control_mean_hazard": "143713145169237208655582144080023450155120447741747753447961056812936322999311/1852673427797059126777135760139006525652319754650249024631321344126610074238976",
+  "negative_control": "monotone hazards alone fail the quadratic conclusion",
+  "arithmetic": "exact fractions throughout; no transcendental evaluation",
+  "result": "PASS (finite checks; universal claim rests on the written proof)"
+}

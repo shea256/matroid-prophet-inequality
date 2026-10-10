@@ -1,0 +1,20 @@
+{
+  "counts": {
+    "adaptive_event_transactions": 398,
+    "single_query_potential_identities": 2766,
+    "increasing_events_by_size": [
+      2,
+      3,
+      6,
+      20,
+      168
+    ],
+    "biased_filter_vectors": 5992,
+    "selected_residual_expectations": 560,
+    "rational_mesh_boundary_checks": 40,
+    "rounding_negative_controls": 1,
+    "abstract_sharpness_examples": 18
+  },
+  "arithmetic": "exact fractions; residual log comparisons use rational intervals",
+  "result": "PASS (finite ingredient checks, not a universal proof)"
+}

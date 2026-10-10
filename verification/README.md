@@ -1,0 +1,44 @@
+# Verification scope
+
+Run `python3 -B scripts/run_checks.py` from the repository root. All Python
+checks use the standard library. The default run compares fresh JSON output
+with the checked-in references and validates the paper's source/PDF receipt
+and local documentation links.
+
+| Script | What it checks | What it does not establish |
+|---|---|---|
+| `certify_quadratic_constants.py` | Exact rational inequalities, logarithm bounds, branch mixture, phase/base inequality, coefficient and seed count | Universal correctness of the proof interfaces |
+| `check_quadratic_hazard.py` | Actual reverse-map resource, depletion, drift and global hazard inequalities on declared small matroids | All finite matroids or large-instance performance |
+| `check_quadratic_ingredients.py` | Every increasing Boolean event on at most four bits at two rates, biased filters, selected residual expectations, rational rounding boundaries, abstract sharpness examples | Universal inference from finite enumeration |
+
+The reverse-map check fixes `H` empty and uses guard rate `1/4` and threshold
+2 to exercise nontrivial paths. The separate Boolean-event test also uses
+the actual guard rate `2^-16`. The biased-filter test uses rate `3/4`.
+Residual tests include adaptively selected family members at the actual
+density rate; their logarithms have outward rational bounds. Every theorem
+parameter need not produce nontrivial behavior on tiny ground sets, so these
+stress cases are explicitly distinguished from the final algorithm's parameters.
+
+The default suite includes 4,916 local quadratic checks, 3,153 global hazard
+checks, 398 adaptive-event transactions, 5,992 biased-filter vectors, 560
+residual expectations, and 40 rounding boundary cases. Reference outputs
+are under [reference/](reference/). [Current scalar output](reference/quadratic_constants_output.json).
+
+## Retained exhaustive checks
+
+`--full` also runs `finite_checks.py` and `check_online_rule.py`. These retain
+earlier structural checks over all 92 labeled matroids of size at most four,
+and the declared online-rule cases with more than five million complete
+arrival-order runs. They use the older scripts' documented stress probabilities
+and rounding configurations; the changed current probabilities and rational
+phase mesh are checked by the default ingredient suite. These are structural
+regressions, not an empirical demonstration of the final competitive ratio.
+
+`reverse_support.py`, `finite_checks.py`, and `check_online_rule.py` provide
+shared finite models and exact helpers. Reusing them is not independent review.
+`source_manifest.json` records upstream source hashes, not a Lean build receipt.
+`paper_build.json` records the PDF build, not a proof-checker result.
+
+No new theorem has been formalized in Lean, and no independent mathematical
+review is recorded. The universal claim rests on [the written proof](../manuscript.md)
+and its cited structural lemmas. See [review questions](../HANDOFF.md).

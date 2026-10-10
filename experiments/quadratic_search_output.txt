@@ -1,0 +1,10 @@
+density rate fixed at 5/8; entropy/decay bounds as in scalar certificate
+examined: 8064 feasible: 3234
+a,d,H,mesh,phases: 11 16 3/4 69/64 64 approximate_ratio_over_2^-36: 1.0459032019664072
+a,d,H,mesh,phases: 11 16 11/16 69/64 64 approximate_ratio_over_2^-36: 0.9790384608932198
+a,d,H,mesh,phases: 11 16 3/4 35/32 64 approximate_ratio_over_2^-36: 0.9717770820446802
+a,d,H,mesh,phases: 11 16 3/4 33/32 128 approximate_ratio_over_2^-36: 0.9631956512937027
+a,d,H,mesh,phases: 11 16 13/16 69/64 64 approximate_ratio_over_2^-36: 0.9511233687307752
+chosen (11,16,3/4,69/64,64), approximate_ratio_over_2^-36: 1.0459032019664072
+Ratios ordered by exact fractions; displayed decimals are not certificates.
+No global optimality or novelty claim. The certificate uses the simpler bound B>120.

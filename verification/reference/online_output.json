@@ -1,0 +1,19 @@
+{
+  "counts": {
+    "prepared_rules": 19200,
+    "order_runs": 5347942,
+    "seed_states": 287976,
+    "instances": 221,
+    "nontrivial_guard_states": 12491,
+    "order_uniform_inequalities": 7736592,
+    "conditional_safety_inequalities": 3232,
+    "nontrivial_density_states": 3160
+  },
+  "guard_and_test_rate": "1/4 (stress-test rate, not proposed 2^-29)",
+  "density_thresholds": [
+    2,
+    262144
+  ],
+  "minimum_positive_main_ratio_in_test_set": "9/10240",
+  "result": "PASS (finite exact checks; not universal proof or performance claim)"
+}

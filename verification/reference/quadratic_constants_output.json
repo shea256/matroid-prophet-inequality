@@ -1,0 +1,24 @@
+{
+  "parameters": {
+    "kappa": "2048",
+    "t": "1/65536",
+    "density_rate": "5/8",
+    "filter_rate": "3/4",
+    "gamma": "5/32",
+    "main_probability": "65535/65536",
+    "mesh": "69/64",
+    "phases": "64",
+    "decay": "153597/327680",
+    "entropy_plus_one": "473/10",
+    "error": "248756209/5033066496"
+  },
+  "base": "(69/64)^64 > 120",
+  "slack_lower_bound": "2652290047/256686391296",
+  "certified_coefficient_lower_bound": "9652683394380719/637507023635152349901619200",
+  "exact_lower_bound_over_2^-36": "9652683394380719/9276948165427200",
+  "exact_lower_bound_over_announced_2^-47": "9652683394380719/4529759846400",
+  "simplified_guarantee": "2^-36",
+  "exit_hazard_lower_bound": "1/2",
+  "seed_bits": "38n+23",
+  "result": "PASS (exact scalar certificate; universal theorem has a written proof)"
+}

@@ -1,0 +1,146 @@
+{
+  "repository": "https://github.com/openai/math",
+  "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "artifacts": [
+    {
+      "path": "CONTENTS.md",
+      "cache_name": "CONTENTS.md",
+      "bytes": 638727,
+      "sha256": "cc7c0b8a1cdedd845a777e77cf682657308503daf8346c1349e06e9259d063c2",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/CONTENTS.md"
+    },
+    {
+      "path": "README.md",
+      "cache_name": "source-README.md",
+      "bytes": 4190,
+      "sha256": "5e8878ee04866f52ec942852552b9c28db278f65691c7ab49a87c9e93a9199fd",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/README.md"
+    },
+    {
+      "path": "lean/docs/111.md",
+      "cache_name": "111.md",
+      "bytes": 1497,
+      "sha256": "738413ac4597f53c1b01a5cbc6c649f7a763337f5a843c200ca004d6375ff0b2",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/111.md"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/README.md",
+      "cache_name": "README.md",
+      "bytes": 770,
+      "sha256": "50404ecb2485fe2bcaa4f257ad37052e9e94b41a3cb4b6457d3727d3a57b3c53",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/README.md"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf",
+      "cache_name": "final.pdf",
+      "bytes": 463589,
+      "sha256": "4bcbebba491320129402440fc3892ec876a04b3afb933305b214e9341d953c7e",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/main.tex",
+      "cache_name": "main.tex",
+      "bytes": 2115,
+      "sha256": "7428ac8e35030a38f0b695b33d6a97bbfaf23dcbc720ec1096137dcef2f56098",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/main.tex"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/references/literature.bib",
+      "cache_name": "literature.bib",
+      "bytes": 8862,
+      "sha256": "81834cb0792b0e73a868aeb78f60f17f148513526753acc100bd7525b21ef86a",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/references/literature.bib"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/introduction.tex",
+      "cache_name": "introduction.tex",
+      "bytes": 11385,
+      "sha256": "44440d00c57115f10131a8d854fcb7ab19df16da270687b0d2ac01fff7e02002",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/introduction.tex"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/setup.tex",
+      "cache_name": "setup.tex",
+      "bytes": 5228,
+      "sha256": "0252ceb139653ed30be09f0d7d791f2023d4fe036af532201f2153c39853aa69",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/setup.tex"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/algorithm.tex",
+      "cache_name": "algorithm.tex",
+      "bytes": 16778,
+      "sha256": "328b8b2d435919f8d019f6c7f65130cd2e7be1ef8a7bb09ae2ef993cb0c3be71",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/algorithm.tex"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/safety.tex",
+      "cache_name": "safety.tex",
+      "bytes": 17438,
+      "sha256": "c2caa1e2f80835b42b0009da9e5a79b12493bed58c0f6c82d77ce0a8a9091c6a",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/safety.tex"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/transfer.tex",
+      "cache_name": "transfer.tex",
+      "bytes": 18825,
+      "sha256": "d1941d858edbc5b80df829d1c923fe3d0c2b97d3a03a55fe57367ae0df247892",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/transfer.tex"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/accounting.tex",
+      "cache_name": "accounting.tex",
+      "bytes": 10649,
+      "sha256": "07021eaab1c40f6d1bccdc8ca9de6c643c320874cae2759dae126cfd2e9afbe1",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/accounting.tex"
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/secretary.tex",
+      "cache_name": "secretary.tex",
+      "bytes": 7691,
+      "sha256": "6b68aa130f8ad993c23ccd7237fae369c348c60ad6a84309bd5800b3691ee96f",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/secretary.tex"
+    },
+    {
+      "path": "lean/ComparatorChallenges/MatroidProphet.lean",
+      "cache_name": "MatroidProphet.lean",
+      "bytes": 4003,
+      "sha256": "2bdb8a904832c5bc8e380d85951cca6f7cf535fc0c882b2b41384c2197dcadfa",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatroidProphet.lean"
+    },
+    {
+      "path": "lean/ComparatorChallenges/MatroidProphet.json",
+      "cache_name": "MatroidProphet.json",
+      "bytes": 323,
+      "sha256": "0797164ae266a053b85ae5c19fdc75d6e82f1b6077a64d6456c8b7e2d753bdd1",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatroidProphet.json"
+    },
+    {
+      "path": "lean/ComparatorChallenges/MatroidSecretary.lean",
+      "cache_name": "MatroidSecretary.lean",
+      "bytes": 8722,
+      "sha256": "080223280bd1f873a416233c5eb5378900871d44a04f1e2d14bc51ec42f4c005",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatroidSecretary.lean"
+    },
+    {
+      "path": "lean/ComparatorChallenges/MatroidSecretary.json",
+      "cache_name": "MatroidSecretary.json",
+      "bytes": 430,
+      "sha256": "f5839c6e6cbf4527b9a0229fa95e32718c9e6999a3cb5e415f87b481da38c50a",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/ComparatorChallenges/MatroidSecretary.json"
+    },
+    {
+      "path": "lean/OAI/Probability/MatroidProphet/Main.lean",
+      "cache_name": "source-Main.lean",
+      "bytes": 3258,
+      "sha256": "98363b92b3f6ebc487c689e9f9ebd5924a665a76963bfda174875d8ef9b6a291",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Probability/MatroidProphet/Main.lean"
+    },
+    {
+      "path": "lean/OAI/Probability/MatroidProphet/Constants.lean",
+      "cache_name": "source-Constants.lean",
+      "bytes": 2541,
+      "sha256": "df830bd1f34c23ece08065c37b28c5898f73c15744b0b4331ec1feff8e61603a",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/OAI/Probability/MatroidProphet/Constants.lean"
+    }
+  ]
+}

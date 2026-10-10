@@ -1,0 +1,8 @@
+.context/
+__pycache__/
+*.py[cod]
+*.aux
+*.log
+*.out
+*.toc
+.DS_Store

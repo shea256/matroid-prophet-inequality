@@ -1,0 +1,9 @@
+{
+  "pdf": "manuscript.pdf",
+  "bytes": 225542,
+  "sha256": "6af087313f29c9339fd5125826392bc597f246473a3a81fac8611966c50b520b",
+  "source": "tex/manuscript.tex",
+  "source_sha256": "f0805448d8ea04ddd1d1b2f6659497c10209e2276971e5e47db62e1d8af627bf",
+  "passes": 3,
+  "warnings": []
+}
