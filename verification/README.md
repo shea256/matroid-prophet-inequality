@@ -1,64 +1,66 @@
 # Verification scope
 
-Run `python3 -B scripts/run_checks.py` from the repository root. All Python
-checks use the standard library. The default run compares fresh JSON output
-with the checked-in references and validates the paper's source/PDF receipt
-and local documentation links.
+Run `python3 -B scripts/run_checks.py` from the repository root. Python 3.9+
+and the standard library suffice. The runner discovers script/reference pairs
+from the [result registry](../results/registry.json), including earlier scalar
+certificates and shared structural checks. Fresh JSON must match each reference.
 
-The [current run receipt](current_run_receipt.json) records the current checks
-for this joint-encoding refinement. The earlier [full-suite receipt](run_receipt.json)
-is retained as a historical execution record; its script hashes identify
-the version tested at that time.
+The [current receipt](current_run_receipt.json) records actual runs and script
+hashes. Earlier receipts refer to the versions and suites named within them.
+Build and publication checks are separate from mathematical verification.
 
-| Script | What it checks | What it does not establish |
-|---|---|---|
-| `certify_joint_residual.py` | Exact coefficient, log enclosures, density exception, and all new parameters | Universal proof correctness |
-| `check_joint_residual.py` | Shared affine encoding on actual small paths, early/parity boundaries, negative control, binomial tails/floors, current phases | All matroids or independent review |
-| `certify_quadratic_constants.py` | Exact rational inequalities, logarithm bounds, branch mixture, phase/base inequality, coefficient and seed count | Universal correctness of the proof interfaces |
-| `check_quadratic_hazard.py` | Actual reverse-map resource, depletion, drift and global hazard inequalities on declared small matroids | All finite matroids or large-instance performance |
-| `check_quadratic_ingredients.py` | Every increasing Boolean event on at most four bits at two rates, biased filters, selected residual expectations, rational rounding boundaries, abstract sharpness examples | Universal inference from finite enumeration |
+| Check | Scope |
+|---|---|
+| `certify_rank_charged.py` | Exact log enclosures, both tilt inequalities, rank/density charges, final error/slack, coefficient, branch mixture, and seed count |
+| `check_rank_charged.py` | 78 weighted generating bounds, 972 adaptive tail bounds, 216 integrated expectations, 45,824 actual path charges, two omitted-charge negative controls |
+| `certify_joint_residual.py` | Retained exact `2^-34` coefficient, cutoff exception, and changed probabilities |
+| `check_joint_residual.py` | 45,824 actual residual encodings, 331,491 affine signs, early/parity cases, a missing-shift control, binomial tails/floors, and current phase mesh |
+| `certify_quadratic_constants.py` | Retained exact `2^-36` coefficient |
+| `check_quadratic_hazard.py` | 4,916 local and 3,153 global quadratic inequalities on 170 small matroid/weight cases |
+| `check_quadratic_ingredients.py` | Adaptive Boolean queries, biased filters, selected residual expectations, phase boundaries, and abstract sharpness |
+| Archived scalar certificates | Original `2^-63` and `2^-43` finite arithmetic assertions |
 
-The reverse-map check fixes `H` empty and uses guard rate `1/4` and threshold
-2 to exercise nontrivial paths. The separate Boolean-event test also uses
-the published guard rate `2^-16`. The biased-filter test uses rate `3/4`.
-Residual tests include adaptively selected family members at the published
-density rate; their logarithms have outward rational bounds. The new joint checker covers the current phase mesh and density exception.
-Every theorem
-parameter need not produce nontrivial behavior on tiny ground sets, so these
-stress cases are explicitly distinguished from the final algorithm's parameters.
+The new path checker uses threshold 2 and small stress penalties `1/4,1/2`
+to exercise nonzero generators, witness ranks, and excess residuals. Its
+negative controls are abstract scalar examples, not hard matroid instances.
+The adaptive family check lets a selector inspect the entire mask before
+choosing an overlapping family member. Exact final algorithm probabilities
+and penalties are certified separately.
 
-The default suite includes 4,916 local quadratic checks, 3,153 global hazard
-checks, 398 adaptive-event transactions, 5,992 biased-filter vectors, 560
-residual expectations, and 40 rounding boundary cases. Reference outputs
-are under [reference/](reference/). The new checker adds 45,824 residual encodings, 331,491 affine signs, 48
-binomial tails, 120 floor bounds, and 24 current phase boundaries.
-[Current scalar output](reference/joint_residual_constants_output.json);
-[joint output](reference/joint_residual_checks_output.json).
+The retained hazard checker uses stress guard rate `1/4`; the Boolean-event
+suite also tests the earlier published guard rate `2^-16`. The joint checker
+checks the same 256-phase mesh used by the current result. These finite cases
+do not establish a theorem about every matroid. Reusing `reverse_support.py`
+and the earlier finite models is not independent review.
 
-## Retained exhaustive checks
+## Extended and archived checks
 
-`--full` also runs `finite_checks.py` and `check_online_rule.py`. These retain
-earlier structural checks over all 92 labeled matroids of size at most four,
-and the declared online-rule cases with more than five million complete
-arrival-order runs. They use the older scripts' documented stress probabilities
-and rounding configurations; the current analytic probability bounds and rational
-phase mesh are checked by the new scalar and joint suites. These are structural
-regressions, not an empirical demonstration of the final competitive ratio.
+`--full` adds `finite_checks.py` and `check_online_rule.py`: 92 small labeled
+matroids and 5,347,942 complete arrival-order runs under the documented older
+stress configurations. These are retained structural regressions, not observed
+performance of the final competitive guarantee.
 
-`reverse_support.py`, `finite_checks.py`, and `check_online_rule.py` provide
-shared finite models and exact helpers. Reusing them is not independent review.
-`source_manifest.json` records upstream source hashes, not a Lean build receipt.
-`paper_build.json` records the PDF build, not a proof-checker result.
+`python3 -B scripts/check_archive.py` verifies unchanged archival artifacts
+and runs the earlier archive's default three checks; `--full` also runs its
+exhaustive structural checks. The 23 initial artifacts and six-file
+`2^-34` publication snapshot have recorded hashes.
 
-No new theorem has been formalized in Lean, and no independent mathematical
-review is recorded. The universal claim rests on [the written proof](../manuscript.md)
-and its cited structural lemmas. See [review questions](../HANDOFF.md).
+## Generated publication checks
 
-## Archived checkpoints
+`python3 -B scripts/build_manuscript.py --check` verifies registry/certificate
+agreement, generated text, and recorded hashes for all paper inputs and
+Markdown/LaTeX/PDF outputs. It writes nothing and requires no LaTeX installation.
+The package validator additionally checks immutable archives and current local
+links. Historical documents retain their original relative-link context;
+their current indexes and immutable hashes are validated.
 
-The [dated archive](../archive/README.md) preserves the original `2^-63` and
-`2^-43` proofs, scalar certificates, and finite checks. Run
-`python3 -B scripts/check_archive.py --full` to verify the preserved hashes
-and reproduce all five archived programs. The
-[archive receipt](archive_run_receipt.json) records the actual run; archived
-comparisons and labels are historical, not the current result record.
+`python3 -B -m unittest discover -s scripts/tests` tests rejection of coefficient
+mismatches, unfinished selections, path escapes, stale headlines, changed
+paper inputs/PDFs, and modified archives. It also checks that a bigger candidate
+does not select itself and a failed compilation preserves publication outputs.
+These are software regression tests, not mathematical proof checks.
+
+Full paper builds require Pandoc and pdfLaTeX. The build receipt records their
+output hashes and source inputs; compilation does not establish the theorem.
+No independent review or Lean formalization of these refinements is recorded.
+See [review questions](../HANDOFF.md).

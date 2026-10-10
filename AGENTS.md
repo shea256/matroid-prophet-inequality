@@ -18,14 +18,19 @@ Keep the artifacts listed in archive/2026-10-10/manifest.json unchanged as
 historical snapshots. Explain corrections in the archive index rather than
 silently rewriting old claims. Run scripts/check_archive.py after archive changes.
 
-Keep `manuscript.md`, `manuscript.pdf`, and `tex/manuscript.tex` as stable
-entry points. Mathematical changes belong in the proof, the result record,
-and reproducible verifiers. Update `results/current.json`, `RESULT.md`,
-`IMPROVEMENTS.md`, and `RUNLOG.md` when the result changes. Preserve prior
-public versions in Git history if a public release is later authorized.
+Keep `manuscript.md`, `manuscript.pdf`, and `tex/manuscript.tex` as stable,
+generated entry points. Edit `paper/framework.md`, the selected result record,
+and `results/registry.json`; do not hand-edit generated paper text, current
+metadata, RESULT.md, IMPROVEMENTS.md, or the README's marked headline block.
+Follow `results/README.md` for the versioned update workflow. Preserve earlier
+result records and archive the committed publication before replacing it.
+Candidate entries cannot be selected. A proposed entry needs a written proof
+and completed same-agent checks; independent review is separate.
 
-Before handoff, run relevant verification with `python3 -B scripts/run_checks.py`
-and validate package links and artifact hashes with
-`python3 -B scripts/validate_repository.py`. Rebuild changed TeX via
-`python3 -B scripts/build_manuscript.py > verification/paper_build.json`.
-Run `git diff --check`. Never describe these checks as an independent proof review.
+Run relevant verification with `python3 -B scripts/run_checks.py` and validate
+package links, immutable archives, generated files, and artifact hashes with
+`python3 -B scripts/validate_repository.py`. Rebuild with
+`python3 -B scripts/build_manuscript.py`; it writes the build receipt itself.
+Run `python3 -B scripts/build_manuscript.py --check` before handoff. For changes
+to the registry/build workflow, run `python3 -B -m unittest discover -s scripts/tests`.
+Run `git diff --check`. Never describe these checks as independent proof review.

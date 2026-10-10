@@ -213,3 +213,62 @@ The nine-page PDF rebuilt in three passes with zero warnings; pages 1, 5,
 and 7 were rendered and visually inspected. Source/PDF hashes and 117 local
 links passed package validation before this log entry. Same-agent verification
 is not independent mathematical review; that remains pending.
+
+## Versioned paper workflow and rank-charged result — October 10, 2026
+
+After the maintainer merged PR #1 at `08300e2`, prepared a follow-up on
+`shea256/versioned-paper-rank-charge`. The user requested the versioned
+paper-update pattern used in the Fourier repository. Added shared proof
+sources, immutable result records, an explicit current-result registry,
+and a builder that regenerates the stable Markdown, TeX, PDF, current
+metadata, README headline, and improvement history. Candidate records
+cannot become current; independent review remains a separate status.
+
+Integrated the previously derived rank-charged proof with exact coefficient
+`773895463001/3203794364409053184000 > (33/32)*2^-32`. The shared accounting
+now carries `K=kappa+nu` through all costs and the small-group loss. The
+selected rule uses `36n+23` initial fair bits. This is about 3.93235 times
+the preceding exact certificate, with the same one-sample/full-seed
+adversary quantifier. No new novelty or independent-review claim is made.
+
+Preserved the six committed publication files from `08300e2` in
+`archive/joint-residual/`. Each was separately compared byte for byte with
+`git show` at that commit. Together with the previous archive, 29 immutable
+artifacts pass their recorded hashes. The new certificate and finite output
+agree with the research-track evidence (apart from documented metadata-key
+normalization); mathematical scripts retain the same calculation.
+
+Executed:
+
+```sh
+python3 -B scripts/archive_paper.py --result-id joint-residual --commit 08300e2d9c4a8529db0198631716b7ef20dd8aa5
+python3 -B scripts/build_manuscript.py
+python3 -B scripts/run_checks.py --full --receipt verification/current_run_receipt.json
+python3 -B scripts/check_archive.py --receipt verification/versioned_archive_run_receipt.json
+python3 -B -m unittest discover -s scripts/tests
+python3 -B experiments/search_rank_charged.py > .context/rank-search-rerun.json
+cmp .context/rank-search-rerun.json experiments/rank_charged_search_output.json
+python3 -B scripts/build_manuscript.py --check
+python3 -B scripts/validate_repository.py
+git diff --check
+```
+
+All 11 full-suite programs reproduced their stored JSON on Python
+3.9.25/Linux in 43.451 seconds. The three default historical
+programs passed in 0.762 seconds, and the numerical search reproduced
+byte for byte. All 11 workflow tests passed, including deliberate stale
+inputs, coefficient mismatches, candidate selection, archive/PDF mutation,
+and a compiler failure that leaves published artifacts unchanged. These
+workflow tests validate publication consistency, not mathematical claims.
+
+The build used Pandoc 3.12.1 and pdfTeX 1.40.22. Pandoc was installed from
+the official release after the system package manager had no matching
+package; its tarball SHA-256 was
+`d0c90410e90204c9ca83b8539fac5c7aed01fd537207e4585849f8abc5df20b8`.
+An unavailable T1 font dependency and a code-font math warning were corrected
+before the final build. The 11-page, 241053-byte PDF built in three passes
+with zero warnings; pages 1, 8, 9, and 11 were rendered and visually inspected.
+The build receipt binds all active paper inputs and generated artifacts.
+Package validation checked 150 local links
+and all 29 immutable artifacts before this log entry. Same-agent checks and
+finite enumeration are not independent mathematical review.

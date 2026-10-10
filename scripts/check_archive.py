@@ -11,6 +11,7 @@ import time
 
 sys.dont_write_bytecode = True
 from validate_repository import ROOT, validate
+from result_registry import archive_hashes
 
 ARCHIVE = ROOT / 'archive/2026-10-10'
 CHECKS = (
@@ -34,12 +35,8 @@ def main():
     started = time.monotonic()
     manifest_bytes = (ARCHIVE / 'manifest.json').read_bytes()
     manifest = json.loads(manifest_bytes)
-    for entry in manifest['files']:
-        path = ARCHIVE / entry['path']
-        data = path.read_bytes()
-        if len(data) != entry['bytes'] or hashlib.sha256(data).hexdigest() != entry['sha256']:
-            raise SystemExit('Archived artifact differs from original: ' + entry['path'])
-    print('PASS all ' + str(len(manifest['files'])) + ' archived artifact hashes', flush=True)
+    snapshot_count = len(archive_hashes(ROOT))
+    print('PASS all '+str(snapshot_count)+' archived artifact hashes', flush=True)
 
     records = []
     for script, reference in CHECKS + (EXTENDED if args.full else ()):
@@ -69,6 +66,7 @@ def main():
         'python': platform.python_version(), 'platform': platform.system(),
         'archive_manifest_sha256': hashlib.sha256(manifest_bytes).hexdigest(),
         'archived_files_checked': len(manifest['files']),
+        'all_snapshot_artifacts_checked': snapshot_count,
         'full_suite': args.full, 'checks': records,
         'seconds': round(time.monotonic() - started, 3),
         'scope': 'Historical scalar and finite checks; not independent review or universal formalization',

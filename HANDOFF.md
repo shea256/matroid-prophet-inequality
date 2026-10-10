@@ -1,47 +1,42 @@
 # Review and next work
 
-The current manuscript derives more than `2^-34`. The next decisive step
-is independent mathematical review of the written proof and its interfaces
-to the pinned source. Exact arithmetic and finite checks have passed.
+The selected paper gives more than `2^-32`, with exact certificate
+`773895463001/3203794364409053184000`, approximately 3.93235 times the
+preceding `2^-34` certificate. It retains the full one-sample model and
+seed-visible adversary and uses `36n+23` initial fair bits. Independent
+mathematical review and formalization remain pending.
+
+The paper now uses the [versioned update workflow](results/README.md).
+Edit the [shared framework](paper/framework.md),
+[selected argument](results/rank-charged.md), and [registry](results/registry.json).
+The stable Markdown, LaTeX, PDF, headline, history, and metadata are generated.
+The [previous publication](archive/joint-residual/README.md) is preserved
+unchanged. Workflow validation is not mathematical proof verification.
 
 Review in this order:
 
-1. Verify that `m` is the actual conditional failure probability and `q'`
-   is determined before the next query answer. Check the potential identity
-   and both terminal outcomes, especially `m=q=1` on failure.
-2. Check that the reverse transcript decides the event on all completions,
-   and that the depleted current event contains the next survival event on
-   exactly the remaining product domain. Freeze the states in this comparison.
-3. Check the sign and weighting in the squared-hazard telescope, including
-   zero and unit hazards and the deterministic final exit.
-4. Check the two marked sequences and their shared generator variables, the
-   three coefficient types including early births, and the hyperplane count.
-   Check the density cutoff and Chernoff charge without conditioning the focal
-   product law on the good event. See the [audit](proofs/joint_residual_audit.md).
-5. Verify every changed filter, density, guard/test, parity, branch, and
-   phase factor. Keep the minimum over orders inside the seed expectation
-   and preserve all unused-coordinate information in the simulation.
+1. Verify the joint affine representation: one shared variable per density
+   generator, all three parity/early-birth types, fixed old scores, and the
+   arrangement dimension `j+z`. See the [joint audit](proofs/joint_residual_audit.md).
+2. Check that each size-stratified residual family precedes the focal masks.
+   The actual selected residual and its counts may depend on the mask; the
+   product containment probability is used only for each fixed family member.
+3. Check both charges: witness penalty increases `K`, generator penalty
+   contributes `mu*rho/kappa`. Verify `Kt`, `K*rho/kappa`, and the small-group
+   term `t*gamma*kappa/K` throughout the final accounting.
+4. Check the rigorous logarithm intervals in both tilt inequalities; the
+   coarse `9/10` decay is used only in the final error estimate.
+5. Review the inherited quadratic transaction potential, reverse containment,
+   safety comparison, and lossless full-seed sample/value simulation.
 
-The [baseline](BASELINE.md) distinguishes accessible manuscripts from
-unverified announcements. Compare any newly available proof's assumptions,
-strongest coefficient, and method before updating a novelty or priority claim.
+The [rank-charge audit](proofs/rank_charged_audit.md) records a same-agent
+second pass. Exact arithmetic and adversarial finite checks support the
+argument, without establishing its universal assertions by enumeration.
 
-The [archive](archive/README.md) preserves the superseded `2^-63` and
-`2^-43` checkpoints, including original proof artifacts and certificates.
-Use the root manuscript for the current claim; do not treat archive wording
-as the current comparison or review status.
-
-Further mathematical improvements could target the residual-family complexity
-or use additional matroid structure in the safety/rank comparison. The
-abstract query hypotheses alone cannot raise the exit bound above `1/2`,
-as shown by the repeated-OR example. Parameter search is not globally optimal.
-
-For future updates, change the manuscript, rerun the relevant exact checks,
-update `results/current.json` and the improvement record, and rebuild the
-PDF. Keep the stable root entry points and preserve previous public commits.
-Record independent review or formalization only after it actually occurs.
-
-The published `2^-36` commit remains unchanged. This branch proposes the
-`2^-34` follow-up. A next attack is to charge witness-dependent residual
-entropy to nominal rank rather than cap both witness and generator counts
-at the same threshold. That idea is not part of the current theorem.
+A further improvement might tighten the retained joint basis/type count or
+exploit relationships between generators, witnesses, and residual support.
+Smaller parameter gains may remain; the numerical search is not globally
+optimal. The abstract hazard bound `1/2` is sharp without additional structure.
+Source comparisons and unavailable external announcements remain qualified in
+[BASELINE.md](BASELINE.md). Do not infer new independent review or novelty
+from a passing package build.

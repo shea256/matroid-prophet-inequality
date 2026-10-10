@@ -66,3 +66,12 @@ python3 -B scripts/build_manuscript.py --source archive/2026-10-10/manuscript/ha
 The original PDFs are checked against their recorded hashes; rebuilt PDF
 bytes may vary with the TeX environment. This archive is distributed with
 the project's [license](../LICENSE) and [source attribution](../NOTICE).
+
+## Joint residual publication above `2^-34`
+
+The [joint-residual snapshot](joint-residual/README.md) preserves the complete
+publication from merged commit `08300e2d9c4a8529db0198631716b7ef20dd8aa5`:
+Markdown, nine-page PDF, LaTeX, result metadata, and build/check receipts.
+Its six files have a separate SHA-256 manifest. Original relative links retain
+their original repository context; the pinned commit provides full navigation.
+The package validator verifies these bytes alongside the 23 earlier artifacts.

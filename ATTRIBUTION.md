@@ -23,7 +23,9 @@ Its existing licenses and author notices remain applicable.
 The written refinement introduces a quadratic conditional-probability
 potential and uses it to prove a `1/2` expected-exit-hazard bound. A repeated-OR
 example shows sharpness for the abstract query hypotheses. The current follow-up adds a joint affine encoding of both residual tests
-and a density-size cutoff with an explicit exceptional-event charge. It retains
+and a density-size cutoff with an explicit exceptional-event charge. The
+current refinement instead weights both counts and charges their entropy to
+nominal rank and expected density-sample size, removing that cutoff. It retains
 an integrated residual tail, changed mask probabilities, affine branch mixing,
 and finer finite rational rounding phases. The finite-offset technique itself
 is standard; no new rounding principle is claimed.
@@ -54,3 +56,10 @@ reviewer is claimed on the basis of an unrecorded assumption.
 The repository is public. Publication does not settle novelty,
 correctness, or the strongest current bound. See [BASELINE.md](BASELINE.md)
 and [HANDOFF.md](HANDOFF.md) for the outstanding comparison and review tasks.
+
+The versioned paper workflow follows the organization used by the author's
+[Fourier project](https://github.com/shea256/fourier-transform-below-nlogn/blob/master/results/README.md):
+a shared framework, explicit result registry, preserved publications, and
+generated stable entry points. Its mathematical results are not premises for
+this matroid argument. The builder and registry here were written for this
+repository; no Fourier proof or external construction was imported.

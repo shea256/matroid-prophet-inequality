@@ -76,3 +76,14 @@ accounting sections; all matched the pinned hashes. The repository's latest
 OpenAI commit remained unchanged. [Audit receipt](verification/joint_baseline_audit.json).
 No supporting manuscript for the external announcement was located. This
 is not an exhaustive literature or priority search.
+
+## Baseline for the rank-charged update
+
+The preceding public result is the `2^-34` derivation merged in
+[PR #1](https://github.com/shea256/matroid-prophet-inequality/pull/1), commit
+`08300e2d9c4a8529db0198631716b7ef20dd8aa5`. Its coefficient is
+`14995972860899/244123247301151948800000`. The current exact certificate is
+approximately 3.93235 times that value; the comparison preserves all original
+quantifiers. The [unchanged snapshot](archive/joint-residual/README.md)
+preserves the earlier paper. Both versions have written proofs and same-agent
+checks, with independent mathematical review pending.
