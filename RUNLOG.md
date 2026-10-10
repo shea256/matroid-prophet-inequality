@@ -354,3 +354,55 @@ LaTeX, PDF, current result metadata, and full development history are
 byte-identical to their versions on `master`; only README presentation,
 its generation/configuration, workflow documentation, and build-input
 hashes changed. This does not change any mathematical claim or review stage.
+
+## Activation splitting above 2^-31 — October 10, 2026
+
+Prepared on `shea256/activation-split-refinement` from merged master
+`6d94154ae9961733b7604918a2d3b642d218d61e`, at the maintainer's request for
+a new PR. Archived the preceding retained-basis publication before replacing
+it: 17 unchanged artifacts, bringing the immutable total to 62. Each new
+archived file also matched `git show` at the recorded source commit directly.
+
+Integrated the activation-split proof and audit, normalized standalone imports
+and the previous certificate's coefficient-field name, and copied the exact
+reference outputs and deterministic numerical search. The shared framework
+and old result records are unchanged. The selected record recalls the
+reconstruction and projection lemmas so the current paper contains its
+project-specific dependencies in one place. The conditional safety display
+explicitly restricts sampled comparison labels to the focal group.
+
+Actual commands:
+
+```sh
+python3 -B scripts/archive_paper.py --result-id retained-bases --commit 6d94154ae9961733b7604918a2d3b642d218d61e
+python3 -B scripts/build_manuscript.py
+python3 -B scripts/run_checks.py --full --receipt verification/current_run_receipt.json
+python3 -B scripts/check_archive.py
+python3 -B -m unittest discover -s scripts/tests
+python3 -B experiments/search_activation_split.py > .context/activation_search_fresh.json
+python3 -B scripts/build_manuscript.py --check
+python3 -B scripts/validate_repository.py
+git diff --check
+```
+
+All 15 full-suite programs passed on Python 3.9.25/Linux;
+fresh JSON equaled every reference. The successful final suite took
+85.344 seconds; this is reproduction timing, not algorithm
+performance. Its hashes and individual timings are in the
+[current receipt](verification/current_run_receipt.json). An earlier run
+passed all programs but its final publication-consistency check caught a
+manuscript made stale by a notation edit during the run. After rebuilding,
+the entire suite and package validation passed with paper sources fixed.
+
+All 13 workflow tests, all 62 archive hashes, and the archive's three default
+verification programs passed. The numerical search reproduced its reference
+JSON exactly. The 14-page PDF built in three passes with zero warnings,
+265228 bytes, and SHA-256 `88210448ff7aa2351e95c1ce58827919a4953d36fdf9213ad917fe36f4e726a7`. Rendered pages 1, 9,
+and 12 were inspected under `.context/`; generated Markdown/LaTeX/PDF hashes,
+local links, and whitespace checks passed.
+
+The coefficient is `4.76184440734e-10 > (51/50)*2^-31`, a 14.97% increase
+over the preceding exact certificate, with `40n+26` initial fair bits. The
+README table now includes the approximately 31.45-fold gain over the first
+announced exact certificate. These remain written claims with same-agent
+verification; independent review and formalization are pending.

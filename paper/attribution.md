@@ -15,6 +15,9 @@ of weighted residual counting refine that construction's quantitative
 analysis. The current version reconstructs old retained bases by contraction,
 uses forced retained occurrences, projects witnesses onto the comparison
 optimum, and pays the tail's additive constant through the maximum branch.
+It further conditions safety on activation membership, assigns fixed scores
+to activation generators, and uses the joint generator/witness/residual
+mask law with its generator-residual overlap correction.
 Greedy scanning in a contracted matroid is standard; the claimed refinement
 is its application and the resulting quantitative accounting here. Exponential weighting, union bounds, finite-offset rounding,
 and binomial estimates are established methods; no new general principle

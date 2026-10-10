@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "current": "retained-bases",
+  "current": "activation-split",
   "paper_title": "Sharper One-Sample Matroid Prophet Inequalities",
   "authors": [
     "Ryan Shea"
@@ -131,7 +131,7 @@
       "title": "Retained bases and projected residuals",
       "exponent": 32,
       "multiplier": "7/4",
-      "status": "proposed",
+      "status": "historical",
       "coefficient": "548933908320757/1325382348737372749824000",
       "certificate": "verification/reference/retained_basis_constants_output.json",
       "coefficient_field": "certified_coefficient_lower_bound",
@@ -150,6 +150,34 @@
       ],
       "date": "2026-10-10",
       "record": "results/retained-bases.md",
+      "independent_review_completed": false,
+      "formalization_completed": false,
+      "archive": "archive/retained-bases"
+    },
+    {
+      "id": "activation-split",
+      "title": "Activation generators and joint mask membership",
+      "exponent": 31,
+      "multiplier": "51/50",
+      "status": "proposed",
+      "coefficient": "8003458533570087953/16807475946150704657203200000",
+      "certificate": "verification/reference/activation_constants_output.json",
+      "coefficient_field": "certified_coefficient_lower_bound",
+      "guarantee_field": "simplified_guarantee",
+      "change": "Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above $2^{-31}$.",
+      "proof": "results/activation-split.md",
+      "checks": [
+        {
+          "script": "verification/certify_activation_split.py",
+          "reference": "verification/reference/activation_constants_output.json"
+        },
+        {
+          "script": "verification/check_activation_split.py",
+          "reference": "verification/reference/activation_checks_output.json"
+        }
+      ],
+      "date": "2026-10-10",
+      "record": "results/activation-split.md",
       "independent_review_completed": false,
       "formalization_completed": false
     }

@@ -65,7 +65,7 @@ selected record. [Same-agent audit](proofs/rank_charged_audit.md).
 ## Retained bases, additive accounting, and projection
 
 Executed three cumulative attacks in the
-[selected argument](results/retained-bases.md):
+[retained-basis argument](results/retained-bases.md):
 
 1. Reconstruct old retained occurrences by greedy contraction. Canonical
    generators are forced in the first stream and witnesses in the second,
@@ -93,3 +93,43 @@ omitted second-stream generators, strict projection savings, adaptive mask
 selection, and an additive-error negative control. The universal written
 argument and [same-agent audit](proofs/retained_basis_audit.md) remain subject
 to independent review.
+
+## Activation splitting and joint membership
+
+Executed three cumulative attacks in the
+[selected argument](results/activation-split.md):
+
+1. Condition safety on the deterministic activation flat after fixing the
+   filter and density masks. Apply the half-exit lemma to labels outside it,
+   obtaining `E sigma >= rho*y/4 - E j0/4`.
+2. Treat activation generators as fixed old occurrences in both affine
+   streams. Enumerate their label choices but remove their time variables.
+   Active generators have only two types, and the fixed-role count becomes
+   `4^j1*S_(j1+z)(2y)`. The activation penalty is `mu-1/4`, so adding `j0/4`
+   to the residual comparison cancels the safety loss before applying the
+   total generator budget.
+3. Use the exact joint membership event for generators, witnesses, and
+   residuals. Its probability is `rho^j*(1-p)^z*p^|R minus J|`. The overlap
+   correction is essential. Enumerating disjoint roles per label gives
+   `(1+u)^(n-y)*(1+u/p+w)^y*(1+v)^(2y)` as a tail prefactor.
+
+The [numerical search](experiments/search_activation_split.py) uses seed
+11133 and 24 starts per cumulative mode, with 256 phases. Recorded best
+multiples of `2^-31` are about 0.892969 (preceding formula), 0.920310
+(conditional safety), 1.000039 (activation splitting), and 1.027783 (joint
+membership). [Output](experiments/activation_search_output.json). The tiny
+floating-point crossing in the third mode is not a certified theorem.
+No global optimum or ceiling is established by these searches.
+
+The conservative exact certificate is `1.0225982999 * 2^-31`, with
+`kappa=176`, `rho=3/8`, `h=3/4`, `t=11/2^17`, and 256 phases. All changed
+costs, the additive tail term, and maximum-branch cancellation are retained.
+The seed drops from `42n+27` to `40n+26` initial fair bits.
+
+The initial adaptive-family test design did not exercise positive excess
+adequately. It was revised before incorporation: 26 of 40 expectation
+cases now have positive excess, and this coverage is asserted. The finite
+checker also exercises all filter masks, omitted active generators,
+generator/residual overlap, and unlisted outcomes. These are finite tests;
+the universal proof and [same-agent audit](proofs/activation_split_audit.md)
+remain subject to independent mathematical review.
