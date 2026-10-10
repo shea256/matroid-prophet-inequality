@@ -477,3 +477,19 @@ inspected the PNG/SVG and updated their metadata, alt text, and documentation.
 
 The graphic data/hash, generated-paper, package, and whitespace checks
 passed. No mathematical values or verification programs changed.
+
+## Add OpenAI on a broken y-axis — October 10, 2026
+
+At the user's request, prepended the pinned OpenAI derived `2^-293` bound
+to the same guarantee chart. The source segment spans `2^-294` to `2^-292`,
+and the project segment spans `2^-37` to `2^-30`. The omitted range is
+labeled in the gap, with paired break marks on both the axis and the
+source-to-project connector. Segment heights are proportional to their
+logarithmic spans; a check of the rendered coordinate transforms confirms
+equal vertical distance per doubling on both segments.
+
+The source point is explicitly labeled derived; the `2^-310` headline
+remains in the source note. Regenerated and visually inspected the PNG/SVG,
+updated exact chart metadata and docs, and passed graphic/paper checks,
+package validation, all 13 workflow tests, and whitespace checks. No
+mathematical coefficient or theorem changed.

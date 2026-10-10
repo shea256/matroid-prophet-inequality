@@ -4,18 +4,24 @@
 [Exact data and hashes](guarantee-progress.json) ·
 [Renderer](../scripts/build_progress_graphic.py)
 
-The chart plots the exact guarantee coefficients on a base-2 logarithmic
-axis with power-of-two tick labels. Each vertical grid step doubles the
-guarantee. Each point is labeled with its simplified strict lower
-bound, from `>2^-36` through `>(51/50)*2^-31`. Its x-axis lists successive
-refinements. The expectation guarantee and current numerical coefficient
-appear below the plot; OpenAI's derived bound remains a source note.
+The chart places OpenAI's derived `2^-293` bound and the project's exact
+coefficients on one base-2 logarithmic y-axis with a marked break. The
+source segment spans `2^-294` to `2^-292`; the refinement segment currently
+spans `2^-37` to `2^-30`. The omitted interval is written in the gap, with
+break marks on the y-axis and the interrupted connector. Both visible
+segments use the same vertical distance per doubling.
+
+Project points are labeled with their simplified strict lower bounds,
+from `>2^-36` through `>(51/50)*2^-31`. The x-axis lists the source and
+successive refinements. The expectation guarantee and current numerical
+coefficient appear below the plot.
 The common one-sample/full-seed model and pending independent-review status
 are stated on the image. See [BASELINE](../BASELINE.md) for source provenance.
 
 The renderer reads the [result registry](../results/registry.json), validates
-its certificate values, starts at `announcement_baseline`, and stops at
-`current`, excluding candidate entries. Exact coefficient fractions are
+its certificate values, prepends the pinned source bound, and includes
+project records from `announcement_baseline` through `current`, excluding
+candidate entries. Exact coefficient fractions are
 plotted directly on the logarithmic axis; the point labels use
 the registry's simplified bounds, which are lower than the plotted values.
 The source bound is the named constant `SOURCE_EXPONENT` in the renderer, tied to the source revision

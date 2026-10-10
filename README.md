@@ -3,7 +3,7 @@
 By **Ryan Shea**. A living research project on
 [OpenAI Math Problem #111](https://github.com/openai/math/blob/main/lean/docs/111.md).
 
-![Guarantee coefficients since the first announcement, on a base-2 logarithmic axis labeled with powers of two, with each refinement labeled by its simplified bound.](assets/guarantee-progress.png)
+![OpenAI's derived bound and successive project guarantees on a base-2 logarithmic axis with a clearly marked break, preserving readable power-of-two labels.](assets/guarantee-progress.png)
 
 <!-- current-result:start -->
 
