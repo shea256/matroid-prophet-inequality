@@ -1,4 +1,4 @@
-# A quadratic hazard potential and a guarantee above `2^-36`
+# Joint residual encoding and a guarantee above `2^-34`
 
 **Ryan Shea**
 
@@ -6,15 +6,16 @@ October 10, 2026.
 
 **Written proof with same-agent verification; independent review and
 formalization pending.**
-The three changes are a quadratic exit argument, an integrated residual bound, and recalibrated
-mask probabilities and finite rounding phases. The main comparison uses the
-`2^-293` coefficient derived in the accessible OpenAI manuscript; no priority
-or confirmed best-known-bound claim is made.
+This refinement combines the published quadratic exit argument with a joint
+encoding of the two residual pivot tests and a density-sample cutoff. It
+improves the published certificate by a factor greater than four. The model
+and full-seed adversary are unchanged; no priority or confirmed best-known
+bound claim is made.
 
 ## 1. Statement, construction, and dependencies
 
 For every known finite labeled matroid on `n` elements, the construction below
-is a measurable, distribution-independent, one-sample rule using `38n+23`
+is a measurable, distribution-independent, one-sample rule using `37n+24`
 initial independent fair bits. For mutually independent nonnegative sample
 and value coordinates, with matching laws at each label and an independent
 seed, assume only that the expected offline optimum is finite. For every
@@ -22,21 +23,21 @@ measurable arrival permutation depending on all samples, values, and the
 entire seed, the accepted set is independent at every prefix and
 
 ```math
- \mathbb E[\mathrm{reward}]\ge C_0\mathbb E[\mathrm{OPT}],\qquad
- C_0=\frac{9652683394380719}{637507023635152349901619200}
- >2^{-36}.
+ \mathbb E[\mathrm{reward}]\ge C_1\mathbb E[\mathrm{OPT}],\qquad
+ C_1=\frac{14995972860899}{244123247301151948800000}
+ >\frac{21}{20}2^{-34}>2^{-34}.
 ```
 
-The exact construction has a slightly larger coefficient; `C_0` uses a
+The exact construction has a slightly larger coefficient; `C_1` uses a
 simple rational lower bound on its geometric base. Approximately,
-`C_0 = 1.0405020 * 2^-36`.
+`C_1 = 1.0553229 * 2^-34`.
 
 Use the source's candidate filter, density maps, guarded paths, parity
 layers, and online greedy rule, specified below. Choose the parameters
 
 ```math
- \kappa=2048,\quad t=2^{-16},\quad
- \Pr(H_e)=h=3/4,\quad \Pr(D_e)=\rho=5/8,\quad
+ \kappa=640,\quad t=2^{-15},\quad
+ \Pr(H_e)=h=3/4,\quad \Pr(D_e)=\rho=7/16,\quad
  \Pr(C_e)=\Pr(T_e)=t.
 ```
 
@@ -44,7 +45,7 @@ The maximum branch retains its separate fair mask. Choose the main branch
 with probability `p_main=1-t`. For rounding use
 
 ```math
- \theta=69/64,\quad L=64,\quad B=\theta^L,
+ \theta=261/256,\quad L=256,\quad B=\theta^L,
  \quad J\sim\operatorname{Unif}\{0,\ldots,L-1\},
  \quad u_J(x)=\theta^J B^{\lfloor\log_B(x/\theta^J)\rfloor},
  \quad u_J(0)=0.
@@ -294,7 +295,7 @@ both terms. Averaging the density mask, now of rate `rho`, gives
 
 ```math
  \mathbb E[\sigma_i\mid H]\ge
- \gamma|Y_i|-\frac{\rho n_i}{2\kappa},\qquad \gamma=\rho/4=5/32. \tag{S}
+ \gamma|Y_i|-\frac{\rho n_i}{2\kappa},\qquad \gamma=\rho/4=7/64. \tag{S}
 ```
 
 On unlisted groups the extension by zero is valid before averaging over `D`.
@@ -321,76 +322,194 @@ constant requires additional structure beyond these abstract hypotheses.
 This is **not** a claimed hard matroid instance or an upper bound on the
 achievable prophet ratio.
 
-## 4. Integrate the residual tail
+## 4. Couple the two pivot descriptions
 
-Keep the exact source conditioning: fix `H`, the parity, and all `D,C,T`
-bits outside a true group `U_i`, before exposing its focal bits or listing.
-For `n=|U_i|>=kappa`, the sharper source encoding yields a fixed family
-`Rfamily` of size at most
+Use exactly the source conditioning: fix the filter `H`, the parity, and
+all density, guard, and test bits outside one true group `U` of size `n`.
+The incoming path `F(k)`, competition sets `K_b`, index `h_group`, and
+activation time `a=-3h_group` are then fixed. Do not condition on listing
+or on any focal mask. Write `S_d(N)=sum_{j=0}^d binom(N,j)`.
 
-```math
- \exp(A n/\kappa),\qquad A=5\log\kappa+5+4\log2.
-```
-
-Indeed, with `q=floor(n/kappa)`, its count is
-`4^(3q) S_q(n)^3 S_(2q)(n)`. The first sequence uses only the density
-generators; the second also uses the rank witnesses. Floors are handled
-by the same binomial-sum bounds as in the source. `kappa>=4` suffices.
-
-The sacrificed mask has independent memberships within the group of rate
+Suppose the focal nominal path has a density generator set `J` and rank
+witness union `Z`, each of size at most an integer `q`. A generator `g` has
+an insertion time `tau(g)` in `[a,0]` and
 
 ```math
- p_O=\rho+(1-\rho)t,\qquad \lambda=-\log p_O>0.
+X(k)=\operatorname{cl}\bigl(F(k)\cup\{g\in J:\tau(g)\le k\}\bigr).
 ```
 
-Let `e_i` be the actual residual size when listed and `z_i<=n/kappa`, and
-zero otherwise, exactly as in the source. Its selected residual is a member
-of the fixed family and lies in `O`. If the family has size `N>=1`, for every
-real `x>=0` the union bound gives
+Witnesses `Z_b` are disjoint and lie in `X(b)` at valid endpoints `b` of the
+chosen parity, with `a+2<=b<=0`. The source represents the residual by two
+marked-pivot tests on `U`:
+
+1. List `F(k)` at each integer time, then generators inserted at that time.
+   Mark the whole block one exactly at valid endpoints. The pivot marks
+   select labels with valid nominal birth.
+2. At each parity endpoint `b`, insert `K_b` and witnesses `Z_b` with mark
+   zero, then `F(b)` and generators with `b-2<tau(g)<=b` with mark one.
+   Start with the fixed `F(b0)`, marked zero, where `b0` is the chosen-parity
+   member of `{a-2,a-1}`. End at the member of `{0,1}` of that parity.
+
+Set `K_b=Z_b=empty` at nonvalid endpoints. The second sequence's endpoint
+span is `X(b)` and its intermediate span is `cl(X(b-2) union K_b union Z_b)`.
+For a label passing the first test, its second pivot is in that same layer.
+It gets mark one precisely if it belongs to the residual. Hence the
+intersection of the two mark-one sets is the residual, as in the source.
+
+### 4.1. Joint counting lemma
+
+For each fixed pair `J,Z`, of sizes `j,z`, the number of residuals obtainable
+from these two linked sequences is at most
 
 ```math
- \Pr(e_i>x\mid\text{conditioning})\le
- \min\{1,N e^{-\lambda x}\}.
+3^j\,4^{2j+z}\,S_{j+z}(2n). \tag{J}
 ```
 
-No independence is claimed for the selected residual. Integrating the bound
-over all `x>=0` gives `(log N+1)/lambda`. Since `n>=kappa`,
+The source marked-pivot proof supplies the following preliminary fact. An
+old occurrence sequence spanning the matroid, with `s` specified movable
+occurrences inserted, admits at most `4^s` retained greedy bases of occurrences.
+Indeed old-only greedy reduces the old sequence to a basis. For that basis,
+only at most `s` old positions can be omitted, since their conditional-rank
+drops for the fixed movable labels sum to at most `s`. There are at most
+`2^s` omitted-old choices and `2^s` retained-movable choices. This statement
+does not depend on insertion positions, marks, or representability.
+
+Apply it with `s=j` to the first sequence and `s=j+z` to the second.
+There are at most `4^(2j+z)` pairs of retained bases. Fix such a pair. In a
+retained basis of occurrences every nonloop `f` has a unique minimal support
+spanning it, by matroid submodularity. Its pivot is the last support member.
+
+We now represent **both** pivot tests using the same `j+z` real variables,
+rather than using separate variables for the shared generators. This is the
+new dimension saving. Let the entire ground set have size `N`, label it
+`0,...,N-1`, put `m=N+1`, `T=8m`, and define `u_k=(k-a+2)T`.
+Give old occurrences the following fixed signed scores:
+
+| Occurrence | Absolute score | Sign |
+|---|---|---|
+| `e` in the first sequence's `F(k)` block | `2^(u_k+4m+e)` | its fixed first-test mark |
+| `e` in the second sequence's initial `F(b0)` | `2^(u_b0+4m+e)` | negative |
+| `e` in its `K_b` block | `2^(u_b+e)` | negative |
+| `e` in its `F(b)` block | `2^(u_b+4m+e)` | positive |
+
+A positive sign means mark one. Set one positive variable per generator,
+`x_g=2^(u_tau(g)+6m+g)`, and one per witness,
+`y_z=2^(u_b+2m+z)` for `z in Z_b`. Its first-sequence generator score is
+`eta_g x_g`, where `eta_g` is positive exactly at a valid endpoint.
+Its second-sequence score is `d_g x_g`, with `d_g=1` if `tau(g)` has the
+chosen parity and `d_g=2^T` otherwise. The latter multiplication moves an
+odd-layer insertion to the following endpoint's generator block. A witness
+has score `-y_z` in the second sequence and does not occur in the first.
+
+There are only three possible coefficient pairs for a generator:
 
 ```math
- \mathbb E[e_i\mid H]\le\frac{(A+1)n}{\kappa\lambda}.
+(\eta_g,d_g)\in\{(1,1),\ (-1,1),\ (-1,2^T)\}.
 ```
 
-An empty family makes the error zero. The source's deterministic inequality
-`sigma_i<=kappa z_i+e_i` remains valid on all branches, including large rank
-and unlisted outcomes. Therefore
+The middle case includes early insertions of the chosen parity that are not
+valid births. Thus no early-boundary case is dropped. Fix these types, costing
+at most `3^j` choices. Within every block use label order. In the second
+generator block, order all generators by label after moving them to the
+endpoint; they all have mark one, so this reordering does not change any
+pivot mark or endpoint span.
+
+In each sequence the absolute scores are distinct powers of two, in exactly
+its occurrence order. Each score exceeds the sum of all preceding scores.
+Therefore the sign of the sum over any support is its last member's mark.
+For the fixed retained bases and fixed types, these support sums are `2n`
+affine functions of the **same** `j+z` variables `x_g,y_z`. Every realized
+pair of pivot-mark vectors is a strict sign pattern of these functions.
+The affine-hyperplane region bound gives at most `S_(j+z)(2n)` such patterns.
+This proves (J). Coefficients depend on the fixed old paths, bases, and types,
+not on insertion times within a type. Scores are a counting device only.
+
+Allowing all subset choices of size at most `q` gives a family fixed before
+the focal bits with
 
 ```math
- \mathbb E[z_i\mid H]\ge
- \frac{\gamma|Y_i|-\epsilon n_i}{\kappa},\qquad
- \epsilon=\frac{\rho}{2\kappa}+\frac{A+1}{\kappa\lambda}. \tag{T}
+|\mathfrak R|\le 192^q S_q(n)^2 S_{2q}(2n). \tag{F}
 ```
 
-This replaces the earlier cutoff error `delta+Pr(bad)` by its full integral,
-uniformly even at `n=kappa`.
+For comparison, the previous separate count was
+`4^(3q) S_q(n)^3 S_(2q)(n)`: the coefficient of `log(kappa)` in its entropy
+was five. The joint count reduces that coefficient to four, with its new
+constant factor fully charged.
 
-For the numerical certificate we round this error upward. The elementary
-atanh series gives `log2<=25/36<7/10` and
+### 4.2. Use the density sample's size
+
+Choose an analysis cutoff `rho<r<1`, later `r=33/64`. Put
+`q=floor(r n/kappa)`, and call an outcome good when `|D intersect U|<=r n`.
+On a good outcome, the density generator lemma gives `|J|<=q`.
+If the nominal rank `z<=q`, its rank witnesses also have total size at most
+`q`, so (F) contains the residual. If `z>q`, then
+`kappa z>r n>=|D intersect U|>=sigma`, so no residual error is needed.
+
+For `alpha=r/kappa`, the elementary binomial-sum bound with floors gives
+`log S_q(n)<=alpha n log(e/alpha)` and
+`log S_(2q)(2n)<=2 alpha n log(e/alpha)`. It follows that
 
 ```math
- \log(8/5)>2(3/13+(3/13)^3/3)=1032/2197>15/32.
+\log|\mathfrak R|\le A_r n/\kappa,\qquad
+A_r=r\bigl(4\log(\kappa/r)+4+6\log2+\log3\bigr). \tag{E}
 ```
 
-Since `p_O=(5/8)(1+3t/5)`, set
+This includes `q=0`, which occurs near the smallest group size. No division
+by `q` is used. All family choices are made under the original conditioning,
+**without conditioning the product mask law on the good event**.
+
+Define the error `e` as the residual size on listed good outcomes with
+`z<=q`, as `n` on bad outcomes, and as zero otherwise. Pointwise,
+`sigma<=kappa z+e`: on the bad branch use `sigma<=n`; on a listed good
+small-rank branch use the source residual comparison; the other branches
+were covered above. The residual is contained in `O=D union C`, whose focal
+coordinates independently have probability `p_O=rho+(1-rho)t`.
+
+For real `x>=0`, the good-branch residual tail is at most
+`min(1, |Rfamily| exp(-lambda x))`, where `lambda=-log p_O`. This follows by
+dropping the good-event intersection and taking a union over the fixed family;
+it asserts no independence for the selected residual. Integrating gives
+`(A_r n/kappa+1)/lambda`. The independent density mask has the usual
+Chernoff bound
 
 ```math
- \ell=15/32-3t/5>0,\qquad
- \bar\epsilon=\frac{5}{16\kappa}+\frac{473}{10\kappa\ell}
- =\frac{248756209}{5033066496}.
+\Pr(|D\cap U|>rn)\le e^{-n d(r\Vert\rho)},\quad
+d(r\Vert\rho)=r\log\frac r\rho+(1-r)\log\frac{1-r}{1-\rho}.
 ```
 
-Here `lambda>=ell` and, for `kappa=2^11`,
-`A+1=59 log2+6<473/10`. In what follows use `bar epsilon` in place of
-the smaller error in (T).
+For completeness, apply Markov to `exp(s |D intersect U|)` with
+`exp(s)=r(1-rho)/(rho(1-r))>1`. Its moment is
+`(1-rho+rho exp(s))^n`; substitution gives this exponent, including noninteger
+thresholds. For every `n>=kappa`, combining the two branches with the retained
+safety estimate yields
+
+```math
+\mathbb E[z_i\mid H]\ge
+\frac{\gamma|Y_i|-\epsilon n_i}{\kappa},\qquad
+\gamma=\rho/4,\quad
+\epsilon=\frac{\rho}{2\kappa}
+ +\frac{A_r+1}{\kappa\lambda}+e^{-\kappa d(r\Vert\rho)}. \tag{R}
+```
+
+The density cutoff does not alter the algorithm, reveal additional samples,
+or impose a favorable-event hypothesis on the final theorem.
+
+With the parameters in Section 1 and `r=33/64`, exact rational logarithm
+enclosures certify
+
+```math
+A_r+1<41/2,\quad \lambda>413/500,\quad
+\kappa d(r\Vert\rho)>11\log2,\quad B>140.
+```
+
+The log enclosures use the atanh series with its explicit geometric tail,
+after dyadic range reduction. Thus (R) holds with the larger rational error
+
+```math
+\bar\epsilon=\frac{7}{32\cdot640}
+ +\frac{41/2}{640(413/500)}+\frac1{2048}
+ =\frac{335021}{8458240}.
+```
 
 ## 5. Biased filtering and order-uniform accounting
 
@@ -465,17 +584,19 @@ lossless glued-vector simulation gives
  C=\frac{p_{\rm main}\beta^2 t s}{5\kappa}.
 ```
 
-Exact integer arithmetic verifies `69^64>120*64^64`, hence `B>120` and
-`beta>119/120`. In particular,
+Exact integer arithmetic verifies `261^256>140*256^256`, hence `B>140`
+and `beta>139/140`. In particular,
 
 ```math
- s>\frac{\gamma}{4}-\frac13\left(
- \bar\epsilon+t\kappa+\frac{t\kappa+\rho}{119}\right)
- =\frac{2652290047}{256686391296}>0.
+s>\frac{\gamma}{4}-\frac13\left(
+\bar\epsilon+t\kappa+\frac{t\kappa+\rho}{139}\right)
+=\frac{23047361}{3527086080}>0.
 ```
 
-Substituting these lower bounds gives `C>C_0>2^-36`, with `C_0` stated above.
-The rational certificate checks these inequalities without floating point.
+Substitution gives `C>C_1>(21/20)2^-34`. Relative to the published
+`C_0=9652683394380719/637507023635152349901619200`,
+`C_1/C_0=4.056975824...>4`. All these scalar inequalities are certified with
+exact rational arithmetic.
 
 The simulation reveals and sacrifices the mask fixed by the seed, taking
 the glued weight from the sample on that mask and the online value elsewhere.
@@ -486,12 +607,12 @@ the pointwise minimum over every permutation covers all of them.
 
 ## 7. Resources, checks, and remaining review
 
-Per label, draw two fair bits for `H` (three of four outcomes), three for `D`
-(five of eight), sixteen each for `C` and `T` (one of `2^16`), and one for
-the maximum mask. Shared bits are six for the phase, sixteen for the branch,
-and one for parity. This is exactly `38n+23`, including unused-branch coins.
+Per label, draw two fair bits for `H` (three of four outcomes), four for `D`
+(seven of sixteen), fifteen each for `C` and `T` (one of `2^15`), and one for
+the maximum mask. Shared bits are eight for the phase, fifteen for the branch,
+and one for parity. This is exactly `37n+24`, including unused-branch coins.
 
-All new scalar constants and the 64 phase multipliers are fixed rationals.
+All new scalar constants and the 256 phase multipliers are fixed rationals.
 The matroid rank/closure tables and enumeration of flats may be exponential
 in `n`; they remain charged preprocessing and storage, not free oracles.
 The rule uses only finitely many occupied groups and the source's finite
@@ -501,6 +622,14 @@ use exact rational powers; their costs depend on input bit lengths and
 exponents. For arbitrary real observations this remains the original exact,
 measurable model. No polynomial running-time, uniform precision, or practical
 performance claim is made.
+
+[check_joint_residual.py](verification/check_joint_residual.py) compares
+45,824 actual residual encodings against both pivot streams and 331,491
+affine signs on 170 small matroid/weight instances. It exercises early births,
+both parities, shifted generators, and an explicit missing-shift negative
+control; it also checks 48 binomial tails, 120 floor bounds, and 24 current
+phase boundaries. [The scalar certificate](verification/certify_joint_residual.py)
+certifies the displayed coefficient and its analytic log bounds.
 
 [check_quadratic_hazard.py](verification/check_quadratic_hazard.py) tests
 the actual reverse process on the same 170 small matroid/weight instances
@@ -515,7 +644,9 @@ selected residual expectations, rational rounding boundaries, and the
 abstract sharpness family. These are finite evidence; the universal proof
 is the mathematical argument above.
 
-The same-agent audit rechecked (Q)'s predictable denominator and conditional
+The new [same-agent audit](proofs/joint_residual_audit.md) checks the shared
+variable representation, the early/parity cases, and the cutoff without
+conditioning the product law on sample size. The retained audit rechecked (Q)'s predictable denominator and conditional
 martingale, both terminal outcomes, the frozen-state containment, the sign
 of the telescope, the integral at `n=kappa`, all changed mask factors,
 rational-phase boundaries, and full-seed simulation. Independent review
@@ -536,11 +667,13 @@ write-up was unavailable for comparison at the October 10 audit; we have
 not verified its assumptions or proof. We acknowledge it as an unverified
 announcement and do not use it as an established baseline.
 
-This research effort progressed through `2^-63`, `2^-43`, and `2^-36` on
-October 10, 2026. The first checkpoint refined source parameters, affine
-branch mixing, and finite rounding offsets. The second introduced a
-logarithmic hazard potential and tighter residual accounting. The present
-quadratic potential and integrated residual bound supersede those analyses.
-The [dated archive](archive/README.md) preserves the intermediate proofs,
-certificates, and review status. These are stages of one research effort,
-not separate discoveries of the original constant-guarantee theorem.
+This research effort progressed through `2^-63`, `2^-43`, `2^-36`, and
+`2^-34` on October 10, 2026. The first checkpoint refined source parameters,
+affine branch mixing, and finite rounding offsets. The second introduced a
+logarithmic hazard potential and tighter residual accounting. The published
+`2^-36` version introduced the quadratic potential and integrated tail; it is
+preserved at [commit 669e97c](https://github.com/shea256/matroid-prophet-inequality/tree/669e97c863aa7863c93258a5a1e2c6d9165b2d2b).
+The current refinement adds shared-variable residual counting and the density
+cutoff. The [dated archive](archive/README.md) preserves the first two stages.
+These are stages of one research effort, not separate discoveries of the
+original constant-guarantee theorem.

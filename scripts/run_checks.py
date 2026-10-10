@@ -13,6 +13,8 @@ sys.dont_write_bytecode = True
 from validate_repository import ROOT, validate
 
 CURRENT = (
+    ('certify_joint_residual.py', 'joint_residual_constants_output.json'),
+    ('check_joint_residual.py', 'joint_residual_checks_output.json'),
     ('certify_quadratic_constants.py', 'quadratic_constants_output.json'),
     ('check_quadratic_hazard.py', 'quadratic_hazard_output.json'),
     ('check_quadratic_ingredients.py', 'quadratic_ingredients_output.json'),

@@ -1,0 +1,37 @@
+{
+  "checked_at_utc": "2026-10-10T06:18:24.139751+00:00",
+  "openai_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "published_repo": "https://github.com/shea256/matroid-prophet-inequality",
+  "published_commit": "669e97c863aa7863c93258a5a1e2c6d9165b2d2b",
+  "source_files": [
+    {
+      "path": "CONTENTS.md",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/CONTENTS.md",
+      "sha256": "cc7c0b8a1cdedd845a777e77cf682657308503daf8346c1349e06e9259d063c2",
+      "bytes": 638727,
+      "matches_pinned_source": true
+    },
+    {
+      "path": "lean/docs/111.md",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/lean/docs/111.md",
+      "sha256": "738413ac4597f53c1b01a5cbc6c649f7a763337f5a843c200ca004d6375ff0b2",
+      "bytes": 1497,
+      "matches_pinned_source": true
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/transfer.tex",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/transfer.tex",
+      "sha256": "d1941d858edbc5b80df829d1c923fe3d0c2b97d3a03a55fe57367ae0df247892",
+      "bytes": 18825,
+      "matches_pinned_source": true
+    },
+    {
+      "path": "preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/accounting.tex",
+      "url": "https://raw.githubusercontent.com/openai/math/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/build/sections/accounting.tex",
+      "sha256": "07021eaab1c40f6d1bccdc8ca9de6c643c320874cae2759dae126cfd2e9afbe1",
+      "bytes": 10649,
+      "matches_pinned_source": true
+    }
+  ],
+  "literature_limits": "Refreshed searches located no supporting manuscript for the external 2^-47 announcement. Not an exhaustive priority audit."
+}

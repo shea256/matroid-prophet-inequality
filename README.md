@@ -14,10 +14,10 @@ The original construction is in
 The current written proof gives
 
 ```math
-\mathbb E[\mathrm{reward}]\ge 2^{-36}\,\mathbb E[\mathrm{OPT}].
+\mathbb E[\mathrm{reward}]\ge 2^{-34}\,\mathbb E[\mathrm{OPT}].
 ```
 
-It uses one independent sample per label and **`38n+23` initial fair bits**.
+It uses one independent sample per label and **`37n+24` initial fair bits**.
 The rule needs no description of the value distributions, maintains matroid
 independence at every arrival prefix, and retains the full-seed almighty
 adversary. Only the offline optimum must be integrable. Computation and
@@ -29,17 +29,17 @@ verification. Independent mathematical review and formalization are pending.**
 Exact arithmetic and finite tests accompany the proof; they do not prove
 its universal assertions. No best-known-bound or priority claim is made.
 
-The repository is **private pending a release decision**. Announcement text is prepared
-for a future release; no public announcement is recorded.
+The repository is public. The author announced the earlier `2^-36` result on
+October 10, 2026; this branch proposes the subsequent `2^-34` refinement.
 
 ## Contribution
 
-The main proof change is a **quadratic query potential**. It yields expected
-reverse-exit hazard at least `1/2`, and an abstract query example shows this
-constant is sharp under that lemma's hypotheses. This `1/2` is an auxiliary
-lemma, not the final prophet guarantee. The final coefficient also uses an
-integrated residual tail, revised filter and density probabilities, and
-64 shared rational rounding phases.
+The new step counts two residual pivot tests jointly, sharing each density
+generator's variable between them. A cutoff on density-sample size further
+reduces the count, with the exceptional event explicitly charged. This
+builds on the published **quadratic query potential**, which gives a sharp
+`1/2` auxiliary exit-hazard bound. That lemma's constant is not the final
+prophet guarantee. The current rule uses 256 rational rounding phases.
 
 The source's density paths, hybrid safety comparison, marked-pivot machinery,
 rank accounting, and sample/value simulation remain fundamental dependencies.
@@ -51,7 +51,8 @@ and [the improvement record](IMPROVEMENTS.md).
 | Comparison | Guarantee | Evidence available here |
 |---|---:|---|
 | OpenAI manuscript's derived constant | `2^-293` | Accessible pinned primary manuscript; headline is `2^-310` |
-| This written derivation | `> 2^-36` | Written proof, exact certificates, finite checks; independent review pending |
+| Published version, commit `669e97c` | `> 2^-36` | Written proof and same-agent verification |
+| This proposed refinement | `> 2^-34` | Written proof, exact certificates, finite checks; independent review pending |
 
 The comparison uses the source's stronger derived bound. These are guarantee
 coefficients, not measured speedups or observed performance. Unverified
@@ -60,17 +61,19 @@ announcements are discussed separately in [related work](BASELINE.md#related-wor
 The compact exact coefficient certified in the paper is
 
 ```math
-C_0=\frac{9652683394380719}{637507023635152349901619200}
-\approx1.0405020\cdot2^{-36}.
+C_1=\frac{14995972860899}{244123247301151948800000}
+\approx1.0553229\cdot2^{-34}.
 ```
+
+This is about **4.057 times** the published exact certificate.
 
 ## Development history
 
-The recorded progression is `2^-63` → `2^-43` → `2^-36`, all on October 10,
+The recorded progression is `2^-63` → `2^-43` → `2^-36` → `2^-34`, all on October 10,
 2026. The first step refined parameters, branch mixing, and rounding; the
 second introduced a logarithmic hazard potential and tighter residual
-accounting; the current proof uses a quadratic potential and integrated
-residual bound. These are superseded bounds within one research effort.
+accounting; the third introduced a quadratic potential and integrated
+residual bound; the current proof adds joint encoding and the density cutoff. These are superseded bounds within one research effort.
 The [improvement record](IMPROVEMENTS.md) links the dated
 [intermediate proofs and certificates](archive/README.md), with their original
 review status and reproducible checks.
@@ -83,8 +86,8 @@ Python **3.9+**, standard library only:
 python3 -B scripts/run_checks.py
 ```
 
-This runs the current exact constant certificate, finite reverse-hazard checks,
-and query/filter/residual/rounding checks, and compares them with the recorded
+This runs five programs: the new scalar and joint-encoding checks, plus the
+retained quadratic certificate, reverse-hazard, and ingredient checks, and compares them with the recorded
 outputs. It also validates local documentation links and the paper's build
 receipt. Run the retained exhaustive small-matroid and arrival-order checks
 as well with:
@@ -93,10 +96,10 @@ as well with:
 python3 -B scripts/run_checks.py --full
 ```
 
-For the declared exact parameter search:
+For the new numerical search (discovery evidence, not a certificate):
 
 ```sh
-python3 -B experiments/search_quadratic_parameters.py
+python3 -B experiments/search_joint_residual.py
 ```
 
 Rebuild the PDF with Python and pdfLaTeX, including `amsmath`, `amssymb`,
@@ -121,7 +124,7 @@ python3 -B verification/fetch_sources.py
 - [Result record](RESULT.md) and [machine-readable current result](results/current.json)
 - [Executed approaches](ATTEMPT.md) and [reproduction log](RUNLOG.md)
 - [Review questions and next work](HANDOFF.md)
-- [Prepared announcement text](announcement.md), not a social-media posting record
+- [Earlier prepared announcement text](announcement.md), not a verbatim posting record
 
 This work was developed with AI assistance using Codex. Same-agent second
 passes are not independent peer review. The paper and stable entry points

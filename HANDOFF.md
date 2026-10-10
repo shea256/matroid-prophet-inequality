@@ -1,6 +1,6 @@
 # Review and next work
 
-The current manuscript derives more than `2^-36`. The next decisive step
+The current manuscript derives more than `2^-34`. The next decisive step
 is independent mathematical review of the written proof and its interfaces
 to the pinned source. Exact arithmetic and finite checks have passed.
 
@@ -14,8 +14,10 @@ Review in this order:
    exactly the remaining product domain. Freeze the states in this comparison.
 3. Check the sign and weighting in the squared-hazard telescope, including
    zero and unit hazards and the deterministic final exit.
-4. Check both marked sequences, their movable counts, the conditioning before
-   focal bits or listing, and the integrated residual bound at `n=kappa`.
+4. Check the two marked sequences and their shared generator variables, the
+   three coefficient types including early births, and the hyperplane count.
+   Check the density cutoff and Chernoff charge without conditioning the focal
+   product law on the good event. See the [audit](proofs/joint_residual_audit.md).
 5. Verify every changed filter, density, guard/test, parity, branch, and
    phase factor. Keep the minimum over orders inside the seed expectation
    and preserve all unused-coordinate information in the simulation.
@@ -38,3 +40,8 @@ For future updates, change the manuscript, rerun the relevant exact checks,
 update `results/current.json` and the improvement record, and rebuild the
 PDF. Keep the stable root entry points and preserve previous public commits.
 Record independent review or formalization only after it actually occurs.
+
+The published `2^-36` commit remains unchanged. This branch proposes the
+`2^-34` follow-up. A next attack is to charge witness-dependent residual
+entropy to nominal rank rather than cap both witness and generator counts
+at the same threshold. That idea is not part of the current theorem.

@@ -1,28 +1,27 @@
 {
-  "result_id": "quadratic-hazard-2026-10-10",
-  "title": "A quadratic hazard potential and a one-sample matroid prophet guarantee above 2^-36",
-  "authors": ["Ryan Shea"],
+  "result_id": "joint-residual-2026-10-10",
+  "title": "Joint residual encoding and a one-sample matroid prophet guarantee above 2^-34",
+  "authors": [
+    "Ryan Shea"
+  ],
   "date": "2026-10-10",
   "review_status": "Written proof with same-agent verification; independent review and formalization pending",
   "independent_review_completed": false,
   "lean_formalization_completed": false,
-  "simplified_guarantee": "2^-36",
-  "certified_coefficient_lower_bound": "9652683394380719/637507023635152349901619200",
-  "seed_bits": "38n+23",
+  "simplified_guarantee": "2^-34",
+  "certified_coefficient_lower_bound": "14995972860899/244123247301151948800000",
+  "seed_bits": "37n+24",
   "parameters": {
-    "kappa": "2048",
-    "t": "1/65536",
-    "density_rate": "5/8",
+    "kappa": 640,
+    "density_rate": "7/16",
+    "density_cap": "33/64",
     "filter_rate": "3/4",
-    "gamma": "5/32",
-    "main_probability": "65535/65536",
-    "mesh": "69/64",
-    "phases": "64",
-    "decay": "153597/327680",
-    "entropy_plus_one": "473/10",
-    "error": "248756209/5033066496"
+    "guard_and_test_rate": "1/32768",
+    "mesh": "261/256",
+    "phases": 256,
+    "main_probability": "32767/32768"
   },
-  "base": "(69/64)^64 > 120",
+  "base": "(261/256)^256 > 140",
   "paper": "manuscript.pdf",
   "proof": "manuscript.md",
   "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
@@ -30,5 +29,8 @@
   "unverified_announcements": "See BASELINE.md; not used as established baselines",
   "development_history": "IMPROVEMENTS.md",
   "archive": "archive/README.md",
-  "novelty_status": "Unresolved; no priority or best-known-bound claim"
+  "novelty_status": "Unresolved; no priority or best-known-bound claim",
+  "certificate": "verification/reference/joint_residual_constants_output.json",
+  "previous_published_commit": "669e97c863aa7863c93258a5a1e2c6d9165b2d2b",
+  "previous_published_guarantee": "2^-36"
 }

@@ -1,0 +1,16 @@
+{
+  "counts": {
+    "matroid_weight_instances": 170,
+    "affine_pivot_signs": 331491,
+    "joint_residual_encodings": 45824,
+    "shifted_density_occurrences": 1328,
+    "early_invalid_density_occurrences": 1160,
+    "missing_shift_negative_controls": 1,
+    "exact_binomial_chernoff_checks": 48,
+    "floor_binomial_sum_checks": 120,
+    "new_phase_boundary_checks": 24
+  },
+  "stress_threshold": 2,
+  "arithmetic": "exact integers and rational fractions",
+  "result": "PASS (finite joint-encoding checks, not universal proof)"
+}

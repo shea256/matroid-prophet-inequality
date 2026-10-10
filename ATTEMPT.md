@@ -1,6 +1,6 @@
 # Executed approaches
 
-Three linked attacks produced the current derivation.
+The published `2^-36` derivation used these three linked attacks:
 
 1. **Quadratic query potential.** Track the actual conditional failure
    probability `m` and the depleted failure probability `q`. The potential
@@ -29,3 +29,19 @@ and [recorded output](experiments/quadratic_search_output.txt).
 No independent agent review, external author consultation, or formal proof
 build is claimed. The universal derivation and inherited structural lemmas
 are in [the manuscript](manuscript.md).
+
+## Joint-encoding follow-up
+
+Executed three comparisons using the same analytic objective: parameter-only
+retuning, a density-size cutoff with the old count, and the cutoff with joint
+pivot encoding. The numerical search used 12 deterministic starts per mode
+and a declared 275-tuple grid. It is not a global optimum or proof.
+[Code](experiments/search_joint_residual.py),
+[output](experiments/joint_residual_search_output.json).
+
+The selected dyadic tuple has `kappa=640`, `rho=7/16`, `h=3/4`, `t=2^-15`,
+256 phases, and analysis cutoff `33/64`. The exact certificate exceeds
+`(21/20)*2^-34`. The written proof charges all basis choices, three generator
+types, both affine tests, and the density exception without conditioning
+away independence. [Detailed argument](proofs/joint_residual.md),
+[same-agent audit](proofs/joint_residual_audit.md).

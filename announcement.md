@@ -1,7 +1,8 @@
 # Prepared announcement text
 
-Draft wording for a future release. The repository is currently private.
-This file is not a social-media posting record.
+Earlier prepared wording for the `2^-36` release. The author reports posting
+an announcement on October 10, 2026. This file is not a verbatim transcript;
+no permalink for that post was supplied. The repository is now public.
 
 ## Post 1
 
@@ -20,7 +21,7 @@ constraints.
 
 Developed with Codex. Proof + exact checks; independent review welcome.
 
-https://github.com/shea256/one-sample-matroid-prophet
+https://github.com/shea256/matroid-prophet-inequality
 
 ## Context / follow-up
 
