@@ -438,3 +438,16 @@ All passed, including 13 workflow tests and 62 archive hashes. The default
 13 programs with fresh JSON equal to references and final package validation
 in 42.367 seconds on Python 3.9.25/Linux.
 This is a presentation update, not a new theorem or independent proof review.
+
+## Graphic layout revision — October 10, 2026
+
+At the user's request, removed the left source-comparison graph and expanded
+the linear refinement chart to the full width. Retained the OpenAI baseline
+as a source note, with the current guarantee and latest percentage increase
+below the plot. Updated the README alt text, graphic documentation, renderer,
+and PNG/SVG/data artifacts. Inspected the 2560x1360 rendering.
+
+The graphic data/hash check, generated-paper check, package validation,
+all 13 workflow tests, and `git diff --check` passed. Mathematical
+coefficients and verification programs are unchanged; the previously passed
+13-program suite was not repeated for this layout-only revision.

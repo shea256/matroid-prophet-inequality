@@ -3,7 +3,7 @@
 By **Ryan Shea**. A living research project on
 [OpenAI Math Problem #111](https://github.com/openai/math/blob/main/lean/docs/111.md).
 
-![Guarantee improvements: a logarithmic comparison with OpenAI's derived bound and linear gains across this project's refinements.](assets/guarantee-progress.png)
+![Progress in the guaranteed fraction of the expected hindsight optimum, shown as linear gains since the first announcement.](assets/guarantee-progress.png)
 
 <!-- current-result:start -->
 

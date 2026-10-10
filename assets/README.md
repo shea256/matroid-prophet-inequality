@@ -4,10 +4,10 @@
 [Exact data and hashes](guarantee-progress.json) ·
 [Renderer](../scripts/build_progress_graphic.py)
 
-The left panel compares the pinned OpenAI manuscript's derived `2^-293`
-bound with the selected coefficient on a base-2 logarithmic scale. The right
-panel uses a linear scale for gains relative to the first announced exact
-certificate. Its x-axis lists successive refinements, not elapsed time.
+The chart uses a linear scale for gains relative to the first announced
+exact certificate. Its x-axis lists successive refinements. The current
+guarantee and latest percentage improvement appear below the plot; the
+pinned OpenAI manuscript's derived bound is retained as a source note.
 The common one-sample/full-seed model and pending independent-review status
 are stated on the image. See [BASELINE](../BASELINE.md) for source provenance.
 
