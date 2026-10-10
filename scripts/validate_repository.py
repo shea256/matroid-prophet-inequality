@@ -7,10 +7,12 @@ from urllib.parse import unquote, urlsplit
 
 from result_registry import ROOT, archive_hashes
 from build_manuscript import verify_generated, verify_build
+from build_progress_graphic import verify_graphic
 
 
 def validate(root=ROOT):
     verify_generated(root)
+    verify_graphic(root)
     build = verify_build(root)
     archived = archive_hashes(root)
     links = 0
@@ -37,6 +39,7 @@ def validate(root=ROOT):
     current = json.loads((root/'results/current.json').read_text())
     return dict(local_links_checked=links, immutable_artifacts_checked=len(archived),
                 current_result=current['result_id'], generated_text_verified=True,
+                progress_graphic_verified=True,
                 paper_input_hashes_verified=True, paper_hash_verified=True,
                 source_hash_verified=True, result='PASS (package validation, not a proof check)')
 

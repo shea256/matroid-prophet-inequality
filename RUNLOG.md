@@ -406,3 +406,90 @@ over the preceding exact certificate, with `40n+26` initial fair bits. The
 README table now includes the approximately 31.45-fold gain over the first
 announced exact certificate. These remain written claims with same-agent
 verification; independent review and formalization are pending.
+
+## README progress graphic — October 10, 2026
+
+The user supplied a step-chart reference and requested a matching README
+image. PR #6 was already merged at `2cc1d21eace63b5dc6e56d70f3d3f94a98c7a43c`,
+so this update uses a separate branch, `shea256/readme-progress-graphic`,
+from merged master.
+
+Generated `assets/guarantee-progress.png` (2560 by 1440, 256833 bytes) and
+an SVG (98839 bytes) with Matplotlib 3.9.4 in an ignored local virtualenv.
+The chart reads exact registry coefficients: a logarithmic comparison with
+the derived OpenAI bound and a linear view of gains since the announcement.
+Its horizontal axis is a refinement sequence; all displayed project dates
+are October 10. Exact ratios and the greater-than-2^262 source comparison
+were recalculated. The rendered graphic was inspected for labels and layout. Trailing
+whitespace in the SVG export was normalized before final diff validation;
+regeneration preserved the PNG bytes exactly.
+
+The [data receipt](assets/guarantee-progress.json) binds the registry and
+renderer inputs plus both image hashes. Added standard-library freshness
+validation to the package checker, and documented optional chart regeneration.
+The README embeds the PNG outside its generated result block. The manuscript,
+PDF, LaTeX, and mathematical result registry match the merged publication.
+
+Executed the renderer, `scripts/build_progress_graphic.py --check`,
+`scripts/build_manuscript.py --check`, `scripts/validate_repository.py`,
+`python3 -B -m unittest discover -s scripts/tests`, and `git diff --check`.
+All passed, including 13 workflow tests and 62 archive hashes. The default
+`scripts/run_checks.py --receipt .context/graphic-checks.json` run passed all
+13 programs with fresh JSON equal to references and final package validation
+in 42.367 seconds on Python 3.9.25/Linux.
+This is a presentation update, not a new theorem or independent proof review.
+
+## Graphic layout revision — October 10, 2026
+
+At the user's request, removed the left source-comparison graph and expanded
+the linear refinement chart to the full width. Retained the OpenAI baseline
+as a source note, with the current guarantee and latest percentage increase
+below the plot. Updated the README alt text, graphic documentation, renderer,
+and PNG/SVG/data artifacts. Inspected the 2560x1360 rendering.
+
+The graphic data/hash check, generated-paper check, package validation,
+all 13 workflow tests, and `git diff --check` passed. Mathematical
+coefficients and verification programs are unchanged; the previously passed
+13-program suite was not repeated for this layout-only revision.
+
+## Plot guarantees directly — October 10, 2026
+
+At the user's request, changed the chart's ordinate from relative gains to
+actual guarantee coefficients, using a linear axis in units of `10^-10`.
+Points plot the exact fractions from the registry; annotations show the
+simplified strict lower bounds for each milestone. Replaced the percentage
+gain callout with the current coefficient and expectation inequality.
+Updated the PNG/SVG/data, renderer, README alt text, and asset documentation,
+then inspected the final rendering.
+
+Graphic data/hash checks, generated-paper checks, package validation,
+all 13 workflow tests, and whitespace checks passed. Existing certificate
+validation checks every displayed simplified bound against its exact
+coefficient. No theorem, coefficient, or mathematical verifier changed.
+
+## Power-of-two guarantee axis — October 10, 2026
+
+The user found the decimal-scaled y-axis unsuitable. Switched to a base-2
+logarithmic axis labeled directly with powers of two. The coefficients are
+plotted in their original units; each grid interval represents a doubling.
+The current tick range is `2^-36` through `2^-31`. Regenerated and visually
+inspected the PNG/SVG and updated their metadata, alt text, and documentation.
+
+The graphic data/hash, generated-paper, package, and whitespace checks
+passed. No mathematical values or verification programs changed.
+
+## Add OpenAI on a broken y-axis — October 10, 2026
+
+At the user's request, prepended the pinned OpenAI derived `2^-293` bound
+to the same guarantee chart. The source segment spans `2^-294` to `2^-292`,
+and the project segment spans `2^-37` to `2^-30`. The omitted range is
+labeled in the gap, with paired break marks on both the axis and the
+source-to-project connector. Segment heights are proportional to their
+logarithmic spans; a check of the rendered coordinate transforms confirms
+equal vertical distance per doubling on both segments.
+
+The source point is explicitly labeled derived; the `2^-310` headline
+remains in the source note. Regenerated and visually inspected the PNG/SVG,
+updated exact chart metadata and docs, and passed graphic/paper checks,
+package validation, all 13 workflow tests, and whitespace checks. No
+mathematical coefficient or theorem changed.
