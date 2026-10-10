@@ -110,3 +110,74 @@ A byte comparison confirmed that NOTICE retains the entire former file.
 `python3 -B scripts/run_checks.py`,
 `python3 -B scripts/validate_repository.py`, and `git diff --check` passed.
 The manuscript and mathematical code were not changed.
+
+## Baseline presentation and intermediate archive — October 10, 2026
+
+At the author's request, removed the external announcement from the abstract,
+README comparison table, announcement copy, and current scalar comparator
+field. The main comparison now uses the `2^-293` coefficient derived in the
+accessible OpenAI manuscript. A short related-work note acknowledges the
+unverified announcement and states that its assumptions and proof were
+unavailable for comparison at the audit date. The mathematical coefficient,
+algorithm, and review status are unchanged.
+
+Added a short development history to the current Markdown and PDF paper and
+expanded [IMPROVEMENTS.md](IMPROVEMENTS.md). The [dated archive](archive/README.md)
+preserves 23 original artifacts totaling 564,467 bytes: the `2^-63` note and
+derivation, the `2^-43` addendum and derivation, their certificates and finite
+checks, and supporting provenance. All copied files are unchanged and listed
+with hashes in the archive manifest. The first checkpoint was recovered from
+commit `c078169da3b6cb8cca4802fb4490ed09799bc736`; the later artifacts came
+from the existing research workspace without assigning them a prior commit.
+Historical labels and comparisons remain in the snapshots and are explicitly
+identified as historical in the archive index.
+
+Executed:
+
+```sh
+python3 -B scripts/build_manuscript.py > verification/paper_build.json
+python3 -B scripts/check_archive.py --full --receipt verification/archive_run_receipt.json
+python3 -B scripts/run_checks.py --receipt verification/current_run_receipt.json
+python3 -B scripts/validate_repository.py
+git diff --check
+```
+
+All 23 archived hashes matched. All five archived programs reproduced their
+preserved JSON outputs, including 5,347,942 arrival-order runs, in 33.607
+seconds on Python 3.9.25/Linux. The three current programs also matched their
+updated references. Only the current scalar output's comparator reporting
+field changed; all theorem parameters and coefficient fields matched the
+previous version exactly. The first current-suite attempt reached package
+validation before the archive receipt existed; after that receipt completed,
+the current suite and package validation passed. Actual executions are
+recorded in the two receipts above.
+
+The current PDF remains seven pages and rebuilt in three passes with no
+warnings. Its first and last pages were rendered and visually inspected;
+the abstract uses the documented baseline, and the closing section contains
+the qualified related-work note and development history. PDF and TeX hashes
+were refreshed. These checks are not independent mathematical review.
+
+## License provenance correction and accessible announcement — October 10, 2026
+
+The author clarified that the MIT license had been introduced during our
+preparation under a mistaken assumption; it was not an inherited license.
+Removed the incorrect inheritance sentence from README, the corresponding
+claims from attribution and contributor instructions, and the MIT text from
+NOTICE. Apache 2.0 remains the project license, and NOTICE retains OpenAI
+source attribution and names Ryan Shea. Earlier entries about preserving an
+inherited MIT notice record that mistaken assumption, not the corrected
+provenance.
+
+Reworked the prepared announcement into a two-post thread using limited team
+slots as an illustration of irreversible online selection. The follow-up
+credits OpenAI's qualitative result and states the improved expected-reward
+bound, Codex assistance, and invitation for independent review. Technical
+context explains the analogy and assumptions. No announcement was posted.
+
+The final package validator checked 102 local links and both paper hashes.
+The archive hash check and three default archived programs passed again after
+the archive index's attribution edit. Both prepared posts fit within 280
+characters even counting the repository URL in full. README, attribution,
+and NOTICE contain no MIT claim or text; `LICENSES` is absent. Whitespace
+checks passed.

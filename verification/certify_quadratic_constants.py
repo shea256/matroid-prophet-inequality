@@ -58,7 +58,7 @@ def certify():
         'slack_lower_bound': str(slack_lower),
         'certified_coefficient_lower_bound': str(coefficient_lower),
         'exact_lower_bound_over_2^-36': str(coefficient_lower*2**36),
-        'exact_lower_bound_over_announced_2^-47': str(coefficient_lower*2**47),
+        'exact_lower_bound_over_source_2^-293': str(coefficient_lower*2**293),
         'simplified_guarantee': '2^-36',
         'exit_hazard_lower_bound': '1/2',
         'seed_bits': '38n+23',

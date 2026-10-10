@@ -21,12 +21,16 @@ recalibrates mask probabilities, and uses a finer finite rational phase mesh.
 | Same-agent audit | Completed; no remaining gap identified |
 | Independent peer review | Pending |
 | Lean formalization of this refinement | Not performed |
-| Strongest-current-result / novelty comparison | Unresolved while the announced proof is unavailable |
+| Strongest-current-result / novelty comparison | Not established; the main comparison uses the accessible OpenAI manuscript |
 | Polynomial-time or practical-performance improvement | Not claimed |
 
 Finite tests support the argument; the universal claim rests on the written
 proof. Review status is not a claim that finite enumeration proves all matroids.
 The private repository contains the manuscript with reproducible evidence.
+
+The documented baseline is OpenAI's derived `2^-293` coefficient. Earlier
+`2^-63` and `2^-43` bounds from this research effort are superseded; their
+proofs and certificates are retained in the [archive](archive/README.md).
 
 See [the paper](manuscript.md), [verification scope](verification/README.md),
 [baseline](BASELINE.md), and [review questions](HANDOFF.md).

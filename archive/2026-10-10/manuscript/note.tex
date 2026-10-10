@@ -1,0 +1,497 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={A finite-seed parameter refinement for one-sample matroid prophet inequalities},pdfauthor={}}
+\newtheorem{theorem}{Proposed theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\rk}{r}
+\DeclareMathOperator{\OPT}{OPT}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prb}{\mathbb P}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Src}{\cite{source}}
+\allowdisplaybreaks
+\title{A finite-seed parameter refinement for\protect\\one-sample matroid prophet inequalities}
+\author{}
+\date{Preparatory research note, October 10, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a candidate refinement of the constants in OpenAI's one-sample
+matroid prophet construction. Retaining its combinatorial machinery,
+we derive a coefficient greater than $2^{-63}$ against an adversary
+that sees every sample, online value, and seed bit. The accessible source
+already derives $2^{-293}$, stronger than its advertised $2^{-310}$.
+The changes are a sharper use of existing exit and residual estimates,
+affine mixing of branches, and sixteen shared rounding offsets. An
+explicit implementation uses $62n+40$ fair bits; no polynomial running
+time is asserted. Exact scalar checks and finite online-rule checks
+accompany the derivation. This is an AI-assisted, unreviewed draft,
+not a formalized proof. Daniel's October 8 announcement of $2^{-47}$
+is stronger; its proof was unavailable in our audit. We make no claim
+to the strongest current result or to priority.
+\end{abstract}
+
+\section{Model, claim, and provenance}
+
+Let $M=(E,\mathcal I)$ be a known finite labeled matroid, $n=|E|$,
+with a fixed total label order. For $A,P\subseteq E$, write
+$\rk(A\mid P)=\rk(A\cup P)-\rk(P)$ and $L=\cl(\varnothing)$.
+For a nonnegative vector $w$, put
+$\OPT_M(w)=\max_{I\in\mathcal I}\sum_{e\in I}w_e$.
+
+\begin{theorem}\label{thm:main}
+For every such $M$ there is a measurable one-sample online rule whose
+seed consists of $62n+40$ independent fair bits and whose law does not
+depend on the value distributions. Let all $2n$ variables $S_e,V_e$
+be mutually independent, nonnegative, with $S_e$ and $V_e$ identically
+distributed for each $e$. Let the seed $R$ be independent of them and
+assume $\E\OPT_M(V)<\infty$. For every measurable arrival permutation
+$\pi(S,V,R)$, the rule accepts an independent set at every prefix and
+its reward satisfies
+\[
+ \E\operatorname{reward}\ \ge\ 2^{-63}\E\OPT_M(V).
+\]
+The rule receives all samples initially, uses no distribution description,
+and observes online values only upon their arrival. The adversary may
+observe the entire initial seed, including unused coins.
+\end{theorem}
+
+The argument below depends on named combinatorial lemmas of the
+September 23 manuscript \Src, pinned at commit
+\texttt{fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb}.
+We restate the interfaces needed for retuning and derive all changed
+quantitative estimates. We do not claim a new density decomposition,
+marked-pivot theorem, reverse-exposure method, or sample/value reduction.
+Source arguments, rather than their hard-coded numerical corollaries,
+are the dependencies. The source's final calculation is
+$2^{-140-16-5-100-32}=2^{-293}$ and its sample/value reduction is lossless.
+
+The stronger $2^{-47}$ public announcement \cite{announcement} must be
+resolved before any best-known-bound claim. A separate $1/2$ result
+\cite{abhm} uses an order fixed independently of samples and values;
+it does not supply the full-seed quantifier above. The draft and the
+source dependency audit received a second pass by the same agent,
+not independent mathematical review. No Lean build certifies this draft.
+
+\section{A fully specified fixed-vector rule}
+
+First fix $w\in[0,\infty)^E$ independently of the seed. A rule reveals
+and sacrifices a seed-selected mask, then receives all labels in an
+arbitrary order. Its target is $\E_R\min_\pi w(A(w,R,\pi))$.
+Choose
+\begin{equation}\label{eq:params}
+ B=2^{16},\quad \kappa=2^{18},\quad t=2^{-29},\quad
+ p=1-2^{-35},\quad \beta=1-B^{-1}.
+\end{equation}
+Choose $J$ uniformly in $\{0,\ldots,15\}$, and round positive coordinates by
+\[
+ u_J(x)=2^J B^{\lfloor\log_B(x/2^J)\rfloor},\qquad u_J(0)=0.
+\]
+Use the same $J$ for every coordinate. The branch is main with
+probability $p$ and maximum otherwise. All masks, parity, branch, and
+offset coins are independent and drawn initially.
+
+The maximum branch reveals a fair mask and accepts the first unmasked
+positive nonloop with priority exceeding every revealed positive
+nonloop, then stops. Higher rounded weight means higher priority,
+with the fixed label order resolving ties. An empty revealed threshold
+is below every positive nonloop. If $m_*$ is the greatest rounded
+nonloop weight, this branch has expected worst-order reward at least
+$m_*/4$: it succeeds whenever the highest-priority nonloop is unmasked
+and the second is masked. With just one positive nonloop it succeeds
+with probability $1/2$.
+
+In the main branch draw masks $H,D,C,T$ with respective rates
+$1/2,1/4,t,t$, independently across labels. Reveal and sacrifice
+$H\cup D\cup C$. Define the analytical candidate set
+\[
+ U=\{e\notin H:u_e>0,\ e\notin\cl(H_{>e})\},
+ \qquad Y=I^*\setminus H,
+\]
+where $I^*$ is priority greedy on the whole rounded vector and $H_{>e}$
+contains the higher-priority labels in $H$. The candidate test uses only
+the revealed $H$ values and the value at the tested label. The source's
+candidate-mass lemma gives
+\begin{equation}\label{eq:filter}
+ Y\subseteq U,\qquad \E_H u(Y)=W/2,\qquad \E_H u(U)\le W,
+ \qquad W=\OPT_M(u).
+\end{equation}
+Indeed the probability contribution of a candidate equals that of a
+label chosen by greedy on $H$, conditional on its predecessors in $H$.
+
+For a fixed offset divide weights by $2^J$ in the analysis, so levels
+are $B^i$. Put $U_i=\{e\in U:u_e=B^i\}$, $n_i=|U_i|$,
+$Y_i=Y\cap U_i$. List only levels intersecting $D$, in increasing weight
+order, as $G_1,\ldots,G_m$. Write $D_h=D\cap G_h$ and likewise for
+$C_h,T_h$. Their revealed parts $D_h,C_h$ suffice for preparation;
+the full groups are analysis objects.
+
+For a flat $P$, let $Q_h(P)$ be the largest maximizing flat of
+$|D_h\cap Z|-\kappa\rk(Z)$ over flats $Z\supseteq P$.
+For nonflat arguments first take closure. Set $a_h=-3h$ and let
+$Q_{h,k}=Q_h$ for $k\ge a_h$, the identity otherwise. Starting from
+$F_0(k)=L$ for $k<0$ and $F_0(k)=E$ otherwise, set
+\begin{equation}\label{eq:paths}
+ X_h(k)=Q_{h,k}(F_{h-1}(k)),\qquad
+ F_h(k)=\cl\bigl(X_h(k)\cup(C_h\cap X_h(k+1))\bigr).
+\end{equation}
+These paths are computed in increasing $h$. All relevant times lie in
+a finite interval of length $O(n)$. Let $\widehat F=F_m$; reject
+everything if $m=0$. Draw a fair parity $\xi\in\{0,1\}$.
+
+For an arriving label $e$, reject sacrificed labels, failed candidates,
+and unlisted levels. For its listed index $h$, find its nominal birth
+$b_h(e)=\min\{k:e\in X_h(k)\}$. It is eligible precisely when
+\[
+ e\in T,\quad b_h(e)\ge a_h+2,\quad b_h(e)\equiv\xi\pmod2,
+ \quad e\notin\widehat F(b_h(e)-2).
+\]
+At each endpoint $b$ maintain a set $A_b$. Accept an eligible $e$ of
+birth $b$ exactly when
+$\rk(\{e\}\mid\widehat F(b-2)\cup A_b)=1$.
+
+The source density and path lemmas hold for every $\kappa>0$:
+$Q_h$ is increasing and extensive, and
+\begin{align}
+ |D_h\cap(\cl(Q_h(P)\cup Z)\setminus Q_h(P))|
+   &\le\kappa\rk(Z\mid Q_h(P)),\label{eq:density}\\
+ F_{h-1}(k)\subseteq X_h(k)\subseteq F_h(k)&\subseteq X_h(k+1).
+ \label{eq:nesting}
+\end{align}
+They follow from supermodularity of the density objective on flats
+and from the path recursion. Nonloops are born at $a_h$ or in
+$[a_h+2,0]$. Each path has generators $J_h\subseteq D_h$ with
+increasing subsets $J_h(k)$ such that
+\begin{equation}\label{eq:generators}
+ X_h(k)=\cl(F_{h-1}(k)\cup J_h(k)),\qquad
+ |J_h|\le |D_h|/\kappa.
+\end{equation}
+The rank costs telescope as new density generators are inserted.
+These facts require no large lower bound on $\kappa$.
+By \eqref{eq:nesting}, successive layer bases contain all earlier
+layers, proving independence at every arrival prefix. Finite rank
+operations, fixed tie rules, and countably many measurable rounding
+levels prove measurability.
+
+\section{Safety with a larger exit cutoff}
+
+Fix $H,D$ and a listed index $h$. Define
+\[
+ K_{h,b}=\bigcup_{j<h}\bigl(T_j\cap(X_j(b)\setminus X_j(b-1))\bigr).
+\]
+It contains all lower-weight eligible competitors in layer $b$ and
+is contained in $F_{h-1}(b)$. A label $d\in D_h\cap Y$ is safe if its
+birth $b$ is in $[a_h+2,0]$, has parity $\xi$, and
+$d\notin Q_h(F_{h-1}(b-2)\cup K_{h,b})$. Let $\sigma_h$ count them.
+
+The source's reverse-exposure construction queries departing guard
+coordinates once each, in predictable batches. Conditional on a
+transcript just before a step, the surviving coordinates retain their
+product law. If a nonloop is still present, let $q_{b-1}$ be its
+conditional exit probability at the next reverse step; put it zero
+after exit. The disjoint-query-certificate lemma bounds the expected
+number of survivals in a hazard band $[q_0,2q_0)$ by
+$\log(1/q_0)$. Adding the possible exit step and summing dyadic bands
+therefore gives, for an integer cutoff exponent $m_0$,
+\begin{equation}\label{eq:hazard}
+ \Prb(q_{\rm exit}<2^{-m_0})
+ \le 2^{1-m_0}((m_0+2)\log2+1).
+\end{equation}
+This is the source argument with its final cutoff left symbolic. It
+uses a finite query horizon and an increasing Boolean event; it does
+not use the original numerical $t,B,\kappa$.
+
+The positive series
+$\log2=2\sum_{j\ge0}((2j+1)3^{2j+1})^{-1}$ implies
+$2/3<\log2\le25/36<7/10$. For the upper bound, keep the first term
+and bound subsequent denominators $2j+1$ by $3$.
+Taking $m_0=4$ in \eqref{eq:hazard} gives a failure probability at most
+$13/20$. Every nonloop exits, so
+\begin{equation}\label{eq:square}
+ \sum_b\E[\one_{\{d\in X_h(b)\}}q_{b-1}^2\mid H,D]
+ =\E[q_{\rm exit}\mid H,D]\ge\frac7{320}.
+\end{equation}
+
+The source hybrid transition replaces just the departing guard bits
+by their independent test bits. Conditional on the complete ordinary
+transcript, unqueried guard bits and these test bits jointly have the
+original product law. Since guard and test rates agree, the hybrid
+exit has conditional probability $q_{b-1}$, and the probability of
+ordinary and hybrid exit together is
+$\one_{\{d\in X_h(b)\}}q_{b-1}^2$ given the pre-step transcript.
+The hybrid output contains
+$Q_h(F_{h-1}(b-2)\cup K_{h,b})$ for valid $b$; hence double exit
+implies safety before parity. This is an endpointwise argument,
+not an assertion that different endpoint experiments are independent.
+
+The only excluded birth is $a_h$; none occurs at $a_h+1$.
+Since $Y$ is independent, at most
+$\rk(Q_h(L))\le |D_h|/\kappa$ of its sampled labels have this birth.
+Subtract this loss from \eqref{eq:square} and then average fair parity:
+\[
+ \E[\sigma_h\mid H,D]
+ \ge\frac7{640}|D_h\cap Y|-\frac{|D_h|}{2\kappa}.
+\]
+Extend $\sigma_i$ by zero on unlisted true groups. Averaging $D$ without
+conditioning on listing gives
+\begin{equation}\label{eq:sigma}
+ \E[\sigma_i\mid H]\ge\gamma|Y_i|-\frac{n_i}{8\kappa},
+ \qquad\gamma=\frac7{2560}.
+\end{equation}
+
+\section{Residual entropy and nominal rank}
+
+Let $\mathcal B_h=\{b:a_h+2\le b\le0,\ b\equiv\xi\pmod2\}$.
+For $b\in\mathcal B_h$ put
+\[
+ P_{h,b}=G_h\cap(X_h(b)\setminus X_h(b-1)),\quad O=D\cup C,
+ \quad S_{h,b}=P_{h,b}\setminus O,
+\]
+and set $P_{h,b}=\varnothing$ for other endpoints of this parity.
+The nominal rank is
+\[
+ z_h=\sum_b\rk(S_{h,b}\mid X_h(b-2)\cup K_{h,b}).
+\]
+Choose a label-ordered basis extension $Z_b\subseteq S_{h,b}$ for
+each summand, so $\sum_b|Z_b|=z_h$. The residual
+\[
+ \mathcal R_h=\bigcup_b\left(P_{h,b}\setminus
+  \cl(X_h(b-2)\cup K_{h,b}\cup Z_b)\right)
+\]
+is contained in $O$. Applying \eqref{eq:density} with the larger base
+$Q_h(F_{h-1}(b-2)\cup K_{h,b})$ gives the deterministic inequality
+\begin{equation}\label{eq:residual}
+ \sigma_h\le\kappa z_h+|\mathcal R_h|.
+\end{equation}
+
+We use the following precise interface of the source marked-pivot
+and residual-family lemmas. Conditional on $H$, parity, and all
+$D,C,T$ bits outside a true group $U_i$ of size $n\ge\kappa$, there
+is a fixed family $\mathfrak R_i$ containing every residual on every
+listed outcome with $z_h\le n/\kappa$. For
+$q=\lfloor n/\kappa\rfloor$ and
+$S_d(n)=\sum_{\ell=0}^d\binom n\ell$, it satisfies
+\begin{equation}\label{eq:family}
+ |\mathfrak R_i|\le S_q(n)^2\bigl(4^{2q}S_{2q}(n)\bigr)^2.
+\end{equation}
+No focal bit or listing event is in this conditioning. The family
+allows at most $q$ density generators and $q$ witness labels; two
+marked-pivot sequences encode valid births and failure of spanning.
+The source marked-pivot lemma bounds $s$ movable occurrences by
+$4^sS_s(n)$ regardless of the timeline length. That combinatorial
+lemma, including its matroid and hyperplane-arrangement proof, remains
+an external dependency of this note.
+
+For $0<\alpha\le1/2$,
+$\alpha^{\alpha n}S_{\lfloor\alpha n\rfloor}(n)
+\le(1+\alpha)^n\le e^{\alpha n}$.
+Use $\alpha=1/\kappa,2/\kappa$ in \eqref{eq:family}, keeping the
+floors, to obtain
+\[
+ \log|\mathfrak R_i|\le\frac n\kappa
+       (6\log\kappa+6+4\log2).
+\]
+This sharper expression is already inside the source proof, before
+its relaxation to $1000\log\kappa$. For $\kappa=2^{18}$ and
+$\log2>2/3$, it implies
+$|\mathfrak R_i|\le2^{121n/\kappa}$.
+
+Under precisely the conditioning above, each focal coordinate belongs
+to $O$ independently with probability $1/4+3t/4\le1/2$.
+Set $\delta=139/\kappa$. A union bound gives
+\[
+ \Prb(\exists R_0\in\mathfrak R_i:
+ R_0\subseteq O,\ |R_0|>\delta n)
+ \le2^{-18n/\kappa}\le2^{-18}.
+\]
+Set $e_i=|\mathcal R_h|$ on listed outcomes with $z_i\le n/\kappa$,
+and zero otherwise. Then
+$\E[e_i\mid H]\le(\delta+2^{-18})n=140n/\kappa$.
+Extend $z_i$ by zero on unlisted groups. The inequality
+$\sigma_i\le\kappa z_i+e_i$ holds also on unlisted outcomes and
+when $z_i>n/\kappa$, since $\sigma_i\le n$.
+Together with \eqref{eq:sigma}, this proves, for $n_i\ge\kappa$,
+\begin{equation}\label{eq:z}
+ \E[z_i\mid H]\ge\frac{\gamma|Y_i|-\epsilon n_i}{\kappa},
+ \qquad\epsilon=\frac{1121}{2^{21}}.
+\end{equation}
+
+\section{Order-uniform accounting and branch mixing}
+
+Define
+\[
+ \lambda_h=\sum_b\rk(T_h\cap S_{h,b}\mid\widehat F(b-2)\cup K_{h,b}).
+\]
+With all coins fixed, the source order-uniform rank lemma gives
+$N_{\ge h}(\pi)\ge\lambda_h$ for every permutation, where $N_{\ge h}$
+counts accepts of weight at least that of $G_h$. Indeed, the final
+greedy set of a layer spans its eligible labels; its selected lower
+weight labels lie in $K_{h,b}$. Contracting them proves the bound.
+
+One common set of generators for the later paths is
+$J'=C_h\cup\bigcup_{j>h}(C_j\cup J_j)$, of size at most
+\[
+ c_h=|C_h|+\sum_{j>h}(|C_j|+|D_j|/\kappa).
+\]
+It satisfies $X_h(k)\subseteq\widehat F(k)
+\subseteq\cl(X_h(k)\cup J')$ simultaneously for all $k$.
+The resulting rank losses at chosen-parity endpoints telescope, giving
+\[
+ \sum_b\rk(S_{h,b}\mid\widehat F(b-2)\cup K_{h,b})\ge z_h-c_h.
+\]
+Specifically each loss is at most
+$\rk(J'\mid X_h(b-2))-\rk(J'\mid X_h(b))$, so the same generators
+are charged only once.
+
+Condition on $H,D,C,\xi$ and all $T$ bits outside $G_h$.
+The summand sets and bases are fixed and focal $T$ remains an independent
+rate-$t$ mask. Intersecting a fixed basis extension with $T_h$ shows
+$\E[\lambda_h\mid\cdot]\ge t(z_h-c_h)$.
+Extend $\lambda_i,c_i$ by zero on unlisted true groups. Bounding costs
+by counts on all true groups before averaging gives
+\[
+ \E[c_i\mid H]\le t n_i+(t+1/(4\kappa))\sum_{\ell>i}n_\ell.
+\]
+Thus \eqref{eq:z} implies
+\begin{equation}\label{eq:lambda}
+ \E[\lambda_i\mid H]\ge\frac t\kappa
+ \left[\gamma|Y_i|-(\epsilon+t\kappa)n_i
+              -(t\kappa+1/4)\sum_{\ell>i}n_\ell\right]
+ \quad(n_i\ge\kappa).
+\end{equation}
+No chosen arrival order has been conditioned upon.
+
+Each accepted weight $B^\ell$ is counted in cumulative level counts
+by at most $\sum_{i\le\ell}B^i=B^\ell/\beta$. Consequently
+\begin{equation}\label{eq:min}
+ \min_\pi u(A_{\rm main}(\pi))\ge
+ \beta\sum_{i:n_i\ge\kappa}B^i\lambda_i.
+\end{equation}
+Also
+\[
+ \sum_iB^i\sum_{\ell>i}n_\ell\le\frac{u(U)}{B-1},\qquad
+ \sum_{i:n_i<\kappa}B^i|Y_i|\le\frac{\kappa m_*}{\beta}.
+\]
+Multiply \eqref{eq:lambda} by levels, use \eqref{eq:min}, and average
+\eqref{eq:filter}. Restoring the factor $2^J$ when needed gives
+\begin{equation}\label{eq:affine}
+ \E\min_\pi u(A_{\rm main}(\pi))\ge AW-t\gamma m_*,\qquad
+ A=\frac{\beta t}{\kappa}s,
+\end{equation}
+where
+\begin{equation}\label{eq:slack}
+ s=\frac\gamma2-\epsilon-t\kappa-
+          \frac{t\kappa+1/4}{B-1}
+   =\frac{3120271}{9162457088}>\frac1{3072}.
+\end{equation}
+The affine bound may be negative for a particular vector; that causes
+no problem. Mix in the maximum branch:
+\[
+ \E\min_\pi u(A(\pi))\ge
+ pAW+\left(\frac{1-p}{4}-pt\gamma\right)m_*\ge pAW,
+\]
+because $(1-p)/4=t/256$ and $\gamma=7/2560<1/256$.
+Both minima occur before averaging the respective seeds, so the
+adversary may select its order after seeing the branch.
+
+\section{Finite offsets and lossless one-sample transfer}
+
+For any $x>0$, let $k=\lfloor\log_2x\rfloor$. As $J$ ranges over
+the sixteen phases, rounded exponents are exactly $k,k-1,\ldots,k-15$.
+Therefore
+\[
+ \E_J u_J(x)=\frac{2^{k+1}\beta}{16}\ge\frac\beta{16}x.
+\]
+The same inequality holds at zero. Fix an optimum independent set
+for $w$ before drawing $J$, and sum to get
+$\E_J\OPT_M(u_J)\ge\beta\OPT_M(w)/16$.
+Conditional on any phase the remaining seed has its original product
+law. True accepted weights dominate rounded weights, so
+\begin{equation}\label{eq:coefficient}
+ \E_{J,R}\min_\pi w(A(J,R,\pi))
+ \ge C\OPT_M(w),\qquad C=\frac{p\beta^2ts}{16\kappa}>2^{-63}.
+\end{equation}
+Indeed $p\beta^2>3/4$, $s>1/3072$, and $t/\kappa=2^{-47}$,
+whose product in \eqref{eq:coefficient} is $2^{-63}$.
+The exact coefficient is
+\[
+ C=\frac{105391776668216973667425}
+ {696898287454081973172991196020261297061888}
+ \approx1.39485\cdot2^{-63}.
+\]
+Visibility of the phase does not change this argument: the minimum
+over orders was already taken at each complete seed.
+
+For the prophet rule, let $B_0(R)$ be its sacrificed mask and define
+$w_e^{\rm glue}=S_e$ on $B_0(R)$ and $V_e$ elsewhere.
+Conditional on the complete seed, this vector has the product law
+of $V$, independent of that seed. Run the hidden-vector rule using
+samples only on $B_0$, reject those labels, and use arriving values
+on its complement. For each $S,V,R$ its reward under any adversarial
+order is at least the minimum over all permutations on the glued
+vector. Integrating \eqref{eq:coefficient} proves the proposed theorem.
+Unused samples and values may influence the adversary without affecting
+this lower bound. Feasibility bounds actual reward by $\OPT_M(V)$;
+nonnegative integration needs no extra moment hypothesis on loop values.
+
+Predraw four phase bits, 35 branch bits (choose maximum only when
+all are zero), one parity bit, and per label one $H$, two $D$, 29 $C$,
+29 $T$, and one maximum-mask bit. This totals $62n+40$ fair bits.
+The finite rule can precompute rank and closure tables over all subsets
+and enumerate flats for each density map. That implementation may use
+exponential work, queries, and storage. Arbitrary real observations
+remain exact in the source measurable model; rational implementations
+pay input-bit costs for exact level comparisons. Output work is at
+least the number of accepted labels. No efficiency or precision
+improvement is asserted. Empty ground sets, rank zero, loops, ties,
+zero values, and arbitrary integer weight exponents are included.
+
+\section{Evidence and release status}
+
+The accompanying standard-library Python certificate recomputes every
+scalar displayed above with exact rational arithmetic. Separate checks
+enumerate all labeled matroids on up to four elements for candidate,
+density, maximum-branch, and rounding facts. An online-rule checker
+enumerates small complete seed states, takes the worst arrival order
+before averaging, and checks prefix feasibility, path generators,
+conditional safety, later-path rank cost, and order-uniform rank bounds.
+Small density thresholds and a larger test rate exercise nontrivial
+transitions; those tests do not measure performance at the proposed
+parameters or prove a universal matroid theorem.
+
+The quantitative derivation has been audited against the source by
+the same agent that wrote it. Remaining review targets include the
+parameter-uniform reverse/hybrid argument and the source residual
+encoding under its precise conditioning. A separate analytic note shows
+that further searching our conservative scalar-certificate family
+cannot reach the announced $2^{-47}$; this is a limitation of that
+certificate, not an impossibility theorem for the algorithm or problem.
+This version is preparatory work in the current repository. Authorship,
+independent review, novelty comparison, and a public release decision
+remain to be settled before a standalone announcement.
+
+\begin{thebibliography}{9}
+\bibitem{source} OpenAI.
+\emph{One Sample Suffices for Matroid Prophet Inequalities against an
+Almighty Adversary}. September 23, 2026 manuscript, retrieved at
+commit \texttt{fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb}.
+\href{https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf}{Pinned manuscript}.
+Relevant source lemma names: Candidate mass; Density expansion; Path
+properties; A generator budget for the entire path; Disjoint-query
+certificates; Exit mass; Safe sampled labels; Marked pivots; A uniform
+family of residuals; Order-uniform rank bound; Telescoping rank cost;
+Independent test thinning; One-sample simulation.
+\bibitem{announcement} Daniel (@firsttimelifer).
+\href{https://x.com/firsttimelifer/status/2108282829809541468}{Public
+announcement of a $2^{-47}$ guarantee}, October 8, 2026.
+Proof and exact assumptions unavailable in this audit.
+\bibitem{abhm} Abdi, Banihashem, Hajiaghayi, and Mittal.
+\emph{On the Strong Matroid Secretary Conjecture and Beyond}.
+\href{https://arxiv.org/abs/2609.19118v1}{arXiv:2609.19118v1},
+September 16, 2026. Theorem 1.3 and its fixed-order model.
+\end{thebibliography}
+\end{document}

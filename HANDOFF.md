@@ -20,9 +20,14 @@ Review in this order:
    phase factor. Keep the minimum over orders inside the seed expectation
    and preserve all unused-coordinate information in the simulation.
 
-The proof behind Daniel's `2^-47` announcement is still needed for comparison
-of assumptions, strongest derived coefficient, method, and novelty. Its
-absence is not evidence that the announced result is false or weaker.
+The [baseline](BASELINE.md) distinguishes accessible manuscripts from
+unverified announcements. Compare any newly available proof's assumptions,
+strongest coefficient, and method before updating a novelty or priority claim.
+
+The [archive](archive/README.md) preserves the superseded `2^-63` and
+`2^-43` checkpoints, including original proof artifacts and certificates.
+Use the root manuscript for the current claim; do not treat archive wording
+as the current comparison or review status.
 
 Further mathematical improvements could target the residual-family complexity
 or use additional matroid structure in the safety/rank comparison. The

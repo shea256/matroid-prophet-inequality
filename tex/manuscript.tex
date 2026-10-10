@@ -27,8 +27,8 @@ $38n+23$ initial fair bits, against an adversary seeing all samples, values,
 and the full seed. A compact exact coefficient is $1.0405020\ldots\,2^{-36}$.
 This AI-assisted work has a written proof and same-agent verification,
 including exact scalar and finite conditional checks. Independent review
-and formalization remain pending. The proof behind Daniel's announced
-$2^{-47}$ result \cite{announcement} remains unavailable; no priority or
+and formalization remain pending. The documented baseline is the
+$2^{-293}$ coefficient derived in OpenAI's manuscript; no priority or
 strongest-known-bound claim is made.
 \end{abstract}
 
@@ -396,18 +396,37 @@ claim rests on the written argument and cited source dependencies.
 The same-agent audit rechecked the query martingale, predictable depleted
 probability, both terminal outcomes, frozen-state containment, telescope,
 integrated tail at $n=\kappa$, changed mask factors, rounding, and simulation.
-Independent review and formalization remain outstanding. The coefficient
-exceeds the announced $2^{-47}$ headline, but that proof's assumptions and
-strongest derived constant are unavailable. Repository preparation does not constitute independent
-validation or a priority determination.
+Independent review and formalization remain outstanding. Repository
+preparation does not constitute independent validation, a priority
+determination, or a confirmed best-known-bound claim.
+
+\section{Related work and development history}
+OpenAI's manuscript \cite{source} derives a $2^{-293}$ coefficient in this
+model, stronger than its $2^{-310}$ headline. That derived coefficient is
+our documented baseline; the structural dependencies are identified above.
+
+Daniel (@firsttimelifer) publicly announced a $2^{-47}$ guarantee on
+October 8, 2026 \cite{announcement}. A supporting write-up was unavailable
+for comparison at the October 10 audit; we have not verified its assumptions
+or proof. We acknowledge it as an unverified announcement and do not use it
+as an established baseline.
+
+This research effort progressed through $2^{-63}$, $2^{-43}$, and $2^{-36}$
+on October 10, 2026. The first checkpoint refined source parameters, affine
+branch mixing, and finite rounding offsets. The second introduced a
+logarithmic hazard potential and tighter residual accounting. The present
+quadratic potential and integrated residual bound supersede those analyses.
+The \href{https://github.com/shea256/one-sample-matroid-prophet/tree/master/archive}{dated archive}
+preserves the intermediate proofs, certificates, and review status.
+These are stages of one research effort, not separate discoveries of the
+original constant-guarantee theorem.
 
 \begin{thebibliography}{9}
 \bibitem{source} OpenAI, \emph{One Sample Suffices for Matroid Prophet
 Inequalities against an Almighty Adversary}, September 23, 2026.
 \href{https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/CONTENTS.md}{Pinned manuscript index}.
-\bibitem{announcement} Daniel (@firsttimelifer), public announcement of a
-$2^{-47}$ guarantee, October 8, 2026.
-\href{https://x.com/firsttimelifer/status/2108282829809541468}{Announcement}.
-The proof and exact assumptions were unavailable in our October 10 audit.
+\bibitem{announcement} Daniel (@firsttimelifer),
+\href{https://x.com/firsttimelifer/status/2108282829809541468}{Public announcement},
+October 8, 2026. Unverified; supporting proof unavailable at the audit date.
 \end{thebibliography}
 \end{document}

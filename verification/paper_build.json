@@ -1,9 +1,9 @@
 {
   "pdf": "manuscript.pdf",
-  "bytes": 225721,
-  "sha256": "100056c911184ee5175097291aa4208626d5fe0eed51bf9677a5ab39f3f09400",
+  "bytes": 228088,
+  "sha256": "261c011cf23775c835174875ba7da6794ea0aa0cb185c169df63d993a9d93884",
   "source": "tex/manuscript.tex",
-  "source_sha256": "a6a9e79406e6d399cdfc1d9069d68e826c7a41ede7f1bc1261c594f1a2a13d1a",
+  "source_sha256": "fd895782791f02b7fe0631d9aacd45faf75c9d2a39747fa88bef85a61f17126c",
   "passes": 3,
   "warnings": []
 }

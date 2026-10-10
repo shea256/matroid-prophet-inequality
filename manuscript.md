@@ -7,9 +7,9 @@ October 10, 2026.
 **Written proof with same-agent verification; independent review and
 formalization pending.**
 The three changes are a quadratic exit argument, an integrated residual bound, and recalibrated
-mask probabilities and finite rounding phases. The announced `2^-47` proof
-remains unavailable, so the coefficient comparison is not a priority claim
-or a comparison with that proof's strongest possible coefficient.
+mask probabilities and finite rounding phases. The main comparison uses the
+`2^-293` coefficient derived in the accessible OpenAI manuscript; no priority
+or confirmed best-known-bound claim is made.
 
 ## 1. Statement, construction, and dependencies
 
@@ -29,7 +29,7 @@ entire seed, the accepted set is independent at every prefix and
 
 The exact construction has a slightly larger coefficient; `C_0` uses a
 simple rational lower bound on its geometric base. Approximately,
-`C_0 = 1.0405020 * 2^-36 = 2130.9482 * 2^-47`.
+`C_0 = 1.0405020 * 2^-36`.
 
 Use the source's candidate filter, density maps, guarded paths, parity
 layers, and online greedy rule, specified below. Choose the parameters
@@ -519,6 +519,28 @@ The same-agent audit rechecked (Q)'s predictable denominator and conditional
 martingale, both terminal outcomes, the frozen-state containment, the sign
 of the telescope, the integral at `n=kappa`, all changed mask factors,
 rational-phase boundaries, and full-seed simulation. Independent review
-and formalization remain outstanding. The external announced proof is
-still unavailable; strongest-current-result comparison and novelty are
-unresolved. This repository contains the manuscript with reproducible evidence; it does not claim independent validation or established priority.
+and formalization remain outstanding. This repository contains the manuscript
+with reproducible evidence; it does not claim independent validation,
+established priority, or a confirmed best-known bound.
+
+## 8. Related work and development history
+
+OpenAI's manuscript derives a `2^-293` coefficient in this model, stronger
+than its `2^-310` headline; that derived coefficient is our documented
+baseline. Structural dependencies and source revisions are recorded in
+[BASELINE.md](BASELINE.md).
+
+[Daniel (@firsttimelifer)](https://x.com/firsttimelifer/status/2108282829809541468)
+publicly announced a `2^-47` guarantee on October 8, 2026. A supporting
+write-up was unavailable for comparison at the October 10 audit; we have
+not verified its assumptions or proof. We acknowledge it as an unverified
+announcement and do not use it as an established baseline.
+
+This research effort progressed through `2^-63`, `2^-43`, and `2^-36` on
+October 10, 2026. The first checkpoint refined source parameters, affine
+branch mixing, and finite rounding offsets. The second introduced a
+logarithmic hazard potential and tighter residual accounting. The present
+quadratic potential and integrated residual bound supersede those analyses.
+The [dated archive](archive/README.md) preserves the intermediate proofs,
+certificates, and review status. These are stages of one research effort,
+not separate discoveries of the original constant-guarantee theorem.

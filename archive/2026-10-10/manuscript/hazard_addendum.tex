@@ -1,0 +1,249 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={A hazard potential yielding a one-sample matroid prophet guarantee above 2 to the power -43},pdfauthor={}}
+\newtheorem{theorem}{Proposed theorem}
+\newtheorem{lemma}{Lemma}
+\DeclareMathOperator{\OPT}{OPT}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prb}{\mathbb P}
+\newcommand{\one}{\mathbf 1}
+\allowdisplaybreaks
+\title{A hazard potential yielding a one-sample\protect\\matroid prophet guarantee above $2^{-43}$}
+\author{}
+\date{Research addendum, October 10, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We replace the dyadic hazard-band argument in the OpenAI matroid prophet
+construction by a one-step potential argument. It gives expected exit hazard
+greater than $5/16$. Together with a sharper use of its residual encoding,
+this yields a proposed universal guarantee greater than $2^{-43}$ in the
+original one-sample, full-seed almighty-adversary model, with $44n+26$ fair
+seed bits. The exact coefficient is approximately $1.04159\cdot2^{-43}$.
+This is an AI-assisted draft with a written proof, exact scalar certificates,
+and finite checks of the new conditional inequalities; independent review
+and formalization are pending. The coefficient exceeds Daniel's announced
+$2^{-47}$ headline, but that proof's assumptions and strongest derived
+constant remain unavailable. We make no priority or best-known-bound claim.
+\end{abstract}
+
+\section{Statement and dependencies}
+
+\begin{theorem}
+For every known finite labeled matroid $M$ on $n$ elements, there is a
+measurable online rule using one independent sample per element and
+$44n+26$ initial fair bits, whose law does not depend on the value
+distributions, with the following guarantee. Let all sample and value
+coordinates $S_e,V_e$ be mutually independent and nonnegative, with
+matching laws at each label; let the seed be independent of these
+coordinates. Assuming only $\E\OPT_M(V)<\infty$, for every measurable
+arrival permutation depending on all samples, values, and the full seed,
+the rule accepts an independent set at every prefix and earns expected
+reward at least $2^{-43}\E\OPT_M(V)$.
+\end{theorem}
+
+We use the density paths, reverse computation, hybrid safety comparison,
+marked-pivot encoding, and order-uniform accounting of OpenAI's manuscript
+\cite{source}. The earlier note \cite{previous} specifies the algorithm and
+its affine branch mixing and finite-offset rounding. We prove the new
+hazard estimate here and state every changed quantitative deduction.
+Source combinatorial lemmas remain explicit dependencies. No polynomial-time
+algorithm or bounded observation precision is asserted.
+
+\section{One-step logarithmic resource}
+
+Fix a pre-step reverse transcript while a nonloop $d$ is alive. The remaining
+coordinates $V$ have their independent guard-bit laws. Let $\mathcal A$ be
+the increasing event that this transition survives, and let
+$p=\Prb(\mathcal A^c)>0$. The source transition queries coordinates
+predictably, at most once, and its queried positive answers alone form a
+certificate for $\mathcal A$ whenever the transition survives.
+
+Let $V'$ be the remaining domain after the complete transition, and let
+$q$ be the failure probability of $\mathcal A$ when only $V'$ is random
+and every queried coordinate is reset to zero. Then $p\le q\le1$ and
+\begin{equation}\label{eq:local}
+ \E\log(q/p)\ge1-p.
+\end{equation}
+To verify this, during the transaction write $W$ for the remaining domain,
+$I$ for the queried positives, $f(W)$ for the failure probability with only
+$W$ random, and $f_I(W)$ for the failure probability with $I$ forced positive.
+The ratio $Z=f_I(W)/f(W)$ starts at one and belongs to $[0,1]$.
+For the next predictably selected query, $W'=W\setminus\{e\}$, product
+conditioning gives
+\[
+ \E[Z-Z'\mid\text{transcript}]
+ =Z\left(1-\frac{f(W)}{f(W')}\right)
+ \le\log f(W')-\log f(W).
+\]
+At survival the final ratio is zero; otherwise it is at most one.
+Thus its expected net decrease is at least $1-p$. Sum the display over
+the finite query sequence to obtain \eqref{eq:local}. A stopped sequence
+can be padded by zero increments. This is the source log-resource
+calculation applied to one transaction, without its later hazard-band loss.
+
+\section{The next hazard and a telescoping potential}
+
+Write the current reverse map as $\mathcal G_k(c,S)$ and its output as $S'$.
+The source query domains are precisely the departing coordinates. The
+remaining domain $V'$ is the union of the group restrictions to $S'$.
+Conditional on the complete post-step transcript these bits retain their
+product law. On survival let $r$ be the next conditional exit probability.
+For every assignment $c$ supported on $V'$, monotonicity in time and state
+gives
+\[
+ \mathcal G_{k-1}(c,S')\subseteq\mathcal G_k(c,S).
+\]
+The right side resets queried bits to zero, just as the definition of $q$
+requires. Therefore the next survival event is contained in the depleted
+current survival event, so $r\ge q$ on survival. Both input states are
+frozen in this comparison; earlier states are not recomputed after resetting
+bits. No arrival order is conditioned upon.
+
+Since exit has probability $p$ and $\log(q/p)\le\log(1/p)$ on exit,
+\eqref{eq:local} yields
+\[
+ \E[\one_{\rm survive}\log(r/p)]\ge1-p-p\log(1/p).
+\]
+Use $\log(r/p)\le(r-p)/p$ to conclude
+\begin{equation}\label{eq:drift}
+ \E[\one_{\rm survive}r]-p
+ \ge p-p^2(2+\log(1/p)).
+\end{equation}
+At $p=0$ the right side is interpreted as zero and the inequality is
+immediate; at $p=1$ it is equality.
+
+Define a potential equal to the current conditional hazard while $d$ is
+alive and zero after exit. Every nonloop exits within the deterministic
+finite reverse horizon. Summing \eqref{eq:drift} gives, if $P$ is the hazard
+at the actual exit and $p_{\rm start}$ the initial hazard,
+\begin{equation}\label{eq:global}
+ \E[P(2+\log(1/P))]\ge1+p_{\rm start}\ge1.
+\end{equation}
+Here $\sum\E[\one_{\rm alive}p]=1$, and weighting any function of $p$
+by the exit indicator is equivalent in expectation to multiplying by
+$\one_{\rm alive}p$. Exits at zero hazard have probability zero.
+
+The function $f(x)=x(2-\log x)$, with $f(0)=0$, is increasing and
+concave on $[0,1]$. Jensen gives $f(\E P)\ge\E f(P)\ge1$.
+Furthermore
+\[
+ e^{6/5}>\sum_{j=0}^4\frac{(6/5)^j}{j!}
+ =\frac{2059}{625}>\frac{16}{5},
+\]
+so $f(5/16)<(5/16)(2+6/5)=1$. We have proved
+\begin{lemma}\label{lem:hazard}
+Conditional on any fixed filter and density masks, every nonloop in the
+source reverse process has expected exit hazard strictly greater than
+$5/16$. Equivalently, its total expected squared-exit mass is greater
+than $5/16$.
+\end{lemma}
+
+The source hybrid comparison turns squared-exit mass into pre-parity
+safety. Subtract the baseline-birth rank loss $|D_h|/\kappa$, average
+fair parity, and then average the independent quarter-rate density mask.
+The resulting safe-count coefficient is
+\[
+ \E[\sigma_i\mid H]\ge\gamma|Y_i|-\frac{n_i}{8\kappa},
+ \qquad\gamma=\frac{5}{128}.
+\]
+
+\section{Sharper residual count and tail}
+
+For $q=\lfloor n/\kappa\rfloor$ and
+$S_d(n)=\sum_{j=0}^d\binom nj$, the first marked sequence in the
+source residual encoding has only $q$ movable density generators;
+the second has at most $2q$ generator and witness occurrences.
+Consequently its existing marked-pivot lemma gives
+\[
+ |\mathfrak R_i|\le S_q(n)^2(4^qS_q(n))(4^{2q}S_{2q}(n)).
+\]
+The standard binomial bounds used in the source imply
+\[
+ \log|\mathfrak R_i|\le\frac n\kappa
+    (5\log\kappa+5+4\log2)
+ \le\frac n\kappa(5a+12)\log2\quad(\kappa=2^a\ge4),
+\]
+using $\log2>2/3$. As in the source, this family is fixed conditional
+on the filter, parity, and exterior masks, before any focal bits or
+the focal listing event are exposed.
+
+The probability of sacrifice at a focal coordinate is
+$p_O=(1+3t)/4$. Retain it in the tail estimate. Since
+$\log(1+3t)\le3t$ and $\log2>2/3$,
+\[
+ \log_2(1/p_O)\ge2-5t=:\ell.
+\]
+Choose
+\[
+ \kappa=2^{12},\quad t=2^{-20},\quad B=2^8,\quad
+ \delta=\frac{84}{\ell\kappa}.
+\]
+The residual-family union bound for every $n\ge\kappa$ is at most
+$2^{-12n/\kappa}\le2^{-12}$. Thus the nominal-rank estimate has
+transfer error
+\[
+ \epsilon=\frac1{8\kappa}+\frac{84}{\ell\kappa}+2^{-12}.
+\]
+Unlisted groups and outcomes with nominal rank greater than $n/\kappa$
+use the same deterministic branches as in the earlier derivation.
+
+\section{Final coefficient and evidence}
+
+Set $\beta=(B-1)/B$ and mix the main branch with probability
+$p=1-t/4=1-2^{-22}$. The order-uniform accounting from the earlier note
+gives the slack
+\[
+ s=\gamma/2-\epsilon-t\kappa-\frac{t\kappa+1/4}{B-1}
+ =\frac{4790554237}{1168228319232}.
+\]
+The maximum branch cancels the negative largest-coordinate term because
+$(1-p)/4=t/16\ge pt\gamma$. Average eight shared phases
+$J=0,\ldots,7$, all visible to the adversary, to obtain
+\[
+ C=\frac{p\beta^2ts}{8\kappa}
+ =\frac{25618620910087559025}{216345186630601448946989472415744}
+ >2^{-43}.
+\]
+For an elementary check, $p\beta^2>127/128$ and
+$s>(128/127)/256$, while $t/\kappa=2^{-32}$.
+The minimum over orders stays inside the seed expectation, and the
+source glued-vector simulation transfers the coefficient losslessly
+to the prophet model. Predrawing the masks costs $44n$ bits, and the
+phase, branch, and parity require $3+22+1=26$ more bits.
+
+Exact rational code checks all displayed constants. Finite reverse-process
+checks cover 170 matroid/weight instances, 4,916 conditional drift
+inequalities, and 3,153 global exit-hazard inequalities. Logarithms in
+those checks use rational intervals from an atanh series after dyadic
+reduction. The checks include the comparison $r\ge q$, positive
+certificates, and a negative control demonstrating that monotone hazards
+alone are insufficient. These finite checks support the written proof;
+they do not prove its universal assertion. Same-agent second-pass
+verification is not independent review.
+
+The coefficient is about $16.6655$ times the announced $2^{-47}$ headline
+\cite{announcement}. The unavailable announcement's exact model and
+strongest derived coefficient remain unresolved. The most important new
+review target is the depleted-event comparison used in \eqref{eq:drift}.
+The earlier scalar-template limitation still holds for its old exit
+coefficient; Lemma~\ref{lem:hazard} changes that ingredient.
+
+\begin{thebibliography}{9}
+\bibitem{source} OpenAI.
+\emph{One Sample Suffices for Matroid Prophet Inequalities against an
+Almighty Adversary}. September 23, 2026 manuscript, pinned at
+\texttt{fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb}.
+\href{https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf}{Manuscript}.
+See the reverse-map and log-resource equations in the safety section,
+and the two marked sequences in the residual-family proof.
+\bibitem{previous} \emph{A finite-seed parameter refinement for one-sample
+matroid prophet inequalities}. Preparatory research note, October 10, 2026.
+\href{https://github.com/shea256/open-math-problems/pull/2}{Repository PR \#2}.
+\bibitem{announcement} Daniel (@firsttimelifer).
+\href{https://x.com/firsttimelifer/status/2108282829809541468}{Announcement
+of a $2^{-47}$ guarantee}, October 8, 2026. Proof unavailable in this audit.
+\end{thebibliography}
+\end{document}

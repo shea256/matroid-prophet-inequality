@@ -31,23 +31,15 @@ is standard; no new rounding principle is claimed.
 The exact verifiers and paper packaging were developed in the Open Math
 Problems project and extracted for this standalone repository at the
 maintainer's request. At the maintainer's direction, this standalone project
-is now distributed under [Apache 2.0](LICENSE). [NOTICE](NOTICE) preserves the
-inherited MIT copyright and permission notice and records both origins.
-The MIT notice came from Open Math
-Problems, not from OpenAI's repository. The paper's author is **Ryan Shea**,
+is distributed under [Apache 2.0](LICENSE). [NOTICE](NOTICE) records the
+project's provenance and source attribution. The paper's author is **Ryan Shea**,
 who maintains this repository under [shea256](https://github.com/shea256).
 Codex assistance is disclosed below; independent review remains pending.
 
-## Related announcement
-
-**Daniel (@firsttimelifer)** announced a `2^-47` improvement on October 8,
-2026. [Original announcement](https://x.com/firsttimelifer/status/2108282829809541468).
-It is credited as a related, stronger-than-the-earlier-project-checkpoint
-announcement. Its proof, exact adversary assumptions, and strongest derived
-coefficient were unavailable in the October 10 audit. This project does not
-claim to have used or independently reproduced an unseen proof, and does not
-claim priority over that work. The announcement is not attributed to a change
-in OpenAI's source files.
+Related announcements and their evidence status are recorded in
+[the baseline's related-work note](BASELINE.md#related-work-and-comparison-limits).
+The [archive](archive/README.md) preserves earlier derivations from the same
+research effort, including their historical wording and review status.
 
 ## AI assistance and verification
 

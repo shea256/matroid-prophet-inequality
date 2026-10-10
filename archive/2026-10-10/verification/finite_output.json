@@ -1,0 +1,14 @@
+{
+  "matroids": 92,
+  "density_checks": 178554,
+  "candidate_vectors": 18521,
+  "optimum_rounding_vectors": 18521,
+  "maximum_branch_vectors": 18521,
+  "scalar_boundary_checks": 180,
+  "negative_controls": {
+    "unshifted_rounding_rejected": true,
+    "fixed_order_minimum_of_means": "1048577/2",
+    "seed_visible_mean_of_minima": "1"
+  },
+  "result": "PASS (finite ingredient checks only)"
+}

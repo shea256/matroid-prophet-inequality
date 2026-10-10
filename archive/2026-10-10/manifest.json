@@ -1,0 +1,212 @@
+{
+  "archived_on": "2026-10-10",
+  "checkpoint_date": "2026-10-10",
+  "source_repository": "https://github.com/shea256/open-math-problems",
+  "status": "Superseded internal checkpoints; written proofs with same-agent verification, not independent review or formalization",
+  "preservation": "All listed artifacts copied byte for byte; historical wording is not the current comparison or authorship record",
+  "checkpoints": [
+    {
+      "guarantee": "2^-63",
+      "proof": "proofs/parameter_refinement.md",
+      "paper": "manuscript/note.pdf",
+      "certificate": "verification/certify_constants.py",
+      "reference": "verification/constants_output.json",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736"
+    },
+    {
+      "guarantee": "2^-43",
+      "proof": "proofs/hazard_potential.md",
+      "paper": "manuscript/hazard_addendum.pdf",
+      "certificate": "verification/certify_hazard_constants.py",
+      "reference": "verification/hazard_constants_output.json",
+      "source_commit": null,
+      "dependency": "Read with the archived 2^-63 note for the unchanged construction"
+    }
+  ],
+  "files": [
+    {
+      "path": "BASELINE.md",
+      "bytes": 10332,
+      "sha256": "301f11cd9e8dbcde765d6444c15e32295d961597d4ad18ac2c3aca11540420cb",
+      "source_path": "problems/111-matroid-prophet/BASELINE.md",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "proofs/parameter_refinement.md",
+      "bytes": 15634,
+      "sha256": "33b762c4bc49df2d0ef8fa8f9c914689ec5ad048523cdedb4cf76ce112b5069e",
+      "source_path": "problems/111-matroid-prophet/proofs/parameter_refinement.md",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "proofs/audit.md",
+      "bytes": 8562,
+      "sha256": "cd198a41a5e507d457019021d632a2f3045b245a74025fa7f64d7af100523cef",
+      "source_path": "problems/111-matroid-prophet/proofs/audit.md",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "proofs/certificate_limit.md",
+      "bytes": 1781,
+      "sha256": "0ddb34de3984764eceebb9a4dbf30c059723c20101c339b929b121dcc712c4cf",
+      "source_path": "problems/111-matroid-prophet/proofs/certificate_limit.md",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "manuscript/note.tex",
+      "bytes": 22427,
+      "sha256": "278b60156fc9e3571b0d54514d778f329c7cefb3a3ecbc631dd1d3288e159043",
+      "source_path": "problems/111-matroid-prophet/manuscript/note.tex",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "manuscript/note.pdf",
+      "bytes": 241936,
+      "sha256": "f4e1dddae16758d7fb6a5065c5fa0087761f42c1595fa856ba1de30b550368d3",
+      "source_path": "problems/111-matroid-prophet/manuscript/note.pdf",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/certify_constants.py",
+      "bytes": 3722,
+      "sha256": "74e5952aff84b66d7371c87b5bcd85cd58a83d03fe754a586146af97d079de89",
+      "source_path": "problems/111-matroid-prophet/verification/certify_constants.py",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/constants_output.json",
+      "bytes": 1086,
+      "sha256": "004f3ab5b0cc9284b3787a29edca8faf741e1a02a16074b03fc29462760e0275",
+      "source_path": "problems/111-matroid-prophet/verification/constants_output.json",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/finite_checks.py",
+      "bytes": 6752,
+      "sha256": "06a6daeb844b12486cb1578698bcbb8b6db6af6259a9ad111b2120ea1d67b0cb",
+      "source_path": "problems/111-matroid-prophet/verification/finite_checks.py",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/finite_output.json",
+      "bytes": 395,
+      "sha256": "349bf39ffe5ed04e8544fb85841e54e0346e14127cf0f2597e2a98540045daa8",
+      "source_path": "problems/111-matroid-prophet/verification/finite_output.json",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/check_online_rule.py",
+      "bytes": 10399,
+      "sha256": "03888c263e8ac614bbeb77a61f80abf9a1472088b07be9d0f6653c24fab74fff",
+      "source_path": "problems/111-matroid-prophet/verification/check_online_rule.py",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/online_output.json",
+      "bytes": 551,
+      "sha256": "1c70cda85923773f3b1e1fa972a9f3ae8c6aab149cae954c51583b727ebea0bb",
+      "source_path": "problems/111-matroid-prophet/verification/online_output.json",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/source_manifest.json",
+      "bytes": 9255,
+      "sha256": "9c517f3b62fb86459716b9721654774691dc470d52099a6de0c86c5aebb5e4b9",
+      "source_path": "problems/111-matroid-prophet/verification/source_manifest.json",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/history_check.json",
+      "bytes": 2540,
+      "sha256": "3601b2650b0fb53637d9193d5d98ae9e74c7d7ec5e1d91be097218d259e66768",
+      "source_path": "problems/111-matroid-prophet/verification/history_check.json",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "verification/manuscript_build.json",
+      "bytes": 156,
+      "sha256": "750c95e1a2defc02dbfbbe0f9db35bb9a27c07bd0771fb9f90a645477c228322",
+      "source_path": "problems/111-matroid-prophet/verification/manuscript_build.json",
+      "source_commit": "c078169da3b6cb8cca4802fb4490ed09799bc736",
+      "origin": "committed checkpoint"
+    },
+    {
+      "path": "proofs/hazard_potential.md",
+      "bytes": 10692,
+      "sha256": "831dd12b8a8686d1af39413300c840533e7cc4b05eb79fc8c1cd4551c959e0de",
+      "source_path": "problems/111-matroid-prophet/proofs/hazard_potential.md",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    },
+    {
+      "path": "manuscript/hazard_addendum.tex",
+      "bytes": 11455,
+      "sha256": "f2a14c415edc28f56fce7ae8e46b2b24693caef84166c3703b3684a799a3c90e",
+      "source_path": "problems/111-matroid-prophet/manuscript/hazard_addendum.tex",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    },
+    {
+      "path": "manuscript/hazard_addendum.pdf",
+      "bytes": 194805,
+      "sha256": "54db8b151eb0f3a238748fa013e40a2417e6c0cdbe3ad526cdc8953d1ea2d16f",
+      "source_path": "problems/111-matroid-prophet/manuscript/hazard_addendum.pdf",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    },
+    {
+      "path": "verification/certify_hazard_constants.py",
+      "bytes": 2844,
+      "sha256": "b83dba031799830502c78e41e558c8bfda778490f54073250a397260e4f47a7a",
+      "source_path": "problems/111-matroid-prophet/verification/certify_hazard_constants.py",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    },
+    {
+      "path": "verification/hazard_constants_output.json",
+      "bytes": 850,
+      "sha256": "12165032ea7411c407185add80d092d53d7253f43586d3db0bc4d539ef4dd162",
+      "source_path": "problems/111-matroid-prophet/verification/hazard_constants_output.json",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    },
+    {
+      "path": "verification/check_hazard_potential.py",
+      "bytes": 7282,
+      "sha256": "9758fd1e1800a3672f9258f39e0a6ba448b73624f9f8dacb22248e3fa231a0be",
+      "source_path": "problems/111-matroid-prophet/verification/check_hazard_potential.py",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    },
+    {
+      "path": "verification/hazard_potential_output.json",
+      "bytes": 844,
+      "sha256": "62cf8484b9cc5997573b5b2be6148b85d660e8687d131ed415b1f3a1f4905808",
+      "source_path": "problems/111-matroid-prophet/verification/hazard_potential_output.json",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    },
+    {
+      "path": "verification/hazard_manuscript_build.json",
+      "bytes": 167,
+      "sha256": "dcb0cd1ac012f108515732258c7b0c91f2fc422cb844f65c484829d24198df51",
+      "source_path": "problems/111-matroid-prophet/verification/hazard_manuscript_build.json",
+      "source_commit": null,
+      "origin": "existing workspace artifact; no earlier standalone commit"
+    }
+  ]
+}

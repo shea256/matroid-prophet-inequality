@@ -51,13 +51,11 @@ and [the improvement record](IMPROVEMENTS.md).
 | Comparison | Guarantee | Evidence available here |
 |---|---:|---|
 | OpenAI manuscript's derived constant | `2^-293` | Accessible pinned primary manuscript; headline is `2^-310` |
-| Daniel's announcement | `2^-47` | Announcement verified; proof, exact assumptions, and strongest coefficient unavailable |
 | This written derivation | `> 2^-36` | Written proof, exact certificates, finite checks; independent review pending |
 
-The simplified `2^-36` coefficient is 2,048 times the announced `2^-47`
-headline. That comparison does not establish superiority to an unavailable
-proof's strongest result. These are guarantee coefficients, not measured
-speedups or observed performance. [Baseline and sources](BASELINE.md)
+The comparison uses the source's stronger derived bound. These are guarantee
+coefficients, not measured speedups or observed performance. Unverified
+announcements are discussed separately in [related work](BASELINE.md#related-work-and-comparison-limits).
 
 The compact exact coefficient certified in the paper is
 
@@ -65,6 +63,17 @@ The compact exact coefficient certified in the paper is
 C_0=\frac{9652683394380719}{637507023635152349901619200}
 \approx1.0405020\cdot2^{-36}.
 ```
+
+## Development history
+
+The recorded progression is `2^-63` → `2^-43` → `2^-36`, all on October 10,
+2026. The first step refined parameters, branch mixing, and rounding; the
+second introduced a logarithmic hazard potential and tighter residual
+accounting; the current proof uses a quadratic potential and integrated
+residual bound. These are superseded bounds within one research effort.
+The [improvement record](IMPROVEMENTS.md) links the dated
+[intermediate proofs and certificates](archive/README.md), with their original
+review status and reproducible checks.
 
 ## Reproduce
 
@@ -122,6 +131,5 @@ remain available in Git history.
 ## License
 
 This project is distributed under the [Apache License 2.0](LICENSE).
-The inherited MIT copyright and permission notice from the Open Math Problems
-project is retained in [NOTICE](NOTICE). See [attribution](ATTRIBUTION.md) for
-provenance; cited external works retain their own terms.
+See [NOTICE](NOTICE) and [attribution](ATTRIBUTION.md) for provenance;
+cited external works retain their own terms.

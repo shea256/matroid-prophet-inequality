@@ -1,0 +1,24 @@
+{
+  "baseline": "1/15914343565113172548972231940698266883214596825515126958094847260581103904401068017057792",
+  "rounding_only_ratio": "4294967295/509258994083621521567111422102344540262867098416484062659035112338595324940834176545849344",
+  "chosen_parameters": {
+    "kappa": "262144",
+    "t": "1/536870912",
+    "base": "65536",
+    "beta": "65535/65536",
+    "exit_failure": "13/20",
+    "gamma": "7/2560",
+    "delta": "139/262144",
+    "error": "1121/2097152",
+    "slack": "3120271/9162457088",
+    "main_probability": "34359738367/34359738368",
+    "ratio": "105391776668216973667425/696898287454081973172991196020261297061888"
+  },
+  "certified_simplified_ratio": "2^-63",
+  "exact_ratio_over_2^-63": "105391776668216973667425/75557863725914323419136",
+  "deterministic_offset_ratio_exceeds": "2^-75",
+  "gain_over_published_2^-293_at_least": "2^230",
+  "external_announcement": "2^-47 (stronger; proof unverified here)",
+  "conservative_certificate_family_upper_bound": "strictly below 2^-54",
+  "checks": "PASS (exact rational arithmetic; not a universal proof checker)"
+}

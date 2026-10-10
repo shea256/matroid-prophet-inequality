@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "kappa": "4096",
+    "t": "1/1048576",
+    "base": "256",
+    "beta": "255/256",
+    "gamma": "5/128",
+    "decay": "2097147/1048576",
+    "entropy_bits_coefficient": "72",
+    "delta": "7168/699049",
+    "error": "241172465/22906437632",
+    "slack": "4790554237/1168228319232",
+    "main_probability": "4194303/4194304",
+    "ratio": "25618620910087559025/216345186630601448946989472415744"
+  },
+  "exit_mass_strict_lower_bound": "5/16",
+  "simplified_guarantee": "2^-43",
+  "exact_ratio_over_2^-43": "25618620910087559025/24595600124325920768",
+  "exact_ratio_over_announced_2^-47": "25618620910087559025/1537225007770370048",
+  "exit_lemma_with_old_residual_ratio_over_2^-47": "1113291947210625/562949953421312",
+  "seed_bits": "44n+26",
+  "result": "PASS (exact scalar arithmetic; new hazard lemma is a written proof)"
+}

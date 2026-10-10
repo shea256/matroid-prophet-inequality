@@ -1,0 +1,19 @@
+{
+  "counts": {
+    "matroid_weight_instances": 170,
+    "positive_certificate_checks": 22399,
+    "local_log_resource_checks": 4130,
+    "drift_checks": 4916,
+    "global_hazard_checks": 3153,
+    "group_prefixes": 1029,
+    "depleted_event_comparisons": 3186
+  },
+  "guard_rate": "1/4",
+  "density_threshold": 2,
+  "filter_mask": "H empty",
+  "smallest_observed_mean_exit_hazard": "2653/4096",
+  "negative_control_mean_hazard": "143713145169237208655582144080023450155120447741747753447961056812936322999311/1852673427797059126777135760139006525652319754650249024631321344126610074238976",
+  "negative_control": "monotone hazards alone fail; depleted-event comparison is essential",
+  "logarithms": "rational atanh-series intervals, 24 terms after dyadic reduction",
+  "result": "PASS (finite verification of the new potential interfaces)"
+}

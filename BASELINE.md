@@ -4,9 +4,9 @@ Audit date: October 10, 2026. Pinned OpenAI/math revision:
 `fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb`.
 
 The strongest same-model guarantee found in an accessible primary manuscript
-is `2^-293`, stronger than the original `2^-310` headline. A `2^-47` public
-announcement is known, but its proof and assumptions have not been located.
-This audit therefore does not establish the strongest current result overall.
+is `2^-293`, stronger than the original `2^-310` headline. This is the
+documented baseline used in the main comparison. The audit does not establish
+an exhaustive strongest-current-result or priority claim.
 
 ## Source and theorem
 
@@ -51,14 +51,12 @@ an independently reproduced formal proof are separate evidence stages.
 
 ## Related work and comparison limits
 
-[Daniel's announcement](https://x.com/firsttimelifer/status/2108282829809541468)
-claims an improvement from `2^-310` to `2^-47`. The accessed first-party
-oEmbed record contains no proof or artifact link. Its text and audit date
-are recorded in [announcement.json](verification/announcement.json).
-Searches did not locate a supporting manuscript. The claim is unverified
-here, not refuted. Relevant OpenAI #111 files were unchanged from their
-initial release in the checked source history; the latest main revision
-was checked again during preparation.
+[Daniel (@firsttimelifer)](https://x.com/firsttimelifer/status/2108282829809541468)
+publicly announced a `2^-47` guarantee on October 8, 2026. A supporting
+write-up was unavailable for comparison at the October 10 audit; we have
+not verified its assumptions or proof. This is an unverified announcement,
+not an established baseline. The accessed post is recorded in
+[announcement.json](verification/announcement.json).
 
 The larger constant in [Abdi–Banihashem–Hajiaghayi–Mittal,
 arXiv:2609.19118v1](https://arxiv.org/html/2609.19118v1) concerns an arrival
@@ -68,6 +66,6 @@ arrivals and prophet results using more than one sample are also different
 models. Their constants cannot be substituted into the comparison table
 without a reduction preserving every assumption.
 
-The current written coefficient exceeds the announced `2^-47` headline.
-It does not establish superiority to the strongest coefficient in an unseen
-proof, an exhaustive priority search, or novelty of every proof ingredient.
+The main comparison establishes a larger written coefficient than the
+accessible OpenAI manuscript. It does not establish an exhaustive priority
+search, superiority to an unavailable proof, or novelty of every ingredient.

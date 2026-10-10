@@ -16,7 +16,7 @@
   "slack_lower_bound": "2652290047/256686391296",
   "certified_coefficient_lower_bound": "9652683394380719/637507023635152349901619200",
   "exact_lower_bound_over_2^-36": "9652683394380719/9276948165427200",
-  "exact_lower_bound_over_announced_2^-47": "9652683394380719/4529759846400",
+  "exact_lower_bound_over_source_2^-293": "8327546544236633279284121303104245928715050378223154024544237493135640643506408521728/34559325",
   "simplified_guarantee": "2^-36",
   "exit_hazard_lower_bound": "1/2",
   "seed_bits": "38n+23",

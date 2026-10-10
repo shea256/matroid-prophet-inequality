@@ -5,6 +5,11 @@ checks use the standard library. The default run compares fresh JSON output
 with the checked-in references and validates the paper's source/PDF receipt
 and local documentation links.
 
+The [current run receipt](current_run_receipt.json) records the three current
+checks after the comparison update. The earlier [full-suite receipt](run_receipt.json)
+is retained as a historical execution record; its script hashes identify
+the version tested at that time.
+
 | Script | What it checks | What it does not establish |
 |---|---|---|
 | `certify_quadratic_constants.py` | Exact rational inequalities, logarithm bounds, branch mixture, phase/base inequality, coefficient and seed count | Universal correctness of the proof interfaces |
@@ -42,3 +47,12 @@ shared finite models and exact helpers. Reusing them is not independent review.
 No new theorem has been formalized in Lean, and no independent mathematical
 review is recorded. The universal claim rests on [the written proof](../manuscript.md)
 and its cited structural lemmas. See [review questions](../HANDOFF.md).
+
+## Archived checkpoints
+
+The [dated archive](../archive/README.md) preserves the original `2^-63` and
+`2^-43` proofs, scalar certificates, and finite checks. Run
+`python3 -B scripts/check_archive.py --full` to verify the preserved hashes
+and reproduce all five archived programs. The
+[archive receipt](archive_run_receipt.json) records the actual run; archived
+comparisons and labels are historical, not the current result record.

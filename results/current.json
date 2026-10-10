@@ -26,6 +26,9 @@
   "paper": "manuscript.pdf",
   "proof": "manuscript.md",
   "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
-  "announced_comparator": "2^-47; proof unavailable; strongest derived coefficient unknown",
+  "documented_baseline": "2^-293; derived in the accessible pinned OpenAI manuscript",
+  "unverified_announcements": "See BASELINE.md; not used as established baselines",
+  "development_history": "IMPROVEMENTS.md",
+  "archive": "archive/README.md",
   "novelty_status": "Unresolved; no priority or best-known-bound claim"
 }
