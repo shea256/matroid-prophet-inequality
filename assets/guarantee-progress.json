@@ -7,7 +7,7 @@
     "repository": "https://github.com/shea256/matroid-prophet-inequality",
     "input_hashes": {
       "results/registry.json": "98a3e0de5bb4705969ffd4ec6e1011eae61a69c7805e57eac3c11f63f10a5466",
-      "scripts/build_progress_graphic.py": "f166e6596bce401d323c1fb158ed359f9205647bb349a3a4716d2fda22a0d91e"
+      "scripts/build_progress_graphic.py": "82f1057cb5aa8a03a408c17676e2effc1a98b48c1a62419e869258c44a72d5c9"
     },
     "rows": [
       {
@@ -52,14 +52,14 @@
       }
     ],
     "scales": {
-      "refinement_panel": "linear guarantee coefficient, in units of 10^-10",
+      "refinement_panel": "base-2 logarithmic guarantee coefficient; power-of-two ticks",
       "point_labels": "simplified strict lower bounds from the registry",
       "refinement_x_axis": "ordered versions, not elapsed time"
     }
   },
   "matplotlib": "3.9.4",
   "artifacts": {
-    "png": "38068db3a8124d686060c070fbf5c77ecf9778c06590f43c3392644fe724683a",
-    "svg": "9dc2225eb5c6acf5569f3b8b9c69df51e35515dc6ca8dc219a1f693eca339454"
+    "png": "0ad20370bf723012d611583f3ea8ed8f851e5e05ce6ec19d882c463907f0b809",
+    "svg": "7a8baa4e631d246126e6f6be127903fe95f8b1d566aa2d277d5edeb84f8566fc"
   }
 }

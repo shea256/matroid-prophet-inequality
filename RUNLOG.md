@@ -466,3 +466,14 @@ Graphic data/hash checks, generated-paper checks, package validation,
 all 13 workflow tests, and whitespace checks passed. Existing certificate
 validation checks every displayed simplified bound against its exact
 coefficient. No theorem, coefficient, or mathematical verifier changed.
+
+## Power-of-two guarantee axis — October 10, 2026
+
+The user found the decimal-scaled y-axis unsuitable. Switched to a base-2
+logarithmic axis labeled directly with powers of two. The coefficients are
+plotted in their original units; each grid interval represents a doubling.
+The current tick range is `2^-36` through `2^-31`. Regenerated and visually
+inspected the PNG/SVG and updated their metadata, alt text, and documentation.
+
+The graphic data/hash, generated-paper, package, and whitespace checks
+passed. No mathematical values or verification programs changed.

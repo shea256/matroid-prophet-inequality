@@ -2,13 +2,14 @@
 """Render the README chart from exact result metadata; --check needs only Python.
 
 Rendering requires matplotlib 3.9.4. Successive refinements are plotted as
-their exact guarantee coefficients on a linear scale, with simplified bounds
+their exact guarantee coefficients on a base-2 logarithmic scale, with simplified bounds
 labeling each milestone.
 """
 import argparse
 from fractions import Fraction
 import hashlib
 import json
+from math import floor, log2
 from pathlib import Path
 import textwrap
 
@@ -48,7 +49,7 @@ def chart_data(root=ROOT):
         'rows': [dict(id=r['id'], title=r['title'], date=r['date'],
                       coefficient=r['coefficient'], exponent=r['exponent'],
                       multiplier=r.get('multiplier', '1')) for r in rows],
-        'scales': {'refinement_panel': 'linear guarantee coefficient, in units of 10^-10',
+        'scales': {'refinement_panel': 'base-2 logarithmic guarantee coefficient; power-of-two ticks',
                    'point_labels': 'simplified strict lower bounds from the registry',
                    'refinement_x_axis': 'ordered versions, not elapsed time'},
     }
@@ -76,11 +77,12 @@ def render(root=ROOT):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
+    from matplotlib.ticker import NullLocator
 
     data = chart_data(root)
     rows = data['rows']
-    # Plot exact coefficients in the stated axis units, not relative gains.
-    coefficients = [float(Fraction(row['coefficient'])*10**10) for row in rows]
+    # Use the coefficients directly; the axis supplies the logarithmic transform.
+    coefficients = [float(Fraction(row['coefficient'])) for row in rows]
     current = Fraction(rows[-1]['coefficient'])
     bg, ink, muted = '#fcfcfa', '#171918', '#656b68'
     blue, green, grid = '#287fc3', '#16a57b', '#dde1dc'
@@ -94,7 +96,7 @@ def render(root=ROOT):
              'OpenAI #111 · One sample per option · Adversary sees every sample, value, and random seed',
              fontsize=13.2, color=muted)
     fig.text(.055, .856,
-             'Guaranteed fraction of the expected hindsight optimum. Larger is better.',
+             'Guaranteed fraction of the expected hindsight optimum. Each grid step is a doubling.',
              fontsize=12.5, color=muted)
 
     ax = fig.add_axes([.095, .29, .85, .47], facecolor=bg)
@@ -113,8 +115,12 @@ def render(root=ROOT):
     ax.scatter(x[:-1], coefficients[:-1], s=105, color=blue, edgecolor=bg, linewidth=3, zorder=4)
     ax.scatter(x[-1], coefficients[-1], s=135, color=green, edgecolor=bg, linewidth=3, zorder=4)
     ax.set_xlim(-.25, len(rows)-.45)
-    ax.set_ylim(0, max(coefficients)*1.22)
-    ax.set_ylabel(r'Guaranteed fraction of expected OPT ($\times 10^{-10}$)', color=muted, labelpad=12)
+    ax.set_yscale('log', base=2)
+    ax.set_ylim(min(coefficients)/1.35, max(coefficients)*1.7)
+    powers = range(floor(log2(min(coefficients))), floor(log2(max(coefficients)))+1)
+    ax.set_yticks([2.0**p for p in powers], [rf'$2^{{{p}}}$' for p in powers], fontsize=13)
+    ax.yaxis.set_minor_locator(NullLocator())
+    ax.set_ylabel('Guarantee coefficient C · base-2 log scale', color=muted, labelpad=12)
     labels = [SHORT_TITLES.get(r['id'], textwrap.fill(r['title'], 15)) for r in rows]
     ax.set_xticks(x, labels, fontsize=13)
     for i, value in enumerate(coefficients):
