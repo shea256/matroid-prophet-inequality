@@ -1,0 +1,70 @@
+{
+  "data": {
+    "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+    "source_coefficient": "1/15914343565113172548972231940698266883214596825515126958094847260581103904401068017057792",
+    "source_description": "OpenAI manuscript derived bound; headline is 2^-310",
+    "current": "activation-split",
+    "repository": "https://github.com/shea256/matroid-prophet-inequality",
+    "input_hashes": {
+      "results/registry.json": "98a3e0de5bb4705969ffd4ec6e1011eae61a69c7805e57eac3c11f63f10a5466",
+      "scripts/build_progress_graphic.py": "f4173977fb523a05605a3dcf4cf2ae6cae31964878e25f32e804ff5997950703"
+    },
+    "rows": [
+      {
+        "id": "quadratic-hazard",
+        "title": "Quadratic hazard potential",
+        "date": "2026-10-10",
+        "coefficient": "9652683394380719/637507023635152349901619200",
+        "exponent": 36,
+        "multiplier": "1",
+        "gain": "1"
+      },
+      {
+        "id": "joint-residual",
+        "title": "Joint residual encoding",
+        "date": "2026-10-10",
+        "coefficient": "14995972860899/244123247301151948800000",
+        "exponent": 34,
+        "multiplier": "1",
+        "gain": "744826268892592355328/183591497981280648875"
+      },
+      {
+        "id": "rank-charged",
+        "title": "Rank-charged residual entropy",
+        "date": "2026-10-10",
+        "coefficient": "773895463001/3203794364409053184000",
+        "exponent": 32,
+        "multiplier": "1",
+        "gain": "1454966783341350617088/91200768695791011565"
+      },
+      {
+        "id": "retained-bases",
+        "title": "Retained bases and projected residuals",
+        "date": "2026-10-10",
+        "coefficient": "548933908320757/1325382348737372749824000",
+        "exponent": 32,
+        "multiplier": "7/4",
+        "gain": "3809036115561862607616/139251314062052907715"
+      },
+      {
+        "id": "activation-split",
+        "title": "Activation generators and joint mask membership",
+        "date": "2026-10-10",
+        "coefficient": "8003458533570087953/16807475946150704657203200000",
+        "exponent": 31,
+        "multiplier": "51/50",
+        "gain": "839207062446602103000365056/26684373882035445913038625"
+      }
+    ],
+    "scales": {
+      "source_panel": "logarithmic, base 2",
+      "refinement_panel": "linear gain relative to announcement baseline",
+      "refinement_x_axis": "ordered versions, not elapsed time"
+    }
+  },
+  "matplotlib": "3.9.4",
+  "artifacts": {
+    "png": "386b478c96a80b5bab1ebc517cf5ad3608f7adffa263a56065acf582db59f851",
+    "svg": "bcc0e189e807b9bc6ffde2be9ed50243d047c46babc270e8cb4a3c159b075844"
+  }
+}

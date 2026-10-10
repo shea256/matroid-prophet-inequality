@@ -406,3 +406,33 @@ over the preceding exact certificate, with `40n+26` initial fair bits. The
 README table now includes the approximately 31.45-fold gain over the first
 announced exact certificate. These remain written claims with same-agent
 verification; independent review and formalization are pending.
+
+## README progress graphic — October 10, 2026
+
+The user supplied a step-chart reference and requested a matching README
+image. PR #6 was already merged at `2cc1d21eace63b5dc6e56d70f3d3f94a98c7a43c`,
+so this update uses a separate branch, `shea256/readme-progress-graphic`,
+from merged master.
+
+Generated `assets/guarantee-progress.png` (2560 by 1440, 256833 bytes) and
+an SVG (100082 bytes) with Matplotlib 3.9.4 in an ignored local virtualenv.
+The chart reads exact registry coefficients: a logarithmic comparison with
+the derived OpenAI bound and a linear view of gains since the announcement.
+Its horizontal axis is a refinement sequence; all displayed project dates
+are October 10. Exact ratios and the greater-than-2^262 source comparison
+were recalculated. The rendered graphic was inspected for labels and layout.
+
+The [data receipt](assets/guarantee-progress.json) binds the registry and
+renderer inputs plus both image hashes. Added standard-library freshness
+validation to the package checker, and documented optional chart regeneration.
+The README embeds the PNG outside its generated result block. The manuscript,
+PDF, LaTeX, and mathematical result registry match the merged publication.
+
+Executed the renderer, `scripts/build_progress_graphic.py --check`,
+`scripts/build_manuscript.py --check`, `scripts/validate_repository.py`,
+`python3 -B -m unittest discover -s scripts/tests`, and `git diff --check`.
+All passed, including 13 workflow tests and 62 archive hashes. The default
+`scripts/run_checks.py --receipt .context/graphic-checks.json` run passed all
+13 programs with fresh JSON equal to references and final package validation
+in 42.367 seconds on Python 3.9.25/Linux.
+This is a presentation update, not a new theorem or independent proof review.

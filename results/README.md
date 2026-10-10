@@ -44,6 +44,12 @@ not reassembled against a changed current framework.
    regressions are retained separately.
 5. Run the complete build and checks:
 
+   Regenerate the [README graphic](../assets/README.md) from the new registry
+   first. The image renderer requires Matplotlib; its freshness and artifact
+   checks use only the Python standard library and are included in package
+   validation. The plot uses the exact coefficients and the explicit
+   `announcement_baseline` selection, excluding unfinished candidates.
+
    ```sh
    python3 -B scripts/build_manuscript.py
    python3 -B scripts/run_checks.py --full

@@ -3,6 +3,8 @@
 By **Ryan Shea**. A living research project on
 [OpenAI Math Problem #111](https://github.com/openai/math/blob/main/lean/docs/111.md).
 
+![Guarantee improvements: a logarithmic comparison with OpenAI's derived bound and linear gains across this project's refinements.](assets/guarantee-progress.png)
+
 <!-- current-result:start -->
 
 **[Read the latest paper (PDF)](manuscript.pdf)** · [Read online](manuscript.md) · [LaTeX source](tex/manuscript.tex)
@@ -70,6 +72,11 @@ The [shared proof](paper/framework.md), [versioned results](results/README.md),
 and [registry](results/registry.json) are the editable sources. Follow the
 [update workflow](results/README.md) to preserve the previous publication,
 add a written result and certificate, and explicitly select its ID.
+
+The [progress graphic](assets/README.md) is generated from that registry too.
+Regenerate it after selecting a new result; package validation rejects stale
+chart data or changed PNG/SVG files. Rendering the chart uses Matplotlib;
+checking the committed graphic needs only the Python standard library.
 
 Rebuild the manuscript, LaTeX, PDF, current-result metadata, README headline,
 and improvement history with **Pandoc 3.x and pdfLaTeX**:
