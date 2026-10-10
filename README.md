@@ -122,7 +122,6 @@ remain available in Git history.
 ## License
 
 This project is distributed under the [Apache License 2.0](LICENSE).
-The inherited [MIT copyright and permission notice](LICENSES/MIT.txt) from
-the Open Math Problems project is retained. See [NOTICE](NOTICE) and
-[attribution](ATTRIBUTION.md) for provenance; cited external works retain
-their own terms.
+The inherited MIT copyright and permission notice from the Open Math Problems
+project is retained in [NOTICE](NOTICE). See [attribution](ATTRIBUTION.md) for
+provenance; cited external works retain their own terms.

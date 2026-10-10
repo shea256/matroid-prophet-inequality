@@ -31,9 +31,9 @@ is standard; no new rounding principle is claimed.
 The exact verifiers and paper packaging were developed in the Open Math
 Problems project and extracted for this standalone repository at the
 maintainer's request. At the maintainer's direction, this standalone project
-is now distributed under [Apache 2.0](LICENSE). The inherited
-[MIT copyright and permission notice](LICENSES/MIT.txt) is preserved;
-[NOTICE](NOTICE) records both origins. The MIT notice came from Open Math
+is now distributed under [Apache 2.0](LICENSE). [NOTICE](NOTICE) preserves the
+inherited MIT copyright and permission notice and records both origins.
+The MIT notice came from Open Math
 Problems, not from OpenAI's repository. The paper's author is **Ryan Shea**,
 who maintains this repository under [shea256](https://github.com/shea256).
 Codex assistance is disclosed below; independent review remains pending.

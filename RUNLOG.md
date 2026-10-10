@@ -65,7 +65,7 @@ text from the pinned OpenAI/math revision
 The downloaded text matches the Apache Software Foundation's canonical
 license apart from whitespace. The upstream root directory has no NOTICE
 file. The original MIT copyright and permission notice was preserved byte
-for byte in [LICENSES/MIT.txt](LICENSES/MIT.txt), with provenance recorded in
+for byte in `LICENSES/MIT.txt` at that checkpoint, with provenance recorded in
 [NOTICE](NOTICE). README, attribution, and contributor instructions now
 identify Apache 2.0 as the project license.
 
@@ -97,3 +97,16 @@ label removal, and the rendered first page was visually inspected.
 `python3 -B scripts/run_checks.py`,
 `python3 -B scripts/validate_repository.py`, and `git diff --check` passed.
 All three current verification programs reproduced their reference outputs.
+
+## Consolidate inherited notice — October 10, 2026
+
+At the maintainer's request, removed the `LICENSES` directory. Its sole file
+held the inherited MIT notice retained during the Apache 2.0 change; that
+text is now included verbatim in the root [NOTICE](NOTICE). Updated README,
+attribution, contributor instructions, and the earlier log link to reflect
+the new location. The root Apache 2.0 license is unchanged.
+
+A byte comparison confirmed that NOTICE retains the entire former file.
+`python3 -B scripts/run_checks.py`,
+`python3 -B scripts/validate_repository.py`, and `git diff --check` passed.
+The manuscript and mathematical code were not changed.

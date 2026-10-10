@@ -3,8 +3,8 @@
 This repository is private at the maintainer's request. Do not change its
 visibility or post an announcement without an explicit user instruction.
 
-The project license is Apache 2.0. Preserve LICENSE, NOTICE, and the inherited
-MIT copyright and permission notice in LICENSES/MIT.txt when redistributing
+The project license is Apache 2.0. Preserve LICENSE and NOTICE, including the
+inherited MIT copyright and permission notice in NOTICE, when redistributing
 the package. Keep upstream attribution distinct from the project's own terms.
 
 Preserve the exact one-sample model and full-seed almighty-adversary quantifier.
