@@ -26,8 +26,11 @@ def validate():
             if not destination.exists():
                 raise ValueError('Missing local link: '+str(relative)+' -> '+target)
             links += 1
-    certificate = json.loads((ROOT/'verification/reference/quadratic_constants_output.json').read_text())
     current = json.loads((ROOT/'results/current.json').read_text())
+    certificate_path = (ROOT/current['certificate']).resolve()
+    if ROOT not in certificate_path.parents:
+        raise ValueError('Certificate path leaves repository')
+    certificate = json.loads(certificate_path.read_text())
     for key in ('simplified_guarantee', 'certified_coefficient_lower_bound', 'seed_bits', 'parameters', 'base'):
         if current[key] != certificate[key]:
             raise ValueError('Result/certificate mismatch: '+key)

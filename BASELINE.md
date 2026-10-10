@@ -3,9 +3,10 @@
 Audit date: October 10, 2026. Pinned OpenAI/math revision:
 `fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb`.
 
-The strongest same-model guarantee found in an accessible primary manuscript
-is `2^-293`, stronger than the original `2^-310` headline. This is the
-documented baseline used in the main comparison. The audit does not establish
+The source manuscript derives `2^-293`, stronger than its `2^-310` headline.
+The immediate published baseline for this follow-up is this project's
+`>2^-36` version at [commit 669e97c](https://github.com/shea256/matroid-prophet-inequality/tree/669e97c863aa7863c93258a5a1e2c6d9165b2d2b),
+with the same-agent review status. These are the documented comparisons. The audit does not establish
 an exhaustive strongest-current-result or priority claim.
 
 ## Source and theorem
@@ -42,11 +43,11 @@ an independently reproduced formal proof are separate evidence stages.
 | Density/path construction | `lem:density`, `lem:paths`, `lem:generators` | Same structural arguments, smaller threshold |
 | Reverse exposure | `eq:reverse-map`, `eq:departing-query` | New quadratic transaction and exit potential |
 | Hybrid safety | `eq:hybrid-containment`, `eq:birth-safety-probability` | Same coupling; equal guard/test rates retained |
-| Residual encoding | `lem:pivot-patterns`, `lem:pattern-family` | First sequence counted with its actual `q` movable occurrences |
-| Residual tail | `eq:residual-tail` | Integrate the entire union-bound tail |
+| Residual encoding | `lem:pivot-patterns`, `lem:pattern-family` | Two linked pivot tests share `j+z` variables |
+| Residual tail | `eq:residual-tail` | Joint count, density cutoff, and integrated union-bound tail |
 | Candidate filter | `lem:filter` | Rate `3/4`, with both expectation factors recalculated |
-| Rank cost | `lem:all-orders`, `lem:rank-cost`, `lem:thinning` | Same deterministic/conditional lemmas; density rate `5/8` charged exactly |
-| Rounding and branches | Source geometric levels and maximum branch | 64 rational phases and affine mixture |
+| Rank cost | `lem:all-orders`, `lem:rank-cost`, `lem:thinning` | Same deterministic/conditional lemmas; density rate `7/16` charged exactly |
+| Rounding and branches | Source geometric levels and maximum branch | 256 rational phases and affine mixture |
 | One-sample simulation | `lem:simulation` | Same lossless full-seed reduction |
 
 ## Related work and comparison limits
@@ -69,3 +70,9 @@ without a reduction preserving every assumption.
 The main comparison establishes a larger written coefficient than the
 accessible OpenAI manuscript. It does not establish an exhaustive priority
 search, superiority to an unavailable proof, or novelty of every ingredient.
+
+The October 10 refresh re-fetched the index, problem page, transfer, and
+accounting sections; all matched the pinned hashes. The repository's latest
+OpenAI commit remained unchanged. [Audit receipt](verification/joint_baseline_audit.json).
+No supporting manuscript for the external announcement was located. This
+is not an exhaustive literature or priority search.

@@ -1,10 +1,10 @@
 # Reproduction log
 
-Preparation date: October 10, 2026. This standalone repository is private at
-the maintainer's request. Announcement wording is a draft; no social-media
-announcement has been posted by this agent.
+Preparation date: October 10, 2026. This log includes historical private
+preparation; the author subsequently made the repository public and reported
+announcing the `2^-36` result. No social-media post was made by this agent.
 
-The manuscript consolidates the current `2^-36` derivation, algorithm
+The initial manuscript consolidated the `2^-36` derivation, algorithm
 definitions, statistics, and source interfaces into one paper. Earlier
 project notes are not required to read it. The structural results inherited
 from the pinned OpenAI manuscript remain explicit dependencies.
@@ -181,3 +181,35 @@ the archive index's attribution edit. Both prepared posts fit within 280
 characters even counting the repository URL in full. README, attribution,
 and NOTICE contain no MIT claim or text; `LICENSES` is absent. Whitespace
 checks passed.
+
+## Joint residual refinement — October 10, 2026
+
+Prepared the requested pull request for the coefficient above `2^-34`,
+retaining the published `2^-36` version at commit `669e97c`. The new proof
+shares generator variables across the two residual pivot tests and charges
+a density-size cutoff's exceptional event explicitly. Updated the stable
+Markdown, TeX, and PDF, result metadata, attribution, and reproduction entry
+points. Corrected obsolete private-repository wording to reflect the
+maintainer's subsequent public release. No social-media post or merge was made.
+
+Executed:
+
+```sh
+python3 -B scripts/build_manuscript.py > verification/paper_build.json
+python3 -B scripts/run_checks.py --full --receipt verification/current_run_receipt.json
+python3 -B experiments/search_joint_residual.py > .context/joint-search-rerun.json
+cmp .context/joint-search-rerun.json experiments/joint_residual_search_output.json
+python3 -B scripts/check_archive.py
+python3 -B scripts/validate_repository.py
+git diff --check
+```
+
+All seven full-suite programs passed and reproduced their stored JSON on
+Python 3.9.25/Linux in 41.645 seconds. The new finite checker covered 45,824
+actual residual encodings and 331,491 affine signs, plus its stated boundary
+and negative-control cases. The numerical search reproduced byte for byte.
+All 23 archived hashes and the three default archive checks passed.
+The nine-page PDF rebuilt in three passes with zero warnings; pages 1, 5,
+and 7 were rendered and visually inspected. Source/PDF hashes and 117 local
+links passed package validation before this log entry. Same-agent verification
+is not independent mathematical review; that remains pending.

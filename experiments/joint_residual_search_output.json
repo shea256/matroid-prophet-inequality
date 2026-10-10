@@ -1,0 +1,88 @@
+{
+  "scope": "Floating-point discovery only; no global optimality or proof claim",
+  "seed": 111,
+  "starts_per_attack": 12,
+  "phases": 256,
+  "attacks": [
+    {
+      "mode": "parameters_only",
+      "ratio_over_2^-36": 1.2039620021585375,
+      "negative_log2": 35.73221013959881,
+      "parameters": {
+        "kappa": 1486.1746318064543,
+        "t": 1.7195846388892428e-05,
+        "rho": 0.5896382080829812,
+        "h": 0.7742850437478715,
+        "B": 125.87688233294934,
+        "cap": 0.99
+      }
+    },
+    {
+      "mode": "density_cutoff",
+      "ratio_over_2^-36": 3.2643294935368297,
+      "negative_log2": 34.29321331318691,
+      "parameters": {
+        "kappa": 710.7835263496304,
+        "t": 2.7701566375700572e-05,
+        "rho": 0.4448737274633377,
+        "h": 0.7673774767331493,
+        "B": 123.00006476373215,
+        "cap": 0.5199988239839126
+      }
+    },
+    {
+      "mode": "joint_count",
+      "ratio_over_2^-36": 4.301494811981842,
+      "negative_log2": 33.89516190226032,
+      "parameters": {
+        "kappa": 630.3517413788172,
+        "t": 3.167976256230897e-05,
+        "rho": 0.4495946618744769,
+        "h": 0.7661740612375999,
+        "B": 122.51943244475281,
+        "cap": 0.5291676421695669
+      }
+    }
+  ],
+  "grid_tuples": 275,
+  "grid_fixed": {
+    "t": "1/32768",
+    "h": "3/4",
+    "mesh": "261/256",
+    "phases": 256
+  },
+  "grid_top": [
+    {
+      "ratio_over_2^-34": 1.0682034624425585,
+      "kappa": 624,
+      "rho": "14/32",
+      "cap": "33/64"
+    },
+    {
+      "ratio_over_2^-34": 1.0679410114786536,
+      "kappa": 640,
+      "rho": "14/32",
+      "cap": "33/64"
+    },
+    {
+      "ratio_over_2^-34": 1.0669858789633253,
+      "kappa": 672,
+      "rho": "15/32",
+      "cap": "35/64"
+    },
+    {
+      "ratio_over_2^-34": 1.0664814059912047,
+      "kappa": 656,
+      "rho": "15/32",
+      "cap": "35/64"
+    },
+    {
+      "ratio_over_2^-34": 1.0649223797144698,
+      "kappa": 608,
+      "rho": "14/32",
+      "cap": "33/64"
+    }
+  ],
+  "chosen_ratio_over_2^-34": 1.0679410114786536,
+  "note": "Exact certificate rounds logarithms, exception probability, and base conservatively."
+}

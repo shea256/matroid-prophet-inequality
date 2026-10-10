@@ -1,36 +1,34 @@
 # Current result
 
-**Claimed theorem with a written proof: a guarantee greater than `2^-36`**
-for one-sample matroid prophet selection in the original full-seed almighty
-model. The compact exact lower bound is
-`9652683394380719 / 637507023635152349901619200`, approximately
-`1.0405020 * 2^-36`. The construction uses `38n+23` initial fair bits.
+**Written theorem claim: a guarantee greater than `2^-34`**, with exact
+certificate `C_1=14995972860899/244123247301151948800000`, approximately
+`1.0553229 * 2^-34`. It is about 4.057 times the published certificate at
+[commit 669e97c](https://github.com/shea256/matroid-prophet-inequality/tree/669e97c863aa7863c93258a5a1e2c6d9165b2d2b).
+The construction uses `37n+24` independent fair bits and preserves the same
+one-sample model and full-seed almighty adversary.
 
-The key lemma establishes `E P >= (1+p_start^2)/2 >= 1/2` by a quadratic
-query potential. A repeated-OR construction approaches `1/2`, proving the
-abstract lemma's sharpness. This is not a hard instance for the full matroid
-theorem. The final calculation additionally integrates the residual tail,
-recalibrates mask probabilities, and uses a finer finite rational phase mesh.
+The new proof shares generator variables between both residual pivot tests,
+giving `192^q S_q(n)^2 S_(2q)(2n)`, then applies a density cutoff with an
+explicit Chernoff charge. The quadratic exit potential and all structural
+source interfaces remain in use. The abstract exit bound `1/2` is sharp;
+this is not an upper bound for the matroid prophet problem.
 
 | Evidence category | Status |
 |---|---|
 | Universal mathematical claim | Written proof with explicit source dependencies |
-| Exact coefficient | Standard-library rational certificate passes |
-| Reverse process | 4,916 local quadratic checks and 3,153 global checks pass on the declared finite cases |
-| Other ingredients | Adaptive Boolean events, biased filtering, residual expectations, and phase boundaries checked |
+| Exact coefficient | Rational logarithm enclosures and scalar certificate |
+| Joint encoding | 45,824 encodings and 331,491 signs on 170 finite cases |
+| Boundary checks | Early births, parity shifts, floors, binomial tails, rational phases, missing-shift negative control |
 | Same-agent audit | Completed; no remaining gap identified |
-| Independent peer review | Pending |
+| Independent mathematical review | Pending |
 | Lean formalization of this refinement | Not performed |
-| Strongest-current-result / novelty comparison | Not established; the main comparison uses the accessible OpenAI manuscript |
-| Polynomial-time or practical-performance improvement | Not claimed |
+| Strongest-current-result / novelty | Not established; comparisons use accessible manuscripts |
+| Practical or polynomial-time algorithm | Not claimed |
 
 Finite tests support the argument; the universal claim rests on the written
-proof. Review status is not a claim that finite enumeration proves all matroids.
-The private repository contains the manuscript with reproducible evidence.
-
-The documented baseline is OpenAI's derived `2^-293` coefficient. Earlier
-`2^-63` and `2^-43` bounds from this research effort are superseded; their
-proofs and certificates are retained in the [archive](archive/README.md).
+proof. The source baseline is OpenAI's derived `2^-293`; the immediate
+published baseline from this project is `>2^-36`. Earlier stages are
+preserved in Git history and the [archive](archive/README.md).
 
 See [the paper](manuscript.md), [verification scope](verification/README.md),
 [baseline](BASELINE.md), and [review questions](HANDOFF.md).

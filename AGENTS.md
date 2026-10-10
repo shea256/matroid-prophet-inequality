@@ -1,7 +1,8 @@
 # Research and repository instructions
 
-This repository is private at the maintainer's request. Do not change its
-visibility or post an announcement without an explicit user instruction.
+The maintainer has made this repository public and announced the initial
+`2^-36` paper. Do not change visibility or post announcements without an
+explicit user instruction. Proposed updates go through pull requests.
 
 The project license is Apache 2.0. Preserve LICENSE and the source attribution
 in NOTICE when redistributing the package. No inherited MIT license applies;

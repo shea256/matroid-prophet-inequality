@@ -22,8 +22,8 @@ Its existing licenses and author notices remain applicable.
 
 The written refinement introduces a quadratic conditional-probability
 potential and uses it to prove a `1/2` expected-exit-hazard bound. A repeated-OR
-example shows sharpness for the abstract query hypotheses. The final theorem
-also uses the actual movable count in the source's first residual sequence,
+example shows sharpness for the abstract query hypotheses. The current follow-up adds a joint affine encoding of both residual tests
+and a density-size cutoff with an explicit exceptional-event charge. It retains
 an integrated residual tail, changed mask probabilities, affine branch mixing,
 and finer finite rational rounding phases. The finite-offset technique itself
 is standard; no new rounding principle is claimed.
@@ -51,6 +51,6 @@ passes. No independent mathematical review or Lean formalization of this
 refinement has been completed. No particular model version or external
 reviewer is claimed on the basis of an unrecorded assumption.
 
-The paper is in a private repository. Its preparation does not settle novelty,
+The repository is public. Publication does not settle novelty,
 correctness, or the strongest current bound. See [BASELINE.md](BASELINE.md)
 and [HANDOFF.md](HANDOFF.md) for the outstanding comparison and review tasks.
