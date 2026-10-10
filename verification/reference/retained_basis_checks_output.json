@@ -1,0 +1,32 @@
+{
+  "counts": {
+    "arbitrary_interleavings": 74881,
+    "basis_family_bounds": 3349,
+    "matroids_for_interleavings": 92,
+    "redundant_movable_cases": 70113,
+    "projected_generating_bounds": 132,
+    "uncharged_additive_negative_controls": 1,
+    "additive_and_small_group_weight_bounds": 63,
+    "adaptive_weighted_tail_checks": 972,
+    "adaptive_integrated_expectations": 216,
+    "unlisted_outcomes": 910,
+    "matroid_weight_instances": 170,
+    "strict_projected_rank_savings": 836,
+    "strict_residual_projections": 5200,
+    "affine_pivot_signs": 331488,
+    "old_basis_reconstructions": 91648,
+    "forced_generator_occurrences": 2656,
+    "forced_witness_occurrences": 2128,
+    "omitted_second_generators": 168,
+    "projected_joint_encodings": 45824,
+    "charged_projected_paths": 45824,
+    "positive_excess_paths": 17052,
+    "positive_rank_paths": 2100,
+    "positive_generator_paths": 2656,
+    "shifted_density_occurrences": 1328,
+    "early_invalid_density_occurrences": 1160
+  },
+  "stress_threshold": 2,
+  "arithmetic": "Exact integers/rationals and outward log intervals",
+  "result": "PASS (finite checks, not a universal proof)"
+}

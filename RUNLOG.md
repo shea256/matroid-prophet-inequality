@@ -272,3 +272,63 @@ The build receipt binds all active paper inputs and generated artifacts.
 Package validation checked 150 local links
 and all 29 immutable artifacts before this log entry. Same-agent checks and
 finite enumeration are not independent mathematical review.
+
+## Retained-basis refinement — October 10, 2026
+
+Packaged the previously derived retained-basis, additive-error, and projected-
+witness argument as `results/retained-bases.md`. Its exact coefficient is
+`548933908320757/1325382348737372749824000 > (7/4)*2^-32`, about 71.46%
+above the preceding rank-charged coefficient, with the same model and
+`42n+27` initial fair bits. Updated the shared accounting to carry the
+projected safety coefficient and additive maximum-branch loss explicitly.
+The registry now supports an exact rational multiplier on a power-of-two
+threshold; the new result does not cross `2^-31`.
+
+Prepared branch `shea256/retained-basis-refinement` from committed PR #2
+head `ff4187f03456fe54e8dc0a68e691fdc15f6c707f`. Although the maintainer
+reported #2 merged, repeated GitHub queries returned `OPEN`, `mergedAt: null`,
+and fetched `master` remained `08300e2`. The new PR is therefore prepared
+against #2's branch to isolate this refinement. This records the observed
+remote state; no merge was performed by the agent.
+
+Preserved 16 publication artifacts from `ff4187f` in `archive/rank-charged/`,
+each separately compared byte for byte with `git show`. The earlier
+29 artifacts remain unchanged. Copied research-track verifiers without
+mathematical changes, adapting only the helper import and certificate
+metadata (coefficient field name, equivalent simplified threshold text,
+and explicit base description). The scalar and finite reference outputs
+match the research-track evidence after those stated metadata changes.
+The publication audit's obsolete equation-number references were replaced
+with section descriptions, and its generator-type description was clarified.
+
+Executed:
+
+```sh
+python3 -B scripts/archive_paper.py --result-id rank-charged --commit ff4187f03456fe54e8dc0a68e691fdc15f6c707f
+python3 -B scripts/build_manuscript.py
+python3 -B scripts/run_checks.py --full --receipt verification/current_run_receipt.json
+python3 -B scripts/check_archive.py --receipt verification/retained_basis_archive_run_receipt.json
+python3 -B -m unittest discover -s scripts/tests
+python3 -B experiments/search_retained_basis.py > .context/retained-basis-search-rerun.json
+cmp .context/retained-basis-search-rerun.json experiments/retained_basis_search_output.json
+python3 -B scripts/build_manuscript.py --check
+python3 -B scripts/validate_repository.py
+git diff --check
+```
+
+All 13 full-suite programs reproduced their reference JSON on Python
+3.9.25/Linux in 50.848 seconds. All 13 workflow tests passed, including
+rejection of a mismatched multiplier and a coefficient above `2^-32` but
+below the selected scaled threshold. The numerical search reproduced byte
+for byte. All 45 archived hashes passed, and the three default historical
+programs passed in 0.788 seconds. The new finite checks include 74,881
+interleavings, 3,349 basis families, and 45,824 projected path charges.
+
+The first paper build rejected a 3.45-point overfull line in the parameter
+list; splitting that display fixed it. The final 12-page, 255060-byte PDF
+built in three passes with zero warnings using Pandoc 3.12.1 and pdfTeX
+1.40.22. Pages 1, 8, 9, 10, and 12 were rendered under `.context/` and
+visually inspected. Package validation checked 172 local links, all 45
+immutable artifacts, and current paper input/output hashes before this log
+entry. These are same-agent arithmetic, finite, and publication checks;
+independent mathematical review and formalization remain pending.

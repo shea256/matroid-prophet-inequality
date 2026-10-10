@@ -14,7 +14,7 @@ same-agent audits, independent review, and formalization. Credit the pinned
 OpenAI framework and verify newer primary results before claiming novelty.
 Do not infer the contents or strongest coefficient of an unavailable proof.
 
-Keep the artifacts listed in archive/2026-10-10/manifest.json unchanged as
+Keep the artifacts listed in every archive manifest unchanged as
 historical snapshots. Explain corrections in the archive index rather than
 silently rewriting old claims. Run scripts/check_archive.py after archive changes.
 

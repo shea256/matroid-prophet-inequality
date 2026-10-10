@@ -9,8 +9,9 @@
 | [Quadratic hazard potential](results/quadratic-hazard.md) | $>2^{-36}$ | A quadratic exit potential, integrated residual tail, and revised masks and finite phases. | Written proof; independent review pending |
 | [Joint residual encoding](results/joint-residual.md) | $>2^{-34}$ | Shared generator variables across two pivot tests and charged a density-sample cutoff. | Written proof; independent review pending |
 | [Rank-charged residual entropy](results/rank-charged.md) | $>2^{-32}$ | The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff. | Written proof; independent review pending |
+| [Retained bases and projected residuals](results/retained-bases.md) | $>\frac{7}{4}\, 2^{-32}$ | Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee. | Written proof; independent review pending |
 
-The registry explicitly selects `rank-charged`. Historical records and
+The registry explicitly selects `retained-bases`. Historical records and
 certificates remain unchanged. Review status and mathematical validity are
 distinct: these records have written proofs and same-agent checks, with
 independent review and formalization pending. No priority claim is made.
@@ -43,4 +44,10 @@ Shared generator variables across two pivot tests and charged a density-sample c
 
 The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff.
 
-[Result record](results/rank-charged.md) · [Certificate](verification/reference/rank_charged_constants_output.json)
+[Result record](results/rank-charged.md) · [Certificate](verification/reference/rank_charged_constants_output.json) · [Preserved publication](archive/rank-charged/README.md)
+
+## 2026-10-10 — Retained bases and projected residuals
+
+Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee.
+
+[Result record](results/retained-bases.md) · [Certificate](verification/reference/retained_basis_constants_output.json)
