@@ -1,6 +1,6 @@
 # Review and next work
 
-The current draft derives more than `2^-36`. The next decisive step
+The current manuscript derives more than `2^-36`. The next decisive step
 is independent mathematical review of the written proof and its interfaces
 to the pinned source. Exact arithmetic and finite checks have passed.
 

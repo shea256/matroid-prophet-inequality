@@ -1,5 +1,7 @@
 # One-sample matroid prophet inequalities: a sharper guarantee
 
+By **Ryan Shea**.
+
 A research project on **[OpenAI Math Problem #111](https://github.com/openai/math/blob/main/lean/docs/111.md)**, improving the quantitative
 guarantee for one-sample selection on arbitrary finite matroids against an
 adversary that sees every sample, value, and random seed bit.
@@ -22,7 +24,7 @@ adversary. Only the offline optimum must be integrable. Computation and
 storage may be exponential, and observations are exact; no polynomial-time
 or practical-performance claim is made.
 
-**Status: research draft with a written proof and same-agent
+**Status: written proof with same-agent
 verification. Independent mathematical review and formalization are pending.**
 Exact arithmetic and finite tests accompany the proof; they do not prove
 its universal assertions. No best-known-bound or priority claim is made.

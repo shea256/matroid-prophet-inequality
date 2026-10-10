@@ -26,7 +26,7 @@ recalibrates mask probabilities, and uses a finer finite rational phase mesh.
 
 Finite tests support the argument; the universal claim rests on the written
 proof. Review status is not a claim that finite enumeration proves all matroids.
-The private repository contains a research draft with reproducible evidence.
+The private repository contains the manuscript with reproducible evidence.
 
 See [the paper](manuscript.md), [verification scope](verification/README.md),
 [baseline](BASELINE.md), and [review questions](HANDOFF.md).

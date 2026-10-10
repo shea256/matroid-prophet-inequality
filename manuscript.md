@@ -1,7 +1,11 @@
 # A quadratic hazard potential and a guarantee above `2^-36`
 
-October 10, 2026. **Research draft: claimed theorem with a written proof
-and same-agent verification; independent review and formalization pending.**
+**Ryan Shea**
+
+October 10, 2026.
+
+**Written proof with same-agent verification; independent review and
+formalization pending.**
 The three changes are a quadratic exit argument, an integrated residual bound, and recalibrated
 mask probabilities and finite rounding phases. The announced `2^-47` proof
 remains unavailable, so the coefficient comparison is not a priority claim
@@ -517,4 +521,4 @@ of the telescope, the integral at `n=kappa`, all changed mask factors,
 rational-phase boundaries, and full-seed simulation. Independent review
 and formalization remain outstanding. The external announced proof is
 still unavailable; strongest-current-result comparison and novelty are
-unresolved. This repository contains a research draft with reproducible evidence; it does not claim independent validation or established priority.
+unresolved. This repository contains the manuscript with reproducible evidence; it does not claim independent validation or established priority.

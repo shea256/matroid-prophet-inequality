@@ -34,10 +34,9 @@ maintainer's request. At the maintainer's direction, this standalone project
 is now distributed under [Apache 2.0](LICENSE). The inherited
 [MIT copyright and permission notice](LICENSES/MIT.txt) is preserved;
 [NOTICE](NOTICE) records both origins. The MIT notice came from Open Math
-Problems, not from OpenAI's repository. This repository is maintained under
-[shea256](https://github.com/shea256); repository ownership
-and commit authorship are not independent evidence of mathematical authorship
-or review.
+Problems, not from OpenAI's repository. The paper's author is **Ryan Shea**,
+who maintains this repository under [shea256](https://github.com/shea256).
+Codex assistance is disclosed below; independent review remains pending.
 
 ## Related announcement
 
@@ -60,6 +59,6 @@ passes. No independent mathematical review or Lean formalization of this
 refinement has been completed. No particular model version or external
 reviewer is claimed on the basis of an unrecorded assumption.
 
-The paper is a research draft in a private repository. Its preparation does not settle novelty,
+The paper is in a private repository. Its preparation does not settle novelty,
 correctness, or the strongest current bound. See [BASELINE.md](BASELINE.md)
 and [HANDOFF.md](HANDOFF.md) for the outstanding comparison and review tasks.

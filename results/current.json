@@ -1,6 +1,7 @@
 {
   "result_id": "quadratic-hazard-2026-10-10",
   "title": "A quadratic hazard potential and a one-sample matroid prophet guarantee above 2^-36",
+  "authors": ["Ryan Shea"],
   "date": "2026-10-10",
   "review_status": "Written proof with same-agent verification; independent review and formalization pending",
   "independent_review_completed": false,

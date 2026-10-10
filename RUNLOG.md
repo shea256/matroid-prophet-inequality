@@ -79,3 +79,21 @@ Executed `python3 -B scripts/run_checks.py`,
 All three current verification programs and package checks passed. Byte
 comparisons confirmed that LICENSE matches the pinned upstream license and
 LICENSES/MIT.txt matches the previous commit's MIT license.
+
+## Author and presentation — October 10, 2026
+
+At the author's request, added Ryan Shea to the paper's title page and PDF
+metadata, Markdown manuscript, README, attribution, and result metadata.
+Removed the draft label from the paper and current project descriptions.
+Independent-review status, AI-assistance disclosures, and source attribution
+are retained. No mathematical claim, algorithm, or verification code changed.
+
+Rebuilt the seven-page paper with `python3 -B scripts/build_manuscript.py`;
+all three passes completed with zero warnings. The source and PDF hashes
+were updated in [paper_build.json](verification/paper_build.json). `pdfinfo`
+confirmed the author field, extracted PDF text confirmed the byline and
+label removal, and the rendered first page was visually inspected.
+
+`python3 -B scripts/run_checks.py`,
+`python3 -B scripts/validate_repository.py`, and `git diff --check` passed.
+All three current verification programs reproduced their reference outputs.

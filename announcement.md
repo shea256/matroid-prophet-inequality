@@ -5,7 +5,7 @@ This file is not a social-media posting record.
 
 ## Main post
 
-I've put a research draft for OpenAI Math #111 in its own repo: a written
+I've put a paper for OpenAI Math #111 in its own repo: a written
 derivation of a one-sample matroid prophet guarantee above 2^-36, preserving
 an adversary that sees all samples, values, and the algorithm's full seed.
 
@@ -19,7 +19,7 @@ https://github.com/shea256/one-sample-matroid-prophet
 ## Context / follow-up
 
 This builds extensively on OpenAI's construction. It is an AI-assisted
-research draft with same-agent verification; independent review and
+paper with same-agent verification; independent review and
 formalization are pending. Finite checks support the written proof but
 do not prove the universal theorem. No efficient implementation is claimed.
 
