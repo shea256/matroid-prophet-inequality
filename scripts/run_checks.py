@@ -12,17 +12,7 @@ sys.dont_write_bytecode = True
 
 from validate_repository import ROOT, validate
 
-CURRENT = (
-    ('certify_joint_residual.py', 'joint_residual_constants_output.json'),
-    ('check_joint_residual.py', 'joint_residual_checks_output.json'),
-    ('certify_quadratic_constants.py', 'quadratic_constants_output.json'),
-    ('check_quadratic_hazard.py', 'quadratic_hazard_output.json'),
-    ('check_quadratic_ingredients.py', 'quadratic_ingredients_output.json'),
-)
-EXTENDED = (
-    ('finite_checks.py', 'finite_output.json'),
-    ('check_online_rule.py', 'online_output.json'),
-)
+from result_registry import checks, load
 
 
 def main():
@@ -32,22 +22,24 @@ def main():
     args = parser.parse_args()
     started = time.monotonic()
     records = []
-    for script, reference in CURRENT+(EXTENDED if args.full else ()):
+    registry, _, _ = load()
+    for item in checks(registry, full=args.full):
+        script, reference = item['script'], item['reference']
         print('Running '+script, flush=True)
         before = time.monotonic()
-        completed = subprocess.run([sys.executable, '-B', str(ROOT/'verification'/script)],
+        completed = subprocess.run([sys.executable, '-B', str(ROOT/script)],
                                    cwd=ROOT, text=True, stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE)
         if completed.returncode:
             raise SystemExit(completed.stdout+completed.stderr)
         actual = json.loads(completed.stdout)
-        expected = json.loads((ROOT/'verification/reference'/reference).read_text())
+        expected = json.loads((ROOT/reference).read_text())
         if actual != expected:
             raise SystemExit('Fresh output differs from recorded reference: '+script)
-        records.append({'script': 'verification/'+script,
-                        'reference': 'verification/reference/'+reference,
+        records.append({'script': script,
+                        'reference': reference,
                         'seconds': round(time.monotonic()-before, 3),
-                        'script_sha256': hashlib.sha256((ROOT/'verification'/script).read_bytes()).hexdigest(),
+                        'script_sha256': hashlib.sha256((ROOT/script).read_bytes()).hexdigest(),
                         'result': 'PASS; fresh JSON equals reference'})
         print('PASS '+script, flush=True)
     package = validate()

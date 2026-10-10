@@ -1,0 +1,36 @@
+{
+  "parameters": {
+    "kappa": 272,
+    "density_rate": "13/32",
+    "filter_rate": "3/4",
+    "guard_and_test_rate": "1/16384",
+    "mesh": "261/256",
+    "phases": 256,
+    "main_probability": "16383/16384"
+  },
+  "analysis_parameters": {
+    "generator_penalty": "39/2",
+    "witness_penalty": "39/2",
+    "generator_tilt": "1/640",
+    "witness_tilt": "1/8192",
+    "arrangement_tilt": "1/1280",
+    "effective_kappa": "583/2"
+  },
+  "certified_bounds": {
+    "decay_lower": "9/10",
+    "entropy_per_element_upper": "133/40960",
+    "base_lower": 140,
+    "tilt_inequalities": "PASS, using unrounded log intervals"
+  },
+  "error_upper": "7847/208896",
+  "slack_lower": "1019519/174219264",
+  "certified_coefficient_lower_bound": "773895463001/3203794364409053184000",
+  "ratio_over_2_minus_32": "773895463001/745941504000",
+  "ratio_over_PR_certificate": "4204646429196800/1069245230391151",
+  "ratio_over_published_certificate": "1454966783341350617088/91200768695791011565",
+  "simplified_guarantee": "2^-32",
+  "stronger_simple_guarantee": "(33/32)*2^-32",
+  "seed_bits": "36n+23",
+  "base": "(261/256)^256 > 140",
+  "result": "PASS (exact scalar certificate, conditional on the written proof)"
+}

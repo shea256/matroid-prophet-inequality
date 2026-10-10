@@ -1,138 +1,91 @@
 # One-sample matroid prophet inequalities: a sharper guarantee
 
-By **Ryan Shea**.
+By **Ryan Shea**. A living research project on
+[OpenAI Math Problem #111](https://github.com/openai/math/blob/main/lean/docs/111.md).
 
-A research project on **[OpenAI Math Problem #111](https://github.com/openai/math/blob/main/lean/docs/111.md)**, improving the quantitative
-guarantee for one-sample selection on arbitrary finite matroids against an
-adversary that sees every sample, value, and random seed bit.
+<!-- current-result:start -->
 
-The original construction is in
+**[Read the latest paper (PDF)](manuscript.pdf)** · [Read online](manuscript.md) · [LaTeX source](tex/manuscript.tex)
+
+Current result: **[Rank-charged residual entropy](results/rank-charged.md)**, 2026-10-10.
+
+```math
+\mathbb E[\mathrm{reward}]\ge C_\star\mathbb E[\mathrm{OPT}],\qquad
+C_\star=\frac{773895463001}{3203794364409053184000}>2^{-32}.
+```
+
+The exact certificate is approximately **3.93235 times** the preceding [`2^-34` certificate](results/joint-residual.md). This compares guaranteed fractions, not measured performance. The construction uses **`36n+23` fair bits**.
+
+The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff.
+
+**Written proof with same-agent verification; independent mathematical review and formalization pending.** Finite checks accompany the written proof; they do not prove
+its universal assertions. No priority or confirmed best-known-bound claim
+is made. These paper links remain stable as results are updated.
+
+<!-- current-result:end -->
+
+The source construction is in
 [OpenAI's accompanying paper](https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf).
-
-**[Read the paper (PDF)](manuscript.pdf)** · [Read online](manuscript.md) · [LaTeX source](tex/manuscript.tex)
-
-The current written proof gives
-
-```math
-\mathbb E[\mathrm{reward}]\ge 2^{-34}\,\mathbb E[\mathrm{OPT}].
-```
-
-It uses one independent sample per label and **`37n+24` initial fair bits**.
-The rule needs no description of the value distributions, maintains matroid
-independence at every arrival prefix, and retains the full-seed almighty
-adversary. Only the offline optimum must be integrable. Computation and
-storage may be exponential, and observations are exact; no polynomial-time
-or practical-performance claim is made.
-
-**Status: written proof with same-agent
-verification. Independent mathematical review and formalization are pending.**
-Exact arithmetic and finite tests accompany the proof; they do not prove
-its universal assertions. No best-known-bound or priority claim is made.
-
-The repository is public. The author announced the earlier `2^-36` result on
-October 10, 2026; this branch proposes the subsequent `2^-34` refinement.
-
-## Contribution
-
-The new step counts two residual pivot tests jointly, sharing each density
-generator's variable between them. A cutoff on density-sample size further
-reduces the count, with the exceptional event explicitly charged. This
-builds on the published **quadratic query potential**, which gives a sharp
-`1/2` auxiliary exit-hazard bound. That lemma's constant is not the final
-prophet guarantee. The current rule uses 256 rational rounding phases.
-
-The source's density paths, hybrid safety comparison, marked-pivot machinery,
-rank accounting, and sample/value simulation remain fundamental dependencies.
-OpenAI already established the qualitative constant guarantee. This project
-supplies a sharper quantitative analysis of that construction, with the
-new argument and its limitations made explicit. See [attribution](ATTRIBUTION.md)
-and [the improvement record](IMPROVEMENTS.md).
-
-| Comparison | Guarantee | Evidence available here |
-|---|---:|---|
-| OpenAI manuscript's derived constant | `2^-293` | Accessible pinned primary manuscript; headline is `2^-310` |
-| Published version, commit `669e97c` | `> 2^-36` | Written proof and same-agent verification |
-| This proposed refinement | `> 2^-34` | Written proof, exact certificates, finite checks; independent review pending |
-
-The comparison uses the source's stronger derived bound. These are guarantee
-coefficients, not measured speedups or observed performance. Unverified
-announcements are discussed separately in [related work](BASELINE.md#related-work-and-comparison-limits).
-
-The compact exact coefficient certified in the paper is
-
-```math
-C_1=\frac{14995972860899}{244123247301151948800000}
-\approx1.0553229\cdot2^{-34}.
-```
-
-This is about **4.057 times** the published exact certificate.
-
-## Development history
-
-The recorded progression is `2^-63` → `2^-43` → `2^-36` → `2^-34`, all on October 10,
-2026. The first step refined parameters, branch mixing, and rounding; the
-second introduced a logarithmic hazard potential and tighter residual
-accounting; the third introduced a quadratic potential and integrated
-residual bound; the current proof adds joint encoding and the density cutoff. These are superseded bounds within one research effort.
-The [improvement record](IMPROVEMENTS.md) links the dated
-[intermediate proofs and certificates](archive/README.md), with their original
-review status and reproducible checks.
+This project develops quantitative refinements of that construction. It
+retains one independent sample per label, unknown independent nonnegative
+value distributions, prefix feasibility, and the adversary seeing every
+sample, value, and initial seed bit. Only the offline optimum must be
+integrable. Computation and storage may be exponential, and observations
+are exact; no polynomial-time or practical-performance claim is made.
 
 ## Reproduce
 
-Python **3.9+**, standard library only:
+Python **3.9+**, standard library only for verification:
 
 ```sh
 python3 -B scripts/run_checks.py
 ```
 
-This runs five programs: the new scalar and joint-encoding checks, plus the
-retained quadratic certificate, reverse-hazard, and ingredient checks, and compares them with the recorded
-outputs. It also validates local documentation links and the paper's build
-receipt. Run the retained exhaustive small-matroid and arrival-order checks
-as well with:
+The registry selects the current result explicitly and retains earlier
+verifiers. Fresh JSON must equal each recorded reference. Package checks
+also reject stale generated text, certificate mismatches, altered archive
+artifacts, and stale paper hashes. Include the retained exhaustive small
+matroid and arrival-order regressions with:
 
 ```sh
 python3 -B scripts/run_checks.py --full
 ```
 
-For the new numerical search (discovery evidence, not a certificate):
+## Update the paper
+
+The [shared proof](paper/framework.md), [versioned results](results/README.md),
+and [registry](results/registry.json) are the editable sources. Follow the
+[update workflow](results/README.md) to preserve the previous publication,
+add a written result and certificate, and explicitly select its ID.
+
+Rebuild the manuscript, LaTeX, PDF, current-result metadata, README headline,
+and improvement history with **Pandoc 3.x and pdfLaTeX**:
 
 ```sh
-python3 -B experiments/search_joint_residual.py
+python3 -B scripts/build_manuscript.py
 ```
 
-Rebuild the PDF with Python and pdfLaTeX, including `amsmath`, `amssymb`,
-`amsthm`, `geometry`, and `hyperref`:
+`--markdown-only` regenerates the text and metadata without compiling the
+PDF. `--check` checks text freshness and the paper's recorded input/artifact
+hashes without writing files. The build uses three pdfLaTeX passes with shell
+escape disabled; byte-identical PDF rebuilds are not promised.
 
-```sh
-python3 -B scripts/build_manuscript.py > verification/paper_build.json
-```
+## Evidence and history
 
-The build uses three passes with shell escape disabled. Its receipt records
-source and PDF hashes; byte-identical PDF rebuilds are not promised.
-Optionally retrieve the pinned primary sources into the ignored cache,
-checking their recorded hashes:
+- [Current result](RESULT.md) and [machine-readable metadata](results/current.json)
+- [Improvement history](IMPROVEMENTS.md) and [unchanged earlier artifacts](archive/README.md)
+- [Verification scope](verification/README.md), [executed attempts](ATTEMPT.md), and [run log](RUNLOG.md)
+- [Source attribution](ATTRIBUTION.md), [baseline](BASELINE.md), and [review questions](HANDOFF.md)
+- [Earlier prepared announcement](announcement.md), retained as historical wording
 
-```sh
-python3 -B verification/fetch_sources.py
-```
-
-## Evidence and review
-
-- [Verification scope and recorded outputs](verification/README.md)
-- [Result record](RESULT.md) and [machine-readable current result](results/current.json)
-- [Executed approaches](ATTEMPT.md) and [reproduction log](RUNLOG.md)
-- [Review questions and next work](HANDOFF.md)
-- [Earlier prepared announcement text](announcement.md), not a verbatim posting record
-
-This work was developed with AI assistance using Codex. Same-agent second
-passes are not independent peer review. The paper and stable entry points
-will be updated as the proof is reviewed or improved; earlier public versions
-remain available in Git history.
+The author announced the earlier `2^-36` version on October 10, 2026.
+Subsequent results update the same paper links and retain earlier versions.
+This work was developed with Codex assistance. Same-agent checks are not
+independent mathematical review, and finite tests do not prove the universal
+claims. Review and formalization remain pending.
 
 ## License
 
-This project is distributed under the [Apache License 2.0](LICENSE).
+This project uses the [Apache License 2.0](LICENSE).
 See [NOTICE](NOTICE) and [attribution](ATTRIBUTION.md) for provenance;
 cited external works retain their own terms.

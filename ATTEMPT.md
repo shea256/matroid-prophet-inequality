@@ -45,3 +45,19 @@ The selected dyadic tuple has `kappa=640`, `rho=7/16`, `h=3/4`, `t=2^-15`,
 types, both affine tests, and the density exception without conditioning
 away independence. [Detailed argument](proofs/joint_residual.md),
 [same-agent audit](proofs/joint_residual_audit.md).
+
+## Rank-charged entropy and the versioned paper
+
+The new [record](results/rank-charged.md) executes two attacks: charge witness
+entropy to nominal rank while retaining the density cutoff, then charge
+generator entropy to expected density-sample size too. The latter removes
+the cutoff and its exceptional-event term. The numerical search uses 16
+starts per mode and a 15-tuple grid, without claiming a global optimum.
+[Search](experiments/search_rank_charged.py), [output](experiments/rank_charged_search_output.json).
+
+The exact dyadic construction uses `kappa=272`, `rho=13/32`, `h=3/4`, `t=2^-14`,
+and 256 phases. Both analysis penalties are `39/2`, giving effective rank
+coefficient `583/2`. Every changed later-cost factor and the small-group
+term is carried through the final proof. The conservative certificate is
+`1.0374747334 * 2^-32`; the proof is integrated into the shared framework and
+selected record. [Same-agent audit](proofs/rank_charged_audit.md).

@@ -1,0 +1,36 @@
+{
+  "result_id": "joint-residual",
+  "source_commit": "08300e2d9c4a8529db0198631716b7ef20dd8aa5",
+  "files": [
+    {
+      "path": "manuscript.md",
+      "bytes": 30562,
+      "sha256": "11774c0c5a0aebf5061c44e91539cecd90c8882fb97a43d9b831d6c826de8de1"
+    },
+    {
+      "path": "manuscript.pdf",
+      "bytes": 248197,
+      "sha256": "a1c3896f429691e7f9a634781f7129dd190b1fd5659a1fe26bde431903b13e36"
+    },
+    {
+      "path": "results/current.json",
+      "bytes": 1449,
+      "sha256": "bdc8cb5e8c4be8dae8ce12709fb6213983cdac3665bc4b85426d95216a019f0c"
+    },
+    {
+      "path": "tex/manuscript.tex",
+      "bytes": 26233,
+      "sha256": "3fb642cd5a04dfc0cc0a128194d0cf5217196fa4b639715c9a6f1ed7137c571d"
+    },
+    {
+      "path": "verification/current_run_receipt.json",
+      "bytes": 2636,
+      "sha256": "a55e9980af260e94013d907430e1de17d7b84ccf8c72ad19c0b463f281367991"
+    },
+    {
+      "path": "verification/paper_build.json",
+      "bytes": 283,
+      "sha256": "87de464b996d1baf97e7f2b9b751a7dd9650ad0f05fec8aa8709a429112516de"
+    }
+  ]
+}

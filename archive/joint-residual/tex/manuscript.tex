@@ -1,0 +1,532 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Joint residual encoding and a one-sample matroid prophet guarantee above 2 to the power -34},pdfauthor={Ryan Shea}}
+\newtheorem{theorem}{Proposed theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prb}{\mathbb P}
+\newcommand{\one}{\mathbf 1}
+\DeclareMathOperator{\OPT}{OPT}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\rk}{r}
+\allowdisplaybreaks
+\title{Joint residual encoding and a one-sample\protect\\matroid prophet guarantee above $2^{-34}$}
+\author{Ryan Shea}
+\date{October 10, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We refine the analysis of OpenAI's one-sample matroid prophet construction
+against an adversary seeing all samples, values, and the entire random seed.
+A joint affine representation of two residual pivot tests reduces their
+combined counting dimension. A density-sample cutoff further reduces the
+residual family, with exceptional outcomes explicitly charged. Retaining the
+quadratic exit-hazard bound and recalibrating masks and finite phases gives
+a proposed guarantee above $2^{-34}$ with $37n+24$ initial fair bits.
+A compact exact coefficient is $1.055322895\ldots\,2^{-34}$, more than four
+times the preceding published certificate. This AI-assisted work has a written
+proof and same-agent verification. Independent review and formalization are
+pending; no priority or strongest-known-bound claim is made.
+\end{abstract}
+
+\section{Statement and dependencies}
+\begin{theorem}
+For each known finite labeled matroid $M$ on $n$ elements there is a measurable,
+distribution-independent online rule using one sample per label and $37n+24$
+initial independent fair bits with the following property. Let all nonnegative
+sample/value coordinates $S_e,V_e$ be mutually independent, with matching laws
+at each label and an independent seed. If $\E\OPT_M(V)<\infty$, then for every
+measurable arrival permutation depending on all samples, values, and the entire
+seed, the rule maintains independence at every prefix and earns expectation
+at least $C_1\E\OPT_M(V)$, where
+\[
+ C_1=\frac{14995972860899}{244123247301151948800000}>\frac{21}{20}\,2^{-34}.
+\]
+\end{theorem}
+
+We use the density maps, guarded paths, hybrid safety comparison, marked-pivot
+encoding, rank accounting, and lossless simulation in OpenAI's source
+\cite{source}, pinned at commit \texttt{fd4aeeb2ee4f} (full revision in the linked source).
+We specify the rule and source interfaces here, prove the new quadratic
+transaction and exit bounds, give the joint residual encoding and density
+cutoff, and derive the refined final constants. The structural matroid lemmas remain cited dependencies.
+No polynomial-time or bounded-precision claim is made.
+
+\section{The fixed-vector rule and its statistics}
+Fix a nonnegative hidden vector $w$ before any seed bits. The rule reveals
+and sacrifices a seed-chosen mask and must handle every permutation; its
+target is $\E_R\min_\pi w(A(w,R,\pi))$. Write
+$\rk(A\mid P)=\rk(A\cup P)-\rk(P)$ and $F_{\varnothing}=\cl(\varnothing)$.
+Fix a label order for every tie. Higher rounded weight means higher priority.
+Put $W=\OPT_M(u)$ and let $I^*$ be priority greedy on the full rounded vector.
+
+Use the parameters derived below:
+\[
+ \kappa=640,\quad t=2^{-15},\quad \Prb(H_e)=3/4,\quad
+ \Prb(D_e)=7/16,\quad\Prb(C_e)=\Prb(T_e)=t,
+\]
+with main probability $1-t$, fair parity, and uniform shared phase
+$J\in\{0,\ldots,255\}$. Put $\theta=261/256$, $B=\theta^{256}$, and
+$u_J(x)=\theta^JB^{\lfloor\log_B(x/\theta^J)\rfloor}$ for $x>0$,
+with $u_J(0)=0$. All coins are independent and drawn initially.
+
+The maximum branch reveals a separate fair mask and accepts the first
+unmasked positive nonloop with priority above every revealed positive nonloop.
+An empty threshold is below every positive nonloop. If $m_*$ is the largest
+rounded nonloop weight, expected worst-order reward is at least $m_*/4$:
+the largest-priority nonloop is unmasked and the second is masked with
+probability $1/4$. With only one positive nonloop success has probability
+$1/2$; with none the bound is zero.
+
+In the main branch reveal and sacrifice $H\cup D\cup C$. Define
+\[
+ U=\{e\notin H:u_e>0,\ e\notin\cl(H_{>e})\},\qquad Y=I^*\setminus H.
+\]
+The candidate test uses only revealed $H$ values and the tested value.
+For a fixed phase divide weights by $\theta^J$, so true groups $U_i$ have
+weight $B^i$. List those meeting $D$ in increasing weight order as
+$G_1,\ldots,G_m$; put $D_j=D\cap G_j$, and similarly $C_j,T_j$.
+The full groups are analysis objects; their revealed $D_j,C_j$ parts suffice
+for preparation. If there are no listed groups, reject all.
+
+For a flat $P$, let $Q_j(P)$ be the largest flat $Z\supseteq P$ maximizing
+$|D_j\cap Z|-\kappa\rk(Z)$. Take closure first for nonflat arguments.
+Set $a_j=-3j$ and enable $Q_{j,k}=Q_j$ for $k\ge a_j$, with the identity
+earlier. Starting from $F_0(k)=F_{\varnothing}$ for $k<0$ and $E$ otherwise, define
+\[
+ X_j(k)=Q_{j,k}(F_{j-1}(k)),\qquad
+ F_j(k)=\cl(X_j(k)\cup(C_j\cap X_j(k+1))).
+\]
+Compute paths in increasing $j$ on the finite relevant auxiliary timeline,
+and put $\widehat F=F_m$. For a candidate nonloop in listed group $j$,
+write $b_j(e)=\min\{k:e\in X_j(k)\}$. It is eligible precisely when it is
+unsacrificed, $T$-positive, has birth $b\ge a_j+2$ of the chosen parity,
+and lies outside $\widehat F(b-2)$. At endpoint $b$ maintain a set $A_b$;
+accept an eligible $e$ exactly when $\rk(\{e\}\mid\widehat F(b-2)\cup A_b)=1$.
+
+The source density and path lemmas give
+\[
+ F_{j-1}(k)\subseteq X_j(k)\subseteq F_j(k)\subseteq X_j(k+1),\qquad
+ |D_j\cap(\cl(Q_j(P)\cup Z)\setminus Q_j(P))|\le\kappa\rk(Z\mid Q_j(P)).
+\]
+Nonloops are born at $a_j$ or in $[a_j+2,0]$, and the entire nominal path
+uses a generator set of size at most $|D_j|/\kappa$. The nested layer bases
+give prefix independence. Finite rank operations, fixed tie rules, and
+countably many rounding levels give measurability. These structural facts
+are inherited from the cited source.
+
+For valid selected-parity endpoints $a_j+2\le b\le0$, define
+\[
+ \begin{aligned}
+ K_{j,b}&=\bigcup_{\ell<j}(T_\ell\cap(X_\ell(b)\setminus X_\ell(b-1))),\\
+ P_{j,b}&=G_j\cap(X_j(b)\setminus X_j(b-1)),\quad
+ O=D\cup C,\quad S_{j,b}=P_{j,b}\setminus O,\\
+ z_j&=\sum_b\rk(S_{j,b}\mid X_j(b-2)\cup K_{j,b}),\\
+ \lambda_j&=\sum_b\rk(T_j\cap S_{j,b}\mid\widehat F(b-2)\cup K_{j,b}).
+ \end{aligned}
+\]
+The safe count $\sigma_j$ counts $d\in D_j\cap Y$ with such a birth and
+$d\notin Q_j(F_{j-1}(b-2)\cup K_{j,b})$. For each nominal summand choose
+a fixed-order basis extension $Z_b$, so $\sum_b|Z_b|=z_j$. The residual is
+\[
+ \mathcal R_j=\bigcup_b\left(P_{j,b}\setminus
+ \cl(X_j(b-2)\cup K_{j,b}\cup Z_b)\right)\subseteq O.
+\]
+Extend $\sigma_i,z_i,\lambda_i$ by zero on unlisted true groups.
+The source density argument gives $\sigma_j\le\kappa z_j+|\mathcal R_j|$.
+Its order-uniform lemma bounds the number of accepts of weight at least that
+of $G_j$ below by $\lambda_j$, for every seed and order. One later-path
+generator budget over the whole timeline is
+\[
+ c_j=|C_j|+\sum_{\ell>j}(|C_\ell|+|D_\ell|/\kappa).
+\]
+Conditional on $H,D,C$, parity, and test bits outside the focal group,
+independent test thinning gives $\E[\lambda_j\mid\mathcal F_{-j}]
+\ge t(z_j-c_j)$. These are the source interfaces used below.
+
+\section{A quadratic transaction inequality}
+\begin{lemma}\label{lem:transaction}
+Let $\mathcal A$ be an increasing event on finitely many independent bits,
+and let a predictable query procedure, reading each bit at most once,
+determine whether $\mathcal A$ occurs. Write $p=\Prb(\mathcal A^c)$. At the
+completed transcript let $q$ be the failure probability with only unqueried
+bits random and every queried bit reset to zero. Then
+\[
+ \E[\one_{\mathcal A}q^2]\ge p(1-p).
+\]
+\end{lemma}
+\begin{proof}
+At an intermediate transcript, let $W$ be its remaining coordinates and $I$
+its queried positives. Let $m$ be the actual conditional failure probability,
+and $q$ the failure probability with only $W$ random and all other bits zero.
+Predictable product exposure identifies $m$ with the probability when $I$ is
+forced positive and $W$ is random. Increasingness gives $0\le m\le q\le1$.
+Initially $m=q=p$.
+
+For a predictably chosen next coordinate, the depleted probability $q'$ is
+determined before the answer and satisfies $q'\ge q$. The actual conditional
+failure probability is a martingale: $\E[m'\mid\text{transcript}]=m$.
+Therefore the potential $\Phi(q,m)=q^2-2qm$ satisfies
+\begin{equation}\label{eq:query}
+ \E[\Phi(q',m')\mid\text{transcript}]-\Phi(q,m)
+ =(q'-q)(q'+q-2m)\ge0.
+\end{equation}
+At the end $m=\one_{\mathcal A^c}$, and failure forces $q=1$.
+The initial potential is $-p^2$; its final expectation is
+$\E[\one_{\mathcal A}q^2]-p$. Sum \eqref{eq:query} over the finite number
+of queries, padding stopped paths by zeros, to obtain the result.
+The proof includes $p=0,1$ and transactions needing no queries.
+\end{proof}
+
+\section{The reverse exit hazard}
+Fix the source's filter and density masks, a listed-group prefix, and a
+nonloop $d$ still alive before a reverse step. Its current states are $S$,
+and its transition is $\mathcal G_k(c,S)$. The remaining guard coordinates
+have their product law. Let $\mathcal A$ be the increasing event that $d$
+survives, and let $p$ be the conditional exit probability.
+
+For completeness, for $k<0$ the source reverse map on a listed-group
+prefix is defined recursively by
+\[
+ A_0=F_{\varnothing},\qquad N_j=Q_{j,k}(A_{j-1}),\qquad
+ A_j=\cl(N_j\cup\{e\in G_j\cap S_j:c_e=1\}),
+\]
+with output $(N_j)_j$. Starting from $X_j(0)=E$, reverse steps compute
+$X(k)=\mathcal G_k(C,X(k+1))$. For actual later states, $N_j\subseteq S_j$
+for every fresh bit assignment. After computing $N_j$, query only
+$G_j\cap(S_j\setminus N_j)$; omitted additions already lie in $N_j$.
+The new remaining domain is $\bigcup_j(G_j\cap N_j)$.
+
+The source queries exactly the departing coordinates in predictable batches.
+Their answers determine all output states: unqueried bits are inside flats
+already spanned. Thus the transcript decides $\mathcal A$, on both survival
+and failure, so Lemma~\ref{lem:transaction} applies.
+
+Let $S'$ be the actual output and $V'$ the remaining coordinates. For each
+assignment $c$ supported on $V'$, monotonicity in time and state gives
+\[
+ \mathcal G_{k-1}(c,S')\subseteq\mathcal G_k(c,S).
+\]
+The right side has all just-queried coordinates zero, exactly the depleted
+experiment defining $q$. Conditional on the full post-step transcript,
+the bits in $V'$ remain independent. On survival the next hazard $r$ therefore
+satisfies $r\ge q$. The states are frozen in this comparison; earlier
+states are not recomputed after resetting bits. No order is conditioned on.
+
+The next alive squared hazard consequently obeys
+\[
+ \E[\one_{\rm survive}r^2]-p^2\ge p-2p^2.
+\]
+Telescope this potential over the deterministic finite reverse horizon.
+Every nonloop exits, and if $P$ is its hazard at actual exit, then
+\[
+ -p_{\rm start}^2\ge
+ \sum_i\E[\one_{\rm alive}p_i]-2\sum_i\E[\one_{\rm alive}p_i^2]
+ =1-2\E P.
+\]
+Hence
+\begin{equation}\label{eq:hazard}
+ \boxed{\E P\ge(1+p_{\rm start}^2)/2\ge1/2.}
+\end{equation}
+In particular, the source's total squared-exit mass is at least $1/2$.
+Its hybrid comparison still applies because guard and test rates agree.
+The same baseline-birth loss and fair parity give, after averaging a density
+mask of arbitrary rate $\rho$,
+\begin{equation}\label{eq:safe}
+ \E[\sigma_i\mid H]\ge \gamma|Y_i|-\frac{\rho n_i}{2\kappa},
+ \qquad\gamma=\rho/4.
+\end{equation}
+This averages before conditioning on listing, extending the statistics by
+zero on unlisted groups.
+
+The bound $1/2$ is sharp for the abstract hypotheses. Take $N$ Bernoulli-$t$
+bits and repeatedly test the OR of the remaining suffix, querying until the
+first positive or until that suffix is exhausted. The next hazard equals
+the depleted current failure probability. With $a=1-t$, classification by
+the last positive (or none) gives
+\[
+ \E P=a^{2N}+t\sum_{j=0}^{N-1}a^{2j}
+ =a^{2N}+\frac{1-a^{2N}}{2-t}.
+\]
+For $t=1/m$, $N=m^2$, this tends to $1/2$. This is an abstract limitation,
+not a hard matroid instance or a bound on the best prophet algorithm.
+
+\section{Joint residual encoding and a density cutoff}
+Fix $H$, parity, and all mask bits outside a true group $U$ of size
+$n\ge\kappa$. Do not condition on its focal bits or listing. Its incoming
+path $F(k)$, competition sets $K_b$, index, and activation $a$ are fixed.
+Write $S_d(N)=\sum_{i=0}^d\binom Ni$. Suppose a path has density generators
+$J$ and rank witnesses $Z$, of sizes $j,z$. A generator has insertion time
+$\tau(g)\in[a,0]$, and
+\[
+ X(k)=\cl(F(k)\cup\{g\in J:\tau(g)\le k\}).
+\]
+The source gives two marked streams. First, list $F(k)$ and then generators
+inserted at $k$, marking the block one exactly when $k$ is a valid endpoint
+of the chosen parity. Second, start with the fixed $F(b_0)$ marked zero,
+where $b_0\in\{a-2,a-1\}$ has that parity. At each subsequent parity endpoint
+$b$, insert $K_b,Z_b$ with mark zero, then $F(b)$ and generators with
+$b-2<\tau(g)\le b$ with mark one. End at $b_1\in\{0,1\}$ of that parity;
+set $K_b=Z_b=\varnothing$ at invalid endpoints.
+
+The second stream has intermediate span $\cl(X(b-2)\cup K_b\cup Z_b)$ and
+endpoint span $X(b)$, since $K_b\subseteq F(b)$ and $Z_b\subseteq X(b)$.
+The first test selects valid births. For a label passing it, the second
+pivot lies in the same layer and has mark one exactly on the residual.
+Thus the intersection of the two mark-one sets is the residual.
+
+\begin{lemma}[Joint pivot count]
+For fixed $J,Z$, the number of residuals obtained from these linked streams
+is at most $3^j4^{2j+z}S_{j+z}(2n)$.
+\end{lemma}
+\begin{proof}
+The source marked-pivot argument first bounds retained greedy bases of
+occurrences by $4^s$ when $s$ specified movable occurrences are inserted into
+an old sequence spanning the matroid. To recall why, old-only greedy gives
+an ordered basis. Only at most $s$ of its positions can be omitted after
+insertions: their conditional-rank drops for the full movable set sum to at
+most $s$. There are at most $2^s$ choices of omitted old occurrences and
+$2^s$ of retained movable occurrences. Apply this to the two streams with
+$s=j$ and $s=j+z$, giving $4^{2j+z}$ pairs of retained bases. Fix a pair.
+Each nonloop has a unique minimal support in each basis, by matroid
+submodularity, and its pivot is the last support member.
+
+We represent both streams by the same $j+z$ variables. Label the entire
+ground set $0,\ldots,N-1$, put $m=N+1$, $T=8m$, and $u_k=(k-a+2)T$.
+Give old $F(k)$ occurrences in the first stream absolute scores
+$2^{u_k+4m+e}$, with sign equal to their fixed marks. In the second stream,
+the initial $F(b_0)$ has negative scores $-2^{u_{b_0}+4m+e}$;
+$K_b$ has scores $-2^{u_b+e}$; and $F(b)$ has scores $2^{u_b+4m+e}$.
+These are fixed before the focal masks.
+
+Give each generator a variable $x_g=2^{u_{\tau(g)}+6m+g}$. Its first score
+is $\eta_gx_g$, positive exactly at a valid endpoint. Its second score is
+$d_gx_g$, where $d_g=1$ for the chosen parity and $d_g=2^T$ otherwise.
+Multiplication by $2^T$ moves an insertion from $b-1$ into the endpoint
+$b$ block. Give each witness $e\in Z_b$ a variable $y_e=2^{u_b+2m+e}$,
+used only as the score $-y_e$ in the second stream. There are only three
+types for a generator:
+\[
+ (\eta_g,d_g)\in\{(1,1),(-1,1),(-1,2^T)\}.
+\]
+The middle type includes early insertions of the chosen parity that are
+not valid births. Fix all types, at a cost of at most $3^j$ choices.
+Order every block by label. Second-stream generators can be reordered
+within their endpoint block because all have mark one; this preserves
+pivot marks and endpoint spans, and all retained bases are already counted.
+
+In each stream the absolute scores are distinct powers of two in occurrence
+order. Every score dominates the sum of its predecessors. The sign of the
+sum over a support therefore equals its last member's mark. For fixed
+bases and types these are $2n$ affine functions of the same $j+z$ variables.
+Every realized mark pair is a strict sign pattern. The hyperplane-region
+bound gives at most $S_{j+z}(2n)$ patterns, proving the claim. Ground-set
+size and timeline length affect coefficients, not this dimension bound.
+\end{proof}
+
+Allowing all $J,Z$ of size at most $q$ gives a family fixed before the focal
+masks with
+\begin{equation}\label{eq:joint-family}
+ |\mathfrak R|\le192^q S_q(n)^2 S_{2q}(2n).
+\end{equation}
+The preceding separate count was $4^{3q}S_q(n)^3S_{2q}(n)$; the joint
+representation reduces the leading logarithmic entropy coefficient from
+five to four, with the new type factor fully included.
+
+Choose an analysis cutoff $\rho<r<1$, and set $q=\lfloor rn/\kappa\rfloor$.
+Call $|D\cap U|\le rn$ good. On a good outcome the source generator bound
+gives $|J|\le q$. If the nominal rank $z_i\le q$, its witnesses have size
+at most $q$ too. If $z_i>q$, then $\kappa z_i>rn\ge|D\cap U|\ge\sigma_i$,
+so no residual error is needed. With $\alpha=r/\kappa$, the binomial-sum
+bounds, including $q=0$, imply
+\[
+ \log|\mathfrak R|\le A_r n/\kappa,\qquad
+ A_r=r\bigl(4\log(\kappa/r)+4+6\log2+\log3\bigr).
+\]
+Indeed $\log S_q(n)\le\alpha n\log(e/\alpha)$ and
+$\log S_{2q}(2n)\le2\alpha n\log(e/\alpha)$, with floors intact.
+
+Define $e_i$ as the residual size on listed good outcomes with $z_i\le q$,
+as $n$ on bad outcomes, and zero otherwise. Pointwise,
+$\sigma_i\le\kappa z_i+e_i$. The mask $O=D\cup C$ has independent focal
+rate $p_O=\rho+(1-\rho)t$ under the original conditioning. Put
+$\lambda=-\log p_O$. The good residual tail is bounded by
+$\min(1,|\mathfrak R|e^{-\lambda x})$: drop the good-event intersection
+before the union bound, without asserting a conditional product law.
+Its integral is at most $(A_rn/\kappa+1)/\lambda$.
+
+Independently, Chernoff's bound gives
+\[
+ \Prb(|D\cap U|>rn)\le e^{-n d(r\Vert\rho)},\qquad
+ d(r\Vert\rho)=r\log\frac r\rho+(1-r)\log\frac{1-r}{1-\rho}.
+\]
+This follows by Markov's inequality with exponential tilt
+$e^s=r(1-\rho)/(\rho(1-r))$ and moment $(1-\rho+\rho e^s)^n$.
+Combining the branches, $n\ge\kappa$, and \eqref{eq:safe} yields
+\begin{equation}\label{eq:transfer}
+ \E[z_i\mid H]\ge\frac{\gamma|Y_i|-\epsilon n_i}{\kappa},\qquad
+ \epsilon=\frac{\rho}{2\kappa}+\frac{A_r+1}{\kappa\lambda}
+                  +e^{-\kappa d(r\Vert\rho)}.
+\end{equation}
+The cutoff is only an analysis device and does not restrict the theorem
+or add an algorithmic sampling requirement.
+
+\section{Parameters and final accounting}
+Choose
+\[
+ \kappa=640,\quad t=2^{-15},\quad h=\Prb(H_e)=3/4,
+ \quad\rho=\Prb(D_e)=7/16,\quad\gamma=7/64.
+\]
+Guards and tests have rate $t$; parity is fair. Set main-branch probability
+$p_{\rm main}=1-t$. The maximum branch retains its separate fair mask.
+For rounding take $\theta=261/256$, $L=256$, $B=\theta^L$, and uniform
+$J\in\{0,\ldots,L-1\}$, with
+\[
+ u_J(x)=\theta^J B^{\lfloor\log_B(x/\theta^J)\rfloor},\quad u_J(0)=0.
+\]
+The source rule otherwise stays the same. All choices are initial and independent.
+
+Take $r=33/64$. Rational atanh-series enclosures with explicit tails give
+\[
+ A_r+1<41/2,\quad\lambda>413/500,\quad
+ \kappa d(r\Vert\rho)>11\log2,\quad B>140.
+\]
+An upper bound on the error in \eqref{eq:transfer} is therefore
+\[
+ \bar\epsilon=\frac{7}{32\kappa}+\frac{41/2}{\kappa(413/500)}+\frac1{2048}
+ =\frac{335021}{8458240}.
+\]
+
+For general filter rate $h$, the elementary source filter argument gives
+\[
+ \E_H u(Y)=(1-h)W,\quad
+ \E_H u(U)=\frac{1-h}{h}\E_H u(\operatorname{greedy}(H))
+ \le\frac{1-h}{h}W.
+\]
+Indeed, condition on preceding memberships in rounded priority: the span
+test is fixed, and the probabilities for a candidate and a greedy selected
+sample are respectively $1-h$ and $h$ times that test. At $h=3/4$ the two
+coefficients are $1/4$ and $1/3$.
+
+Put $\beta=(B-1)/B$ and
+\[
+ L_0=\bar\epsilon+t\kappa+\frac{t\kappa+\rho}{B-1},\qquad
+ s=(1-h)\left(\gamma-\frac{L_0}{h}\right).
+\]
+The source's order-uniform rank comparison and independent test thinning
+give, for large groups,
+\[
+ \E[\lambda_i\mid H]\ge\frac t\kappa\left[
+ \gamma|Y_i|-(\bar\epsilon+t\kappa)n_i
+ -(t\kappa+\rho)\sum_{j>i}n_j\right].
+\]
+The weighted higher-group sum is at most $u(U)/(B-1)$. Omitted groups
+$n_i<\kappa$ cost at most $\kappa m_*/\beta$ in comparison mass, where
+$m_*$ is the maximum rounded nonloop weight. Consequently
+\[
+ \E_R\min_\pi\mathrm{reward}_{\rm main}
+ \ge\frac{\beta t s}{\kappa}W-t\gamma m_*.
+\]
+The maximum branch guarantees $m_*/4$ in worst-order expectation, and
+$(1-p_{\rm main})/4=t/4\ge p_{\rm main}t\gamma$, cancelling the negative term.
+
+For a positive $x$, let $k=\lfloor\log_\theta x\rfloor$. Its rounded values
+over all phases are $\theta^{k-r}$ for $r=0,\ldots,L-1$, once each.
+Since $\theta^k\ge x/\theta$, the geometric sum gives
+\[
+ \E_Ju_J(x)\ge\frac{\beta}{L(\theta-1)}x=\frac\beta5x.
+\]
+Apply this to a fixed true optimal independent set to obtain the same
+factor for expected rounded optimum. Thus the final coefficient is
+\[
+ C=\frac{p_{\rm main}\beta^2 t s}{5\kappa}.
+\]
+Exact integer arithmetic gives $261^{256}>140\cdot256^{256}$, hence
+$\beta>139/140$ and
+\[
+ s>\frac\gamma4-\frac13\left(\bar\epsilon+t\kappa+
+ \frac{t\kappa+\rho}{139}\right)
+ =\frac{23047361}{3527086080}>0.
+\]
+Substitution gives $C>C_1>(21/20)2^{-34}$ as stated. Every scalar comparison
+is certified with exact rational arithmetic. Relative to the published
+\[
+C_0=\frac{9652683394380719}{637507023635152349901619200},
+\]
+the conservative certificate satisfies $C_1/C_0=4.056975824\ldots>4$.
+
+The minimum over all permutations remains inside the seed expectation at
+every stage. The source's glued-vector simulation therefore transfers this
+coefficient losslessly to one sample per label. Conditional on the entire
+seed the glued vector has the product value law; ignored samples, sacrificed
+values, and unused coins may all still inform the adversary's order.
+
+\section{Resources and evidence}
+Per label draw $2+4+15+15+1=37$ fair bits for the filter, density mask,
+guard, test, and maximum mask. Shared bits are $8+15+1=24$ for the phase,
+branch, and parity, including unused-branch randomness.
+All new scalar constants and phase multipliers are fixed rationals.
+Rank/closure tables and flat enumeration may be exponential and remain
+charged preprocessing and storage. Observation precision and integer level
+indices are unbounded in the original exact-real measurable model. Rational
+input implementations can compare exact rational powers, with costs depending
+on bit lengths and exponents. No polynomial complexity is claimed.
+
+The local exact checks cover 4,916 reverse-process quadratic resource and
+drift inequalities and 3,153 global inequalities on 170 small matroid/weight
+instances. Additional checks cover all 199 increasing Boolean events on at
+most four bits at two rates, 5,992 biased-filter instances, 560 selected-residual
+expectations, and 40 rational-rounding boundary cases. The abstract sharpness
+formula is checked by enumeration. These are finite evidence; the universal
+claim rests on the written argument and cited source dependencies.
+
+New exact checks cover 45,824 residual encodings and 331,491 affine pivot
+signs over 170 matroid/weight instances, including early invalid births and
+shifted generators. They also cover 48 binomial tails, 120 floor/binomial-sum
+cases, and 24 new-phase boundaries. An explicit negative control rejects
+omitting the score multiplier. These finite checks do not establish the
+uniform joint-counting lemma.
+
+The same-agent audit rechecked the query martingale, predictable depleted
+probability, both terminal outcomes, frozen-state containment, telescope,
+integrated tail at $n=\kappa$, changed mask factors, rounding, and simulation.
+The new same-agent pass also checked shared variables, all three types, fixed
+old scores, the arrangement dimension, and the cutoff conditioning.
+Independent review and formalization remain outstanding. Repository
+preparation does not constitute independent validation, a priority
+determination, or a confirmed best-known-bound claim.
+
+\section{Related work and development history}
+OpenAI's manuscript \cite{source} derives a $2^{-293}$ coefficient in this
+model, stronger than its $2^{-310}$ headline. That derived coefficient is
+our documented baseline; the structural dependencies are identified above.
+
+Daniel (@firsttimelifer) publicly announced a $2^{-47}$ guarantee on
+October 8, 2026 \cite{announcement}. A supporting write-up was unavailable
+for comparison at the October 10 audit; we have not verified its assumptions
+or proof. We acknowledge it as an unverified announcement and do not use it
+as an established baseline.
+
+This research effort progressed through $2^{-63}$, $2^{-43}$, $2^{-36}$, and $2^{-34}$
+on October 10, 2026. The first checkpoint refined source parameters, affine
+branch mixing, and finite rounding offsets. The second introduced a
+logarithmic hazard potential and tighter residual accounting. The quadratic
+potential and integrated residual bound gave the published $2^{-36}$ version.
+The present joint count and density cutoff refine that version, preserved at
+\href{https://github.com/shea256/matroid-prophet-inequality/tree/669e97c863aa7863c93258a5a1e2c6d9165b2d2b}{commit 669e97c}.
+The \href{https://github.com/shea256/matroid-prophet-inequality/tree/master/archive}{dated archive}
+preserves the intermediate proofs, certificates, and review status.
+These are stages of one research effort, not separate discoveries of the
+original constant-guarantee theorem.
+
+\begin{thebibliography}{9}
+\bibitem{source} OpenAI, \emph{One Sample Suffices for Matroid Prophet
+Inequalities against an Almighty Adversary}, September 23, 2026.
+\href{https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/CONTENTS.md}{Pinned manuscript index}.
+\bibitem{announcement} Daniel (@firsttimelifer),
+\href{https://x.com/firsttimelifer/status/2108282829809541468}{Public announcement},
+October 8, 2026. Unverified; supporting proof unavailable at the audit date.
+\end{thebibliography}
+\end{document}

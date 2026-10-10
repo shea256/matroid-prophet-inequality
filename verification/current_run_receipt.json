@@ -4,63 +4,94 @@
   "full_suite": true,
   "checks": [
     {
-      "script": "verification/certify_joint_residual.py",
-      "reference": "verification/reference/joint_residual_constants_output.json",
-      "seconds": 0.028,
-      "script_sha256": "6b25c009dca0d5972aa2b56180ad4310ebbb6243ca3911754845f815e4868288",
-      "result": "PASS; fresh JSON equals reference"
-    },
-    {
-      "script": "verification/check_joint_residual.py",
-      "reference": "verification/reference/joint_residual_checks_output.json",
-      "seconds": 5.636,
-      "script_sha256": "06cc790a29656d89a0615bca699cd4400e12aa53e04e815f6816a74592059785",
-      "result": "PASS; fresh JSON equals reference"
-    },
-    {
-      "script": "verification/certify_quadratic_constants.py",
-      "reference": "verification/reference/quadratic_constants_output.json",
-      "seconds": 0.021,
-      "script_sha256": "3c1c7f1264aa86e846611e511083cef9b7ec32895476d8deeb037a61ff335770",
-      "result": "PASS; fresh JSON equals reference"
-    },
-    {
       "script": "verification/check_quadratic_hazard.py",
       "reference": "verification/reference/quadratic_hazard_output.json",
-      "seconds": 0.597,
+      "seconds": 0.618,
       "script_sha256": "ddffd7545a005d312e2c2e873dedd40a88dfb8fe043e03a9381d4b16f5e247b2",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_quadratic_ingredients.py",
       "reference": "verification/reference/quadratic_ingredients_output.json",
-      "seconds": 2.365,
+      "seconds": 2.43,
       "script_sha256": "4e5a479e3c2e9c8b98635bc79b7238e491efbac5c35898f87df056029cc38425",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "verification/check_joint_residual.py",
+      "reference": "verification/reference/joint_residual_checks_output.json",
+      "seconds": 5.64,
+      "script_sha256": "06cc790a29656d89a0615bca699cd4400e12aa53e04e815f6816a74592059785",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "archive/2026-10-10/verification/certify_constants.py",
+      "reference": "archive/2026-10-10/verification/constants_output.json",
+      "seconds": 0.019,
+      "script_sha256": "74e5952aff84b66d7371c87b5bcd85cd58a83d03fe754a586146af97d079de89",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "archive/2026-10-10/verification/certify_hazard_constants.py",
+      "reference": "archive/2026-10-10/verification/hazard_constants_output.json",
+      "seconds": 0.018,
+      "script_sha256": "b83dba031799830502c78e41e558c8bfda778490f54073250a397260e4f47a7a",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "verification/certify_quadratic_constants.py",
+      "reference": "verification/reference/quadratic_constants_output.json",
+      "seconds": 0.018,
+      "script_sha256": "3c1c7f1264aa86e846611e511083cef9b7ec32895476d8deeb037a61ff335770",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "verification/certify_joint_residual.py",
+      "reference": "verification/reference/joint_residual_constants_output.json",
+      "seconds": 0.025,
+      "script_sha256": "6b25c009dca0d5972aa2b56180ad4310ebbb6243ca3911754845f815e4868288",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "verification/certify_rank_charged.py",
+      "reference": "verification/reference/rank_charged_constants_output.json",
+      "seconds": 0.026,
+      "script_sha256": "6c2e2b4b78844754f818d314ca01a9d718c52d0ffba68f286abd2f44e0afb948",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "verification/check_rank_charged.py",
+      "reference": "verification/reference/rank_charged_checks_output.json",
+      "seconds": 1.751,
+      "script_sha256": "c57bd852f747bcff6f1a64fa272b05e9c89d899ad1d82290e73e36203f89d4df",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/finite_checks.py",
       "reference": "verification/reference/finite_output.json",
-      "seconds": 3.063,
+      "seconds": 3.183,
       "script_sha256": "06a6daeb844b12486cb1578698bcbb8b6db6af6259a9ad111b2120ea1d67b0cb",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_online_rule.py",
       "reference": "verification/reference/online_output.json",
-      "seconds": 29.923,
+      "seconds": 29.685,
       "script_sha256": "03888c263e8ac614bbeb77a61f80abf9a1472088b07be9d0f6653c24fab74fff",
       "result": "PASS; fresh JSON equals reference"
     }
   ],
   "package": {
-    "local_links_checked": 117,
-    "current_result": "joint-residual-2026-10-10",
+    "local_links_checked": 150,
+    "immutable_artifacts_checked": 29,
+    "current_result": "rank-charged",
+    "generated_text_verified": true,
+    "paper_input_hashes_verified": true,
     "paper_hash_verified": true,
     "source_hash_verified": true,
     "result": "PASS (package validation, not a proof check)"
   },
-  "seconds": 41.645,
+  "seconds": 43.451,
   "scope": "Exact scalar and finite checks; not independent review or universal formalization",
   "result": "PASS"
 }

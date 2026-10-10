@@ -1,0 +1,23 @@
+{
+  "counts": {
+    "binomial_dimension_bounds": 4914,
+    "weighted_generating_bounds": 78,
+    "adaptive_weighted_tail_checks": 972,
+    "adaptive_integrated_expectations": 216,
+    "unlisted_outcomes": 910,
+    "matroid_weight_instances": 170,
+    "charged_actual_paths": 45824,
+    "positive_excess_paths": 19488,
+    "zero_excess_paths": 26336,
+    "positive_generator_paths": 2656,
+    "positive_rank_paths": 2916,
+    "omitted_charge_negative_controls": 2
+  },
+  "stress_threshold": 2,
+  "path_penalties": {
+    "generator": "1/4",
+    "witness": "1/2"
+  },
+  "arithmetic": "Exact integer/rational checks; outward rational log intervals",
+  "result": "PASS (finite checks, not a universal proof)"
+}

@@ -1,34 +1,46 @@
 # Improvement record
 
-## Recorded checkpoints — October 10, 2026
+<!-- Generated from results/registry.json. -->
 
-Current coefficient: **greater than `2^-34`**, with exact certificate
-`C_1=14995972860899/244123247301151948800000` and `37n+24` fair bits.
-The new step combines shared-variable residual encoding with a density cutoff.
-Independent review and formalization are pending.
+| Result | Guarantee | Change | Review stage |
+|---|---:|---|---|
+| [Parameter refinement](results/parameter-refinement.md) | $>2^{-63}$ | Refined source parameters, affine branch mixing, and finite rounding offsets. | Written proof; independent review pending |
+| [Logarithmic hazard potential](results/logarithmic-hazard.md) | $>2^{-43}$ | Introduced a logarithmic hazard potential and tighter residual accounting. | Written proof; independent review pending |
+| [Quadratic hazard potential](results/quadratic-hazard.md) | $>2^{-36}$ | A quadratic exit potential, integrated residual tail, and revised masks and finite phases. | Written proof; independent review pending |
+| [Joint residual encoding](results/joint-residual.md) | $>2^{-34}$ | Shared generator variables across two pivot tests and charged a density-sample cutoff. | Written proof; independent review pending |
+| [Rank-charged residual entropy](results/rank-charged.md) | $>2^{-32}$ | The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff. | Written proof; independent review pending |
 
-The result was developed through earlier internal
-checkpoints on the same date:
+The registry explicitly selects `rank-charged`. Historical records and
+certificates remain unchanged. Review status and mathematical validity are
+distinct: these records have written proofs and same-agent checks, with
+independent review and formalization pending. No priority claim is made.
 
-| Bound | Main change | Proof and certificate | Status |
-|---|---|---|---|
-| `2^-63` | Source-parameter refinement, affine branch mixture, finite rounding offsets | [Proof](archive/2026-10-10/proofs/parameter_refinement.md), [paper](archive/2026-10-10/manuscript/note.pdf), [certificate](archive/2026-10-10/verification/certify_constants.py) | Superseded; written proof and same-agent verification |
-| `2^-43` | Logarithmic hazard potential and tighter residual accounting | [Proof](archive/2026-10-10/proofs/hazard_potential.md), [addendum](archive/2026-10-10/manuscript/hazard_addendum.pdf), [certificate](archive/2026-10-10/verification/certify_hazard_constants.py) | Superseded; written proof and same-agent verification |
-| `2^-36` | Quadratic potential, integrated residual bound, revised masks and finer phases | [Published version](https://github.com/shea256/matroid-prophet-inequality/tree/669e97c863aa7863c93258a5a1e2c6d9165b2d2b), [certificate](verification/certify_quadratic_constants.py) | Published; superseded on this branch |
-| `2^-34` | Shared-variable residual encoding and density cutoff | [Current proof](manuscript.md), [paper](manuscript.pdf), [certificate](verification/certify_joint_residual.py) | Proposed refinement; written proof and same-agent verification |
+## 2026-10-10 — Parameter refinement
 
-This table records the project's derivation history, not independent priority
-claims or separate discoveries of the original theorem. No earlier
-checkpoint is needed to read the current paper; it includes the rule and
-all changed deductions. Source structural lemmas remain explicit dependencies.
+Refined source parameters, affine branch mixing, and finite rounding offsets.
 
-The [archive index](archive/README.md) records dates, review status, provenance,
-and reproduction commands. Original artifacts are preserved byte for byte,
-including historical comparisons and labels; they are not current claims.
-The `2^-63` checkpoint has an original commit. The `2^-43` files were retained
-in the research workspace and are archived here without inventing a prior
-commit or publication date. The `2^-43` addendum relies on the archived
-`2^-63` note for the unchanged construction and accounting definitions.
+[Result record](results/parameter-refinement.md) · [Certificate](archive/2026-10-10/verification/constants_output.json)
 
-Future public versions should retain stable `manuscript.md`, `manuscript.pdf`,
-and `tex/manuscript.tex` entry points. Previous versions remain in Git history.
+## 2026-10-10 — Logarithmic hazard potential
+
+Introduced a logarithmic hazard potential and tighter residual accounting.
+
+[Result record](results/logarithmic-hazard.md) · [Certificate](archive/2026-10-10/verification/hazard_constants_output.json)
+
+## 2026-10-10 — Quadratic hazard potential
+
+A quadratic exit potential, integrated residual tail, and revised masks and finite phases.
+
+[Result record](results/quadratic-hazard.md) · [Certificate](verification/reference/quadratic_constants_output.json)
+
+## 2026-10-10 — Joint residual encoding
+
+Shared generator variables across two pivot tests and charged a density-sample cutoff.
+
+[Result record](results/joint-residual.md) · [Certificate](verification/reference/joint_residual_constants_output.json) · [Preserved publication](archive/joint-residual/README.md)
+
+## 2026-10-10 — Rank-charged residual entropy
+
+The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff.
+
+[Result record](results/rank-charged.md) · [Certificate](verification/reference/rank_charged_constants_output.json)
