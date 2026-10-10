@@ -4,18 +4,20 @@
 [Exact data and hashes](guarantee-progress.json) ·
 [Renderer](../scripts/build_progress_graphic.py)
 
-The chart uses a linear scale for gains relative to the first announced
-exact certificate. Its x-axis lists successive refinements. The current
-guarantee and latest percentage improvement appear below the plot; the
-pinned OpenAI manuscript's derived bound is retained as a source note.
+The chart plots the exact guarantee coefficients on a linear scale, in
+units of `10^-10`. Each point is labeled with its simplified strict lower
+bound, from `>2^-36` through `>(51/50)*2^-31`. Its x-axis lists successive
+refinements. The expectation guarantee and current numerical coefficient
+appear below the plot; OpenAI's derived bound remains a source note.
 The common one-sample/full-seed model and pending independent-review status
 are stated on the image. See [BASELINE](../BASELINE.md) for source provenance.
 
 The renderer reads the [result registry](../results/registry.json), validates
 its certificate values, starts at `announcement_baseline`, and stops at
-`current`, excluding candidate entries. Gains are calculated with exact
-fractions before conversion for plotting. The source bound is the named
-constant `SOURCE_EXPONENT` in the renderer, tied to the source revision
+`current`, excluding candidate entries. Exact coefficient fractions are
+converted to the stated axis units before plotting; the point labels use
+the registry's simplified bounds, which are lower than the plotted values.
+The source bound is the named constant `SOURCE_EXPONENT` in the renderer, tied to the source revision
 recorded in the data receipt. Recheck that baseline if the source changes.
 
 After selecting a new result, regenerate both formats and the receipt:

@@ -2,7 +2,8 @@
 """Render the README chart from exact result metadata; --check needs only Python.
 
 Rendering requires matplotlib 3.9.4. Successive refinements are plotted as
-linear gains relative to the first announced exact certificate.
+their exact guarantee coefficients on a linear scale, with simplified bounds
+labeling each milestone.
 """
 import argparse
 from fractions import Fraction
@@ -36,7 +37,6 @@ def chart_data(root=ROOT):
     first = ids.index(registry['announcement_baseline'])
     last = ids.index(current['id'])
     rows = [r for r in entries[first:last+1] if r['status'] != 'candidate']
-    baseline = Fraction(rows[0]['coefficient'])
     return {
         'source_commit': registry['source_commit'],
         'source_coefficient': str(Fraction(1, 2**SOURCE_EXPONENT)),
@@ -47,9 +47,9 @@ def chart_data(root=ROOT):
             'results/registry.json', 'scripts/build_progress_graphic.py')},
         'rows': [dict(id=r['id'], title=r['title'], date=r['date'],
                       coefficient=r['coefficient'], exponent=r['exponent'],
-                      multiplier=r.get('multiplier', '1'),
-                      gain=str(Fraction(r['coefficient'])/baseline)) for r in rows],
-        'scales': {'refinement_panel': 'linear gain relative to announcement baseline',
+                      multiplier=r.get('multiplier', '1')) for r in rows],
+        'scales': {'refinement_panel': 'linear guarantee coefficient, in units of 10^-10',
+                   'point_labels': 'simplified strict lower bounds from the registry',
                    'refinement_x_axis': 'ordered versions, not elapsed time'},
     }
 
@@ -79,9 +79,9 @@ def render(root=ROOT):
 
     data = chart_data(root)
     rows = data['rows']
-    gains = [float(Fraction(row['gain'])) for row in rows]
+    # Plot exact coefficients in the stated axis units, not relative gains.
+    coefficients = [float(Fraction(row['coefficient'])*10**10) for row in rows]
     current = Fraction(rows[-1]['coefficient'])
-    previous_gain = float(current/Fraction(rows[-2]['coefficient'])-1)*100
     bg, ink, muted = '#fcfcfa', '#171918', '#656b68'
     blue, green, grid = '#287fc3', '#16a57b', '#dde1dc'
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 12,
@@ -106,32 +106,32 @@ def render(root=ROOT):
         ax.spines[side].set_color('#b9bfba')
     ax.tick_params(colors=muted, length=0, pad=9)
 
-    ax.set_title('Progress since the first announcement', loc='left', fontsize=17, pad=22, color=ink)
+    ax.set_title('Guarantees since the first announcement', loc='left', fontsize=17, pad=22, color=ink)
     x = list(range(len(rows)))
-    ax.step(x[:-1], gains[:-1], where='post', color=blue, linewidth=3)
-    ax.step(x[-2:]+[x[-1]+.3], gains[-2:]+[gains[-1]], where='post', color=green, linewidth=3)
-    ax.scatter(x[:-1], gains[:-1], s=105, color=blue, edgecolor=bg, linewidth=3, zorder=4)
-    ax.scatter(x[-1], gains[-1], s=135, color=green, edgecolor=bg, linewidth=3, zorder=4)
+    ax.step(x[:-1], coefficients[:-1], where='post', color=blue, linewidth=3)
+    ax.step(x[-2:]+[x[-1]+.3], coefficients[-2:]+[coefficients[-1]], where='post', color=green, linewidth=3)
+    ax.scatter(x[:-1], coefficients[:-1], s=105, color=blue, edgecolor=bg, linewidth=3, zorder=4)
+    ax.scatter(x[-1], coefficients[-1], s=135, color=green, edgecolor=bg, linewidth=3, zorder=4)
     ax.set_xlim(-.25, len(rows)-.45)
-    ax.set_ylim(0, max(gains)*1.22)
-    ax.set_ylabel('Gain over initial certificate (×) · linear scale', color=muted, labelpad=12)
+    ax.set_ylim(0, max(coefficients)*1.22)
+    ax.set_ylabel(r'Guaranteed fraction of expected OPT ($\times 10^{-10}$)', color=muted, labelpad=12)
     labels = [SHORT_TITLES.get(r['id'], textwrap.fill(r['title'], 15)) for r in rows]
     ax.set_xticks(x, labels, fontsize=13)
-    for i, value in enumerate(gains):
-        label = '1×' if i == 0 else f'{value:.2f}×'
+    for i, value in enumerate(coefficients):
+        label = threshold(rows[i])
         ax.annotate(label, (i, value), xytext=(0, 13), textcoords='offset points',
                        ha='center', fontsize=16,
                        weight='bold' if i == len(rows)-1 else 'normal',
                        color=green if i == len(rows)-1 else ink)
 
-    fig.text(.095, .184, 'Current guarantee: '+threshold(rows[-1]),
-             fontsize=15, color=ink)
-    fig.text(.48, .184, f'Latest refinement: +{previous_gain:.2f}% over the preceding certificate',
-             fontsize=13.5, color=green)
+    fig.text(.095, .184, r'$\mathbb{E}[\mathrm{reward}]\geq C\,\mathbb{E}[\mathrm{OPT}]$',
+             fontsize=17, color=ink)
+    fig.text(.54, .184, rf'Current coefficient: $C\approx {float(current)*10**10:.6f}\times10^{{-10}}$',
+             fontsize=15, color=green)
     dates = {r['date'] for r in rows}
     date_note = ('All project milestones shown: '+rows[-1]['date']+'.') if len(dates) == 1 else 'Milestones shown in registry order.'
     fig.text(.055, .122, 'Refinement sequence, not elapsed time. '+date_note+
-             ' Gains use exact coefficients.', fontsize=10.8, color=muted)
+             ' Points use exact coefficients; labels give simplified bounds.', fontsize=10.2, color=muted)
     fig.text(.055, .086,
              'OpenAI baseline: derived '+r'$2^{-293}$'+', stronger than its '+r'$2^{-310}$'+
              ' headline. Written proofs with same-agent checks; independent review pending.',

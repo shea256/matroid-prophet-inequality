@@ -7,7 +7,7 @@
     "repository": "https://github.com/shea256/matroid-prophet-inequality",
     "input_hashes": {
       "results/registry.json": "98a3e0de5bb4705969ffd4ec6e1011eae61a69c7805e57eac3c11f63f10a5466",
-      "scripts/build_progress_graphic.py": "38252434927051f01b57a4aaad375847dae54f24d68d99081481d9e9e2b3a0c5"
+      "scripts/build_progress_graphic.py": "f166e6596bce401d323c1fb158ed359f9205647bb349a3a4716d2fda22a0d91e"
     },
     "rows": [
       {
@@ -16,8 +16,7 @@
         "date": "2026-10-10",
         "coefficient": "9652683394380719/637507023635152349901619200",
         "exponent": 36,
-        "multiplier": "1",
-        "gain": "1"
+        "multiplier": "1"
       },
       {
         "id": "joint-residual",
@@ -25,8 +24,7 @@
         "date": "2026-10-10",
         "coefficient": "14995972860899/244123247301151948800000",
         "exponent": 34,
-        "multiplier": "1",
-        "gain": "744826268892592355328/183591497981280648875"
+        "multiplier": "1"
       },
       {
         "id": "rank-charged",
@@ -34,8 +32,7 @@
         "date": "2026-10-10",
         "coefficient": "773895463001/3203794364409053184000",
         "exponent": 32,
-        "multiplier": "1",
-        "gain": "1454966783341350617088/91200768695791011565"
+        "multiplier": "1"
       },
       {
         "id": "retained-bases",
@@ -43,8 +40,7 @@
         "date": "2026-10-10",
         "coefficient": "548933908320757/1325382348737372749824000",
         "exponent": 32,
-        "multiplier": "7/4",
-        "gain": "3809036115561862607616/139251314062052907715"
+        "multiplier": "7/4"
       },
       {
         "id": "activation-split",
@@ -52,18 +48,18 @@
         "date": "2026-10-10",
         "coefficient": "8003458533570087953/16807475946150704657203200000",
         "exponent": 31,
-        "multiplier": "51/50",
-        "gain": "839207062446602103000365056/26684373882035445913038625"
+        "multiplier": "51/50"
       }
     ],
     "scales": {
-      "refinement_panel": "linear gain relative to announcement baseline",
+      "refinement_panel": "linear guarantee coefficient, in units of 10^-10",
+      "point_labels": "simplified strict lower bounds from the registry",
       "refinement_x_axis": "ordered versions, not elapsed time"
     }
   },
   "matplotlib": "3.9.4",
   "artifacts": {
-    "png": "07af3feb5273dea1ad46cf296f65b20d8dfb0c8abeff0bdf30e8b724da8d99d5",
-    "svg": "a14928f37e47a739137601d70275110b29fbe594aff0a1c740500acc83e05d98"
+    "png": "38068db3a8124d686060c070fbf5c77ecf9778c06590f43c3392644fe724683a",
+    "svg": "9dc2225eb5c6acf5569f3b8b9c69df51e35515dc6ca8dc219a1f693eca339454"
   }
 }

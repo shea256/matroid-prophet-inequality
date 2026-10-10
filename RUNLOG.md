@@ -451,3 +451,18 @@ The graphic data/hash check, generated-paper check, package validation,
 all 13 workflow tests, and `git diff --check` passed. Mathematical
 coefficients and verification programs are unchanged; the previously passed
 13-program suite was not repeated for this layout-only revision.
+
+## Plot guarantees directly — October 10, 2026
+
+At the user's request, changed the chart's ordinate from relative gains to
+actual guarantee coefficients, using a linear axis in units of `10^-10`.
+Points plot the exact fractions from the registry; annotations show the
+simplified strict lower bounds for each milestone. Replaced the percentage
+gain callout with the current coefficient and expectation inequality.
+Updated the PNG/SVG/data, renderer, README alt text, and asset documentation,
+then inspected the final rendering.
+
+Graphic data/hash checks, generated-paper checks, package validation,
+all 13 workflow tests, and whitespace checks passed. Existing certificate
+validation checks every displayed simplified bound against its exact
+coefficient. No theorem, coefficient, or mathematical verifier changed.
