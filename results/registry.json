@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "current": "activation-split",
+  "current": "support-refinement",
   "paper_title": "Sharper One-Sample Matroid Prophet Inequalities",
   "authors": [
     "Ryan Shea"
@@ -159,7 +159,7 @@
       "title": "Activation generators and joint mask membership",
       "exponent": 31,
       "multiplier": "51/50",
-      "status": "proposed",
+      "status": "historical",
       "coefficient": "8003458533570087953/16807475946150704657203200000",
       "certificate": "verification/reference/activation_constants_output.json",
       "coefficient_field": "certified_coefficient_lower_bound",
@@ -178,6 +178,34 @@
       ],
       "date": "2026-10-10",
       "record": "results/activation-split.md",
+      "independent_review_completed": false,
+      "formalization_completed": false,
+      "archive": "archive/activation-split"
+    },
+    {
+      "id": "support-refinement",
+      "title": "Three-state generator encoding and restricted overlap",
+      "exponent": 31,
+      "multiplier": "35/32",
+      "status": "proposed",
+      "coefficient": "4084754449786906742230661/8009094702029267287249256448000000",
+      "certificate": "verification/reference/support_constants_output.json",
+      "coefficient_field": "certified_coefficient_lower_bound",
+      "guarantee_field": "simplified_guarantee",
+      "change": "Three-state generator encoding and restricted overlap charges improve the guaranteed fraction by 7.10% over the preceding coefficient.",
+      "proof": "results/support-refinement.md",
+      "checks": [
+        {
+          "script": "verification/certify_support_refinement.py",
+          "reference": "verification/reference/support_constants_output.json"
+        },
+        {
+          "script": "verification/check_support_refinement.py",
+          "reference": "verification/reference/support_checks_output.json"
+        }
+      ],
+      "date": "2026-10-11",
+      "record": "results/support-refinement.md",
       "independent_review_completed": false,
       "formalization_completed": false
     }

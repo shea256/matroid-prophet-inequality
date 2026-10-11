@@ -29,8 +29,11 @@ retention, projects witnesses and tested labels onto the comparison optimum,
 and pays the fixed tail error with the maximum branch. It now conditions
 safety on activation membership, fixes activation-generator scores, and
 uses joint mask membership with the necessary overlap correction. The
-resulting coefficient is about 14.97% larger than the preceding exact
-retained-basis certificate and crosses `2^-31`.
+activation-split coefficient crossed `2^-31`. The current refinement merges
+the two parity descriptions for generators omitted from the second retained
+basis and charges overlap only to states that can be residual. It increases
+the preceding exact activation-split coefficient by about 7.10%, to more than
+`(35/32)*2^-31`, while preserving the source model.
 
 Greedy contraction, exponential weighting, union bounds, binomial estimates,
 and finite-offset rounding are established methods. The claimed contribution

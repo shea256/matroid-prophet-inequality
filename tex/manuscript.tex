@@ -12,21 +12,21 @@
 \hypersetup{pdftitle={Sharper One-Sample Matroid Prophet Inequalities},pdfauthor={Ryan Shea}}
 \title{Sharper One-Sample Matroid Prophet Inequalities}
 \author{Ryan Shea}
-\date{2026-10-10}
+\date{2026-10-11}
 \begin{document}
 \maketitle
 \textbf{Written proof with same-agent verification; independent mathematical review and formalization pending.}
 
-Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above \(2^{-31}\). The paper states the construction and source interfaces, proves the shared lemmas, and derives the selected coefficient below.
+Three-state generator encoding and restricted overlap charges improve the guaranteed fraction by 7.10\% over the preceding coefficient. The paper states the construction and source interfaces, proves the shared lemmas, and derives the selected coefficient below.
 
 \section{Current theorem and dependencies}\label{current-theorem-and-dependencies}
 
-For every known finite labeled matroid \(M\) on \(n\) elements, there is a measurable, distribution-independent online rule using one independent sample per label and \(40n+26\) initial independent fair bits. All sample/value coordinates are mutually independent and nonnegative, with matching laws at each label, and the seed is independent. Assume only that \(\mathbb E[\operatorname{OPT}_M(V)]<\infty\). For every measurable arrival permutation depending on all samples, all values, and the entire seed, the accepted set is independent after every prefix and
+For every known finite labeled matroid \(M\) on \(n\) elements, there is a measurable, distribution-independent online rule using one independent sample per label and \(47n+27\) initial independent fair bits. All sample/value coordinates are mutually independent and nonnegative, with matching laws at each label, and the seed is independent. Assume only that \(\mathbb E[\operatorname{OPT}_M(V)]<\infty\). For every measurable arrival permutation depending on all samples, all values, and the entire seed, the accepted set is independent after every prefix and
 
 \[\mathbb E[\mathrm{reward}]\ge C_\star\mathbb E[\operatorname{OPT}_M(V)],\qquad
-C_\star=\frac{8003458533570087953}{16807475946150704657203200000}>\frac{51}{50}\, 2^{-31}.\]
+C_\star=\frac{4084754449786906742230661}{8009094702029267287249256448000000}>\frac{35}{32}\, 2^{-31}.\]
 
-The exact certificate is approximately \textbf{1.14973 times} the preceding \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/results/retained-bases.md}{\texttt{(7/4)*2\^{}-32} certificate} (\textbf{14.97\% higher}). This compares guaranteed fractions, not measured performance.
+The exact certificate is approximately \textbf{1.07104 times} the preceding \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/results/activation-split.md}{\texttt{(51/50)*2\^{}-31} certificate} (\textbf{7.10\% higher}). This compares guaranteed fractions, not measured performance.
 
 We retain the density paths, generators, hybrid safety comparison, marked-pivot machinery, rank accounting, and lossless simulation from \href{https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/One-Sample-Suffices-for-Matroid-Prophet-Inequalities-against-an-Almighty-Adversary-September-23-2026/final.pdf}{OpenAI's pinned manuscript}. Their interfaces are specified below. Computation and storage may be exponential, with exact observations; no polynomial-time claim is made.
 
@@ -226,9 +226,9 @@ The rule uses a known finite labeled matroid, independent nonnegative values and
 
 The source density, generator, path, feasibility, hybrid safety, thinning, order-uniform rank, and simulation lemmas remain explicit dependencies. The quadratic and joint pivot proofs above are this project's written refinements. Exact certificates prove their scalar assertions, and finite checks test their specified cases. Independent mathematical review and formalization of these refinements remain pending.
 
-\section{Activation generators and joint mask membership}\label{activation-generators-and-joint-mask-membership}
+\section{Three-state generator encoding and restricted overlap}\label{three-state-generator-encoding-and-restricted-overlap}
 
-The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/paper/framework.md}{shared framework} supplies the rule, quadratic exit bound, linked streams, and final payoff calculation. We retain the preceding reconstruction and projection lemmas, recalled here in full, then improve three linked estimates: safety conditional on activation membership, the fixed scores of activation generators, and the joint mask-membership probability. The comparison optimum and new classifications are analysis objects; the online rule uses neither.
+The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/paper/framework.md}{shared framework} supplies the rule, quadratic exit bound, linked streams, and final payoff calculation. We recall the retained-basis, projection, and activation lemmas, then sharpen the count by merging two insertion types for generators omitted from the second basis. Residual support restrictions also reduce the overlap charge. These are analysis objects; the algorithm does not receive the comparison optimum or its witnesses. The resulting coefficient is 7.10\% above the preceding \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/results/activation-split.md}{activation-split certificate}, with the same one-sample and full-seed adversary assumptions.
 
 \subsection{Retained insertions determine the old basis}\label{retained-insertions-determine-the-old-basis}
 
@@ -303,127 +303,169 @@ In both marked streams, \(J_0\) has a fixed insertion position and fixed scores.
 
 All active generators are retained in the first stream. Old-basis reconstruction therefore fixes that retained basis for the specified sets. In the second stream all witnesses are retained, and an arbitrary subset of the \(j_1\) active generators can be retained. There are at most \(2^{j_1}\) second bases. It would be invalid to force every active generator there.
 
-Because every active time is at least \(a+2\), the shared affine representation has only two active-generator types: \((1,1)\) for a valid-parity insertion and \((-1,2^T)\) for the preceding-parity insertion shifted to its endpoint. The earlier third type was an activation occurrence, now a fixed constant. All fixed coefficients depend only on the enumerated role sets and the outside conditioning. There are \(j_1+z\) common variables, with \(z=|Z|\), and at most \(2y\) affine forms on the tested labels \(Y\cap U\). For each fixed role assignment the number of residuals is at most
+Because every active time is at least \(a+2\), the shared affine representation has only two active-generator types: \((1,1)\) for a valid-parity insertion and \((-1,2^T)\) for the preceding-parity insertion shifted to its endpoint. The earlier third type was an activation occurrence, now a fixed constant. All fixed coefficients depend only on the enumerated role sets and the outside conditioning. There are \(j_1+z\) common variables, with \(z=|Z|\), and at most \(2y\) affine forms on the tested labels \(Y\cap U\). Before the further compression below, this gives the preceding bound
 
 \[4^{j_1}S_{j_1+z}(2y),\qquad
 S_d(m)=\sum_{i=0}^{\min(d,m)}\binom mi.\]
 
 This counts all actual streams before exposing the focal bits. It includes zero sizes, loops in old lists, repeated old occurrences, and dimensions exceeding \(2y\). The old reconstruction and affine proofs apply with the fixed activation occurrences added to their old lists.
 
-\subsection{Use the joint mask-membership event}\label{use-the-joint-mask-membership-event}
+\subsection{Three states suffice for each active generator}\label{three-states-suffice-for-each-active-generator}
 
-Let \(O=D\cup C\), \(p=\rho+(1-\rho)t\), and \(\lambda=-\log p\). For each fixed role assignment and fixed candidate residual \(R\subseteq Y\setminus Z\), put \(J=J_0\cup J_1\). Across labels the focal mask pairs are independent, so the exact joint probability is
+Fix the disjoint label sets \(J_0,J_1,Z\). Freeze \(J_0\) into the old lists as above, and partition \(J_1\) into three states: \(J_+\) consists of generators retained in the second basis with valid parity; \(J_-\) consists of those retained there with the other parity; and \(J_o\) consists of those omitted from the second basis. Their first-stream occurrences are all retained.
 
-\[\Pr(J\subseteq D,\ Z\cap O=\varnothing,\ R\subseteq O)
-=\rho^{|J|}(1-p)^{|Z|}p^{|R\setminus J|}
-\le\rho^{|J|}p^{-|J\cap Y|}(1-p)^{|Z|}p^{|R|}.\]
+For \(g\in J_+\cup J_-\), keep the positive score variable \(x_g\) from the shared encoding. Write \(q=8(N+1)\) for its fixed block-spacing exponent, where \(N\) is the entire ground-set size. For \(g\in J_o\), replace \(x_g\) by the signed variable \(s_g=\eta_gx_g\), its actual first score. The scores in the retained bases have the following form:
 
-The correction \(p^{-|J\cap Y|}\) is essential: a generator can also be in the residual, so multiplying independent-looking generator and residual probabilities would undercount. Witnesses are disjoint from both the generators and the residual; invalid assignments can be omitted.
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+State & First score & Second score & Residual status on \(Y\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(J_+\) & \(x_g\) & \(x_g\) & Present \\
+\(J_-\) & \(-x_g\) & \(2^q x_g\) & Absent \\
+\(J_o\) & \(s_g\), either sign & No term & May be present \\
+\end{longtable}
+}
 
-Choose \(\mu>1/4\), \(\nu>0\), and positive tilts \(u,w,v<1\) satisfying
+An omitted generator has no occurrence in the second retained basis, and hence no term in any of its support sums. Its unused second score and parity need not be recorded separately: the signed first variable already represents every actual first score. Witnesses retain their negative score variables.
 
-\[\rho\left(p^{\mu-1/4}+\frac{4p^\mu}{v}\right)\le u,
+For a fixed assignment of these three states, the retained active subset in the second stream is \(J_+\cup J_-\). The first retained old basis is the contraction complement of \(J_1\), and the second is the contraction complement of \(J_+\cup J_-\cup Z\), with fixed activation occurrences in both old lists. Their supports and old scores are therefore fixed. Both pivot tests are affine functions of the same \(j_1+z\) variables: positive \(x_g\) for retained active generators, signed \(s_g\) for omitted ones, and witness variables.
+
+Every actual stream supplies an assignment representing its support sums. Their signs equal their last occurrences' marks because the actual absolute scores are distinct powers with each exceeding the sum of preceding scores. Allowing arbitrary real signed variables can only enlarge the family. For each state assignment the \(2y\) tested affine forms have at most \(S_{j_1+z}(2y)\) strict sign patterns. Thus the fixed-role family has size at most
+
+\[3^{j_1}S_{j_1+z}(2y).\]
+
+There is no extra factor for the second retained basis: the three states already determine it. The bound covers zero sizes, repeated old occurrences, old loops, and dimensions exceeding \(2y\) by the same reconstruction and arrangement arguments.
+
+For a generator retained in both streams, its own occurrence is its pivot in each. This proves the \(J_+\) and \(J_-\) residual statuses in the table. Activation generators have negative first pivots, and witnesses have negative second pivots. Consequently
+
+\[R\cap J\subseteq Y\cap(J_+\cup J_o),\qquad
+R\cap(J_0\cup J_-\cup Z)=\varnothing.\]
+
+An omitted generator can still be residual. For an explicit example, use binary vectors \((a,g,a+g,a+g)\) on labels \(0,1,2,3\), weights \((1,2,2,2)\), threshold \(2\), \(H=\varnothing\), \(D=\{0,1,3\}\), \(C=\{0\}\), and empty lower test mask. Here \(a,g\) are independent binary vectors. The higher group has active generator \(1\) at auxiliary time \(-1\) and projected witness \(2\) for odd parity. In the second stream, witness \(2\) followed by old label \(0\) spans generator \(1\), so its occurrence is omitted but its last support pivot is positive. Label \(1\) is residual. The finite verifier checks this actual density path, so the overlap charge on \(J_o\) cannot simply be removed.
+
+\subsection{Joint mask law and restricted overlap}\label{joint-mask-law-and-restricted-overlap}
+
+Put \(O=D\cup C\), \(p=\rho+(1-\rho)t\), and \(\lambda=-\log p\). Fix disjoint label sets \(J_0,J_+,J_-,J_o,Z\), with \(Z\subseteq Y\cap U\), and put \(J=J_0\cup J_+\cup J_-\cup J_o\). Restrict the fixed family of residuals to those obeying the support exclusions above; every actual residual is still included. For each fixed candidate \(R\subseteq(Y\cap U)\setminus Z\), the independent focal mask pairs give
+
+\[\begin{aligned}
+&\Pr(J\subseteq D,\ Z\cap O=\varnothing,\ R\subseteq O)\\
+&\quad=\rho^{|J|}(1-p)^z p^{|R\setminus J|}\\
+&\quad\le\rho^{|J|}(1-p)^z p^{|R|-|(J_+\cup J_o)\cap Y|}.
+\end{aligned}\]
+
+The potentially overlapping states retain their full correction \(1/p\). This is a fixed-family calculation before focal bits are exposed; it asserts no independence for the eventual adaptively selected sets.
+
+Choose \(\mu>1/4\), \(\nu>0\), and \(0<u,w,v<1\) satisfying
+
+\[\rho\left(p^{\mu-1/4}+\frac{3p^\mu}{v}\right)\le u,
 \qquad \frac{(1-p)p^\nu}{v}\le w.\]
 
-On listed outcomes let \(e=(|R|-(\mu-1/4)j_0-\mu j_1-\nu z)_+\); otherwise let \(e=0\). Use the residual count, the joint probability bound, and \(v^d S_d(2y)\le(1+v)^{2y}\) in a union bound for \(e>x\), with \(x\ge0\). For labels outside \(Y\), the disjoint roles are none, activation generator, and active generator. For labels in \(Y\), there is also the witness role, and generator roles pay the factor \(1/p\). Their generating products give
+Write the generating weights as
 
-\[\Pr(e>x)\le \min\{1,Mp^x\},\qquad
-M\le(1+u)^{n-y}(1+u/p+w)^y(1+v)^{2y}.\]
+\[\alpha_0=\rho p^{\mu-1/4},\qquad
+\alpha_1=\rho p^\mu/v,\qquad \omega=(1-p)p^\nu/v.\]
 
-To see the generating weights explicitly, an activation generator has weight \(\rho p^{\mu-1/4}\), an active generator \(4\rho p^\mu/v\), and a witness \((1-p)p^\nu/v\). The first two sum to at most \(u\), and the last is at most \(w\). Enumerating these disjoint choices per label proves the displayed tail bound. The actual selected sets may depend on the whole mask; only each fixed choice uses the joint probability formula. No conditional independence of the selected residual is assumed.
-
-Writing
-
-\[A=\log(1+u),\qquad
-B_Y=\log\frac{1+u/p+w}{1+u}+2\log(1+v),\]
-
-integration gives \(\mathbb E e\le(nA+yB_Y+1)/\lambda\). The additive constant remains and will be paid by the maximum branch. For any \(0<d\le\lambda\), use \(p\ge\rho\) and \(\log(1+x)\le x\) to obtain the convenient rational bounds
-
-\[\mathbb Ee\le\frac{n u+y b_Y+1}{d},\qquad
-b_Y=\frac{u(1/\rho-1)+w}{1+u}+2v.\]
-
-\subsection{Cancel activation loss before averaging the generator budget}\label{cancel-activation-loss-before-averaging-the-generator-budget}
-
-The projected residual comparison is still \(\sigma\le\kappa z+|R|\). By the definition of \(e\), pointwise
-
-\[\sigma+j_0/4
-\le(\kappa+\nu)z+\mu(j_0+j_1)+e.\]
-
-Take expectations and combine the safety bound, the integrated tail, and the generator budget. The \(\mathbb E j_0/4\) terms cancel. The full nominal rank is at least the projected witness rank, so it satisfies the existing rank interface with
+On listed outcomes let \(e=(|R|-(\mu-1/4)j_0-\mu j_1-\nu z)_+\); otherwise set \(e=0\). For \(x\ge0\), apply the preceding joint probability bound to each fixed member with positive excess above \(x\). The arrangement bound and \(v^dS_d(2y)\le(1+v)^{2y}\) assign one factor \(1/v\) to each active generator and witness. The disjoint label roles have total weight \(1+\alpha_0+3\alpha_1\) outside \(Y\) and \(1+\alpha_0+\alpha_1+2\alpha_1/p+\omega\) inside \(Y\). Thus a union bound gives
 
 \[\begin{gathered}
-K=\kappa+\nu,\qquad
-\bar\gamma=\rho/4-b_Y/d,\qquad
-\epsilon=\mu\rho/\kappa+u/d,\qquad a_0=1/d,\\
-\mathbb E[z_{\rm full}\mid H]\ge
-\frac{\bar\gamma y-\epsilon n-a_0}{K}.
+\Pr(e>x)\le\min\{1,Mp^x\},\\
+M\le(1+\alpha_0+3\alpha_1)^{n-y}
+(1+\alpha_0+\alpha_1+2\alpha_1/p+\omega)^y(1+v)^{2y}.
 \end{gathered}\]
 
-The old explicit \(\rho/(2\kappa)\) error has disappeared because the activation penalty is smaller by \(1/4\), not because activation births are assumed safe. All projected witnesses still avoid focal test bits.
+The tilts imply \(\alpha_0+3\alpha_1\le u\), \(\alpha_1\le u/3\), and \(\omega\le w\). Hence we may take the deterministic upper bound
 
-The preceding full payoff calculation applies unchanged after substituting the new rank interface. In particular retain both later-cost factors and define
+\[M_*= (1+u)^{n-y}
+\left(1+u+\frac23u(1/p-1)+w\right)^y(1+v)^{2y}\ge1.\]
+
+Integrating \(\min\{1,M_*p^x\}\) gives \(\mathbb E e\le(\log M_*+1)/\lambda\). For any \(0<d\le\lambda\), the inequalities \(p\ge\rho\) and \(\log(1+x)\le x\) imply the rational interface
+
+\[\mathbb E e\le\frac{n u+y b_Y+1}{d},\qquad
+b_Y=\frac{\frac23u(1/\rho-1)+w}{1+u}+2v.\]
+
+The previous coefficient \(1\) on \(u(1/\rho-1)\) has become \(2/3\), and the active-generator tilt uses \(3\) instead of \(4\). The additive term remains.
+
+\subsection{Carry the refinement through the final guarantee}\label{carry-the-refinement-through-the-final-guarantee}
+
+The residual comparison and definition of \(e\) give, pointwise,
+
+\[\sigma+j_0/4\le(\kappa+\nu)z+\mu(j_0+j_1)+e.\]
+
+Take expectations, cancel the activation quarter charge against the conditional safety estimate, and use the generator budget. The full nominal rank is at least the projected rank, giving
+
+\[\begin{gathered}
+\mathbb E[z_{\rm full}\mid H]\ge
+\frac{\bar\gamma y-\epsilon n-a_0}{K},\\
+K=\kappa+\nu,\quad\bar\gamma=\rho/4-b_Y/d,\quad
+\epsilon=\mu\rho/\kappa+u/d,\quad a_0=1/d.
+\end{gathered}\]
+
+The projected witnesses use no focal test bits. The unchanged thinning and rank-cost argument therefore applies, with both later costs retained:
 
 \[L_0=\epsilon+Kt+\frac{Kt+K\rho/\kappa}{B-1},\qquad
-s=(1-h)(\bar\gamma-L_0/h).\]
+s=(1-h)(\bar\gamma-L_0/h),\qquad\beta=(B-1)/B.\]
 
-Small groups and the additive error cost at most \(t(\bar\gamma\kappa+a_0)m_*/K\). Verify \((1-t)(\bar\gamma\kappa+a_0)/K\le1/4\), so the maximum branch cancels them. The phase average then gives
+Small groups and the additive term cost at most \(t(\bar\gamma\kappa+a_0)m_*/K\). The maximum branch pays them when \((1-t)(\bar\gamma\kappa+a_0)/K\le1/4\). The shared finite phase average gives
 
-\[C=\frac{(1-t)\beta^2 t s}{L(\theta-1)K},\qquad
-\beta=(B-1)/B.\]
+\[C=\frac{(1-t)\beta^2 t s}{L(\theta-1)K}.\]
 
-All order minima remain inside seed expectations. The same lossless sample/value simulation covers the adversary's knowledge of ignored samples, sacrificed values, and unused seed bits.
+All order minima stay inside seed expectations. The lossless sample/value simulation preserves the adversary's access to ignored samples, sacrificed values, and unused seed bits.
 
 \subsection{Exact parameters, resources, and limitations}\label{exact-parameters-resources-and-limitations}
 
-The algorithmic parameters are
+Use the algorithm parameters
 
 \[\begin{gathered}
-\kappa=176,\quad\rho=3/8,\quad h=3/4,\quad t=11/2^{17},\\
-\theta=261/256,\quad L=256,\quad B=\theta^L,\quad p_{\rm main}=1-t.
+\kappa=164,\quad\rho=93/256,\quad h=3/4,\quad t=23/2^{18},\\
+\theta=261/256,\quad L=256,\quad B=\theta^L,\quad p_{\rm main}=1-t,
 \end{gathered}\]
 
-Choose
+and analysis parameters
 
 \[\begin{gathered}
-\mu=113/8,\quad\mu_0=111/8,\quad\nu=117/8,\quad K=1525/8,\\
-u=1/1056,\quad w=1/4096,\quad v=1/648,\quad d=49/50.
+\mu=105/8,\quad\mu_0=103/8,\quad\nu=113/8,\quad K=1425/8,\\
+u=1/864,\quad w=1/4000,\quad v=1/624,\quad d=253/250.
 \end{gathered}\]
 
-The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/verification/certify_activation_split.py}{exact certificate} checks \(\lambda>d\) by outward log intervals and a separate 20-term positive atanh sum. Since \(p>(3/4)^4\), we have \(p^{-1/4}<4/3\). Set \(A_*=\rho(4+4v/3)\). The separate exact power inequalities
+The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/verification/certify_support_refinement.py}{exact certificate} proves \(\lambda>d\) with an outward log interval and a separate 20-term positive atanh sum. Since \(p>(3/4)^4\), put \(A_*=\rho(3+4v/3)\); exact rational power comparisons give
 
-\[A_*^8p^{113}<(uv)^8,\qquad
-(1-p)^8p^{117}<(wv)^8\]
+\[A_*^8p^{105}<(uv)^8,\qquad (1-p)^8p^{113}<(wv)^8.\]
 
-prove both tilt inequalities; log intervals independently cross-check these finite scalar comparisons. The same certificate verifies \(B>140\), \(L(\theta-1)=5\), positive slack, maximum-branch cancellation, and
+These prove the two tilts; separate log intervals cross-check them. The certificate also checks \(B>140\), \(L(\theta-1)=5\), maximum-branch cancellation, and the following rational bounds:
 
 \[\begin{gathered}
-\bar\gamma=\frac{23826973}{268494912},\qquad
-\epsilon=\frac{51433}{1655808},\qquad a_0=\frac{50}{49},\\
-s>\frac{9225899434547}{1681525638955008}>0.
+\bar\gamma=\frac{69959099203}{812800834560},\qquad
+\epsilon=\frac{69328715}{2294341632},\quad a_0=250/253,\\
+s>\frac{4874403782709953}{928041574520586240}>0.
 \end{gathered}\]
 
-Using \(\beta>139/140\) and \(B-1>139\) in the final coefficient yields \(C>C_4\). It also reruns the preceding certificate before comparing the improvement, and checks that \(C_4<2^{-30}\). No claim is made to cross that next threshold.
+Replacing \(\beta\) by \(139/140\) and \(B-1\) by \(139\) in the final expression gives \(C>C_5\), where
 
-The resulting conservative coefficient is
+\[C_5=\frac{4084754449786906742230661}
+{8009094702029267287249256448000000}
+>\frac{35}{32}\,2^{-31}.\]
 
-\[C_4=\frac{8003458533570087953}{16807475946150704657203200000}
->\frac{51}{50}\,2^{-31}>2^{-31}.\]
+This conservative coefficient is approximately \(5.10014502482\times10^{-10}\), or \(1.07104403012\) times the preceding exact \(C_4\): a \(7.1044\%\) increase. It remains below \(2^{-30}\). The verifier reruns the preceding certificate before the exact comparison. No global optimum or next-threshold claim is made.
 
-This is approximately \(4.76184440734\times10^{-10}\), or \(1.14973122069\) times the preceding exact \(C_3\): a \(14.97\%\) increase in the guaranteed fraction. It is approximately \(31.44938\) times the initial announced \(C_0\) certificate above \(2^{-36}\). These compare guarantees, not measured performance.
+The masks require \(2+8+18+18+1=47\) fair bits per label, and the shared phase, branch, and parity require \(8+18+1=27\) bits. This increases the initial seed from \(40N+26\) to \(47N+27\). No extra sample or optimum access is introduced. Exact observations, unbounded level indices, and potentially exponential preprocessing and storage remain allowed.
 
-The fair-bit implementation uses \(2+3+17+17+1=40\) bits per label and \(8+17+1=26\) shared bits, all drawn initially. The phase distribution is still uniform on 256 rational offsets. No additional sample, access to the comparison optimum, or bounded-precision assumption is introduced.
+The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/verification/check_support_refinement.py}{finite checker} checks compressed support signs on actual paths, conditional activation safety, restricted-overlap probabilities, generating products, and adaptive tails. It includes the omitted-but-residual generator example. Small thresholds exercise transitions that threshold \(164\) would hide on small matroids. These finite facts do not prove the universal theorem.
 
-The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/experiments/search_activation_split.py}{numerical search} executes 24 deterministic starts in the previous formula and each of three cumulative modes: conditional safety, activation splitting, and joint membership. Its selected dyadic certificate is conservative; the search is not a global optimum proof. The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/verification/check_activation_split.py}{finite checker} checks activation-fixed affine streams and conditional safety over all filter masks on the inherited small matroid/weight cases, exact joint membership laws with overlaps, disjoint-role generating products, and adaptive family selection. These finite facts do not prove the universal assertions above.
+The \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/experiments/search_support_refinement.py}{numerical search} uses 24 deterministic starts in four modes: the preceding formula, overlap exclusions, three-state compression, and a proposed removal of forced pivot tests. The fourth mode is numerical evidence only and is excluded from this proof and certificate. None of the searches proves a ceiling.
 
-See the \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/proofs/activation_split_audit.md}{same-agent audit} and \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/verification/activation_baseline_audit.json}{baseline refresh}. Independent review and formalization remain pending. No priority or confirmed strongest-known-bound claim is made.
+See the \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/proofs/support_refinement_audit.md}{same-agent audit} and \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/verification/support_baseline_audit.json}{October 11 baseline refresh}. Independent review and formalization remain pending; no priority or confirmed strongest-known-bound claim is made.
 
 \section{Sources, attribution, and comparison limits}\label{sources-attribution-and-comparison-limits}
 
 OpenAI supplies the original qualitative constant guarantee and construction in \emph{One Sample Suffices for Matroid Prophet Inequalities against an Almighty Adversary}, September 23, 2026, pinned at \href{https://github.com/openai/math/tree/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb}{revision fd4aeeb2ee4f}. Its density paths, reverse exposure, hybrid comparison, marked-pivot machinery, rank accounting, and lossless sample/value simulation are fundamental inputs. The manuscript derives \(2^{-293}\), stronger than its \(2^{-310}\) headline. The secretary consequence is in the same manuscript. Primary sources and hashes are recorded in \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/BASELINE.md}{the baseline}.
 
-This project's quadratic potential, joint affine encoding, and application of weighted residual counting refine that construction's quantitative analysis. The current version reconstructs old retained bases by contraction, uses forced retained occurrences, projects witnesses onto the comparison optimum, and pays the tail's additive constant through the maximum branch. It further conditions safety on activation membership, assigns fixed scores to activation generators, and uses the joint generator/witness/residual mask law with its generator-residual overlap correction. Greedy scanning in a contracted matroid is standard; the claimed refinement is its application and the resulting quantitative accounting here. Exponential weighting, union bounds, finite-offset rounding, and binomial estimates are established methods; no new general principle is claimed for them. Each version retains its specific evidence and source credit in the result registry and archives.
+This project's quadratic potential, joint affine encoding, and application of weighted residual counting refine that construction's quantitative analysis. The current version reconstructs old retained bases by contraction, uses forced retained occurrences, projects witnesses onto the comparison optimum, and pays the tail's additive constant through the maximum branch. It further conditions safety on activation membership, assigns fixed scores to activation generators, and uses the joint generator/witness/residual mask law with its generator-residual overlap correction. The selected refinement merges the two parity descriptions of generators omitted from the second retained basis and restricts the overlap charge to states that can actually be residual. All inherited costs remain charged. Greedy scanning in a contracted matroid is standard; the claimed refinement is its application and the resulting quantitative accounting here. Exponential weighting, union bounds, finite-offset rounding, and binomial estimates are established methods; no new general principle is claimed for them. Each version retains its specific evidence and source credit in the result registry and archives.
 
-Daniel (@firsttimelifer) \href{https://x.com/firsttimelifer/status/2108282829809541468}{announced} a \(2^{-47}\) guarantee on October 8, 2026. A supporting manuscript was not located in the October 10 audit; its assumptions and proof remain unverified. It is acknowledged as an announcement, not an established comparison baseline. The \(1/2\) prophet result in \href{https://arxiv.org/abs/2609.19118v1}{Abdi, Banihashem, Hajiaghayi, and Mittal, arXiv:2609.19118v1} assumes a fixed order independent of samples and values and therefore uses a different adversary model.
+Daniel (@firsttimelifer) \href{https://x.com/firsttimelifer/status/2108282829809541468}{announced} a \(2^{-47}\) guarantee on October 8, 2026. A supporting manuscript was not located in the October 11 audit; its assumptions and proof remain unverified. It is acknowledged as an announcement, not an established comparison baseline. The \(1/2\) prophet result in \href{https://arxiv.org/abs/2609.19118v1}{Abdi, Banihashem, Hajiaghayi, and Mittal, arXiv:2609.19118v1} assumes a fixed order independent of samples and values and therefore uses a different adversary model.
 
 This work was developed with Codex assistance. The paper's author is Ryan Shea. The written arguments and exact programs have same-agent verification; independent mathematical review and formalization of these refinements remain pending. No exhaustive priority search, confirmed best-known-bound claim, or practical performance claim is made. The repository uses Apache 2.0, with source attribution in \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/NOTICE}{NOTICE}.
 
@@ -456,6 +498,7 @@ Review stage
 \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/results/rank-charged.md}{Rank-charged residual entropy} & \(>2^{-32}\) & The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff. & Written proof; independent review pending \\
 \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/results/retained-bases.md}{Retained bases and projected residuals} & \(>\frac{7}{4}\, 2^{-32}\) & Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee. & Written proof; independent review pending \\
 \href{https://github.com/shea256/matroid-prophet-inequality/blob/master/results/activation-split.md}{Activation generators and joint mask membership} & \(>\frac{51}{50}\, 2^{-31}\) & Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above \(2^{-31}\). & Written proof; independent review pending \\
+\href{https://github.com/shea256/matroid-prophet-inequality/blob/master/results/support-refinement.md}{Three-state generator encoding and restricted overlap} & \(>\frac{35}{32}\, 2^{-31}\) & Three-state generator encoding and restricted overlap charges improve the guaranteed fraction by 7.10\% over the preceding coefficient. & Written proof; independent review pending \\
 \end{longtable}
 }
 

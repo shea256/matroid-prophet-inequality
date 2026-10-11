@@ -1,20 +1,20 @@
 {
   "pdf": "manuscript.pdf",
-  "bytes": 265228,
-  "sha256": "88210448ff7aa2351e95c1ce58827919a4953d36fdf9213ad917fe36f4e726a7",
+  "bytes": 270796,
+  "sha256": "fa67ed7c7f229d75a0c3fda8d7abdadab822820c7f6491f9c426c81d5ddac92e",
   "source": "tex/manuscript.tex",
-  "source_sha256": "e5822ca5f9cf2a5698950fc7491b2746e175ca10dad6bea76c65a83ec37fb8e5",
+  "source_sha256": "1480a6827e750ee031d9c5aead9dd34f11a0c5c71ea76cdeb0d01a6b750bf43b",
   "markdown": "manuscript.md",
-  "markdown_sha256": "a013a15c977f95fc775bfa81f743056dfcf845f22bdea19bf9165d4d6c7f850e",
+  "markdown_sha256": "8c370c7218603ef854d5235a07541e22b68c28bee7ad81505611819feb197ceb",
   "passes": 3,
   "warnings": [],
   "inputs": {
     "archive/2026-10-10/verification/constants_output.json": "004f3ab5b0cc9284b3787a29edca8faf741e1a02a16074b03fc29462760e0275",
     "archive/2026-10-10/verification/hazard_constants_output.json": "12165032ea7411c407185add80d092d53d7253f43586d3db0bc4d539ef4dd162",
-    "paper/attribution.md": "7fed231f768f3a71056869ab7fc1e09d359c9e9c58a08565f4fa0a380bb54a92",
+    "paper/attribution.md": "17d416959420a947acbb98a08e45d71ef76f64fc256ffc23311c024f525880e7",
     "paper/framework.md": "40b6dbe13ff9c51e0261398e6f3645684dbd8a5ce4a5bab2dc2794c119e983c9",
-    "results/activation-split.md": "37c9e9582941d19aebe8f64b62092ca828e05dc4cb8f97cd1993099f9567ce99",
-    "results/registry.json": "98a3e0de5bb4705969ffd4ec6e1011eae61a69c7805e57eac3c11f63f10a5466",
+    "results/registry.json": "0a84a1885cfe60c943032814a1dbae7739fbf271a491705a4eb3536a12359a17",
+    "results/support-refinement.md": "1d6e6b75ee75b8b844c5b4b5bded64137e6533fe8584d5793f5e7a798f64964d",
     "scripts/build_manuscript.py": "c990287e8806194f24f5bdf86a5d11b8b38b9193275e48566678aad97d454258",
     "scripts/result_registry.py": "fb4c68d9f125c2c7582a6fa9efdd25df6b02e12faaf2ed775bc7bb6022638f91",
     "tex/preamble.tex": "d3e096bcd2def9ad993833ab02853ca8f2fd0a8b968084e21fda5bf5b320a9cc",
@@ -22,7 +22,8 @@
     "verification/reference/joint_residual_constants_output.json": "a874a68a51249652ccfd3272f6e9c3c42b4bacfcc3aa1acdfbf4d38d5bc2c40a",
     "verification/reference/quadratic_constants_output.json": "28df0d92ce8f9a62824ad5af25a4da84ff4006e83111202858734c752af703e2",
     "verification/reference/rank_charged_constants_output.json": "ccb1b738a7f6de14d90bffba3b0b140ceb6eaf2f67671d9a01e8e7a115238516",
-    "verification/reference/retained_basis_constants_output.json": "7e94a95e88fb3f0421232e1457144dfc2014a34f877448c4e586ac11aa24ebde"
+    "verification/reference/retained_basis_constants_output.json": "7e94a95e88fb3f0421232e1457144dfc2014a34f877448c4e586ac11aa24ebde",
+    "verification/reference/support_constants_output.json": "ca3f287f0a838eb655f4ebd0445f1a1a1d6f552f35fe2e1f5ae2c3029c025dee"
   },
   "pandoc": "pandoc 3.12.1"
 }

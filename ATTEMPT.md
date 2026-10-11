@@ -133,3 +133,31 @@ checker also exercises all filter masks, omitted active generators,
 generator/residual overlap, and unlisted outcomes. These are finite tests;
 the universal proof and [same-agent audit](proofs/activation_split_audit.md)
 remain subject to independent mathematical review.
+
+## Three-state generator encoding and restricted overlap
+
+The [selected proof](results/support-refinement.md) executes two linked
+improvements and records one additional numerical candidate:
+
+1. Exclude activation and wrong-parity generators from residual overlap.
+   With the original four-state count, the best observed coefficient rises
+   from `4.78598840606e-10` to `5.00591984396e-10`.
+2. Absorb an omitted generator's parity into its signed first-stream score.
+   It appears in no second-basis support, so three states suffice. Combining
+   this compression with the valid overlap weights yields a best observed
+   `5.11856741678e-10`; the conservative exact C5 is `5.10014502482e-10`,
+   more than `(35/32)*2^-31` and 7.1044% above C4.
+3. Numerically explore removal of forced pivot tests. Its best observed
+   `5.11989869631e-10` is only about 0.026% above mode 2. This extension is
+   excluded from the selected proof and certificate.
+
+The [search](experiments/search_support_refinement.py) uses seed 11134,
+24 starts per mode, and 256 phases. Its [output](experiments/support_search_output.json)
+is numerical discovery evidence, not a global optimum or universal proof.
+
+The finite checker covers both signs of omitted-generator variables. An
+added rank-two binary example has an omitted valid-parity generator that
+remains residual, rejecting a tempting stronger exclusion. Exact scalar,
+mask-law, generating-product, and adaptive-tail checks accompany the
+[same-agent audit](proofs/support_refinement_audit.md). Independent review
+and formalization remain pending.

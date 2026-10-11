@@ -18,6 +18,9 @@ optimum, and pays the tail's additive constant through the maximum branch.
 It further conditions safety on activation membership, assigns fixed scores
 to activation generators, and uses the joint generator/witness/residual
 mask law with its generator-residual overlap correction.
+The selected refinement merges the two parity descriptions of generators
+omitted from the second retained basis and restricts the overlap charge to
+states that can actually be residual. All inherited costs remain charged.
 Greedy scanning in a contracted matroid is standard; the claimed refinement
 is its application and the resulting quantitative accounting here. Exponential weighting, union bounds, finite-offset rounding,
 and binomial estimates are established methods; no new general principle
@@ -26,7 +29,7 @@ credit in the result registry and archives.
 
 Daniel (@firsttimelifer) [announced](https://x.com/firsttimelifer/status/2108282829809541468)
 a $2^{-47}$ guarantee on October 8, 2026. A supporting manuscript was not
-located in the October 10 audit; its assumptions and proof remain unverified.
+located in the October 11 audit; its assumptions and proof remain unverified.
 It is acknowledged as an announcement, not an established comparison baseline.
 The $1/2$ prophet result in
 [Abdi, Banihashem, Hajiaghayi, and Mittal, arXiv:2609.19118v1](https://arxiv.org/abs/2609.19118v1)

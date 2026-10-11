@@ -12,7 +12,7 @@ break marks on the y-axis and the interrupted connector. Both visible
 segments use the same vertical distance per doubling.
 
 Project points are labeled with their simplified strict lower bounds,
-from `>2^-36` through `>(51/50)*2^-31`. The x-axis lists the source and
+from `>2^-36` through `>(35/32)*2^-31`. The x-axis lists the source and
 successive refinements. The expectation guarantee and current numerical
 coefficient appear below the plot.
 The common one-sample/full-seed model and pending independent-review status

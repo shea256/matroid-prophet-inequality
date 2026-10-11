@@ -1,18 +1,28 @@
 # Baseline and primary sources
 
-Audit date: October 10, 2026. Pinned OpenAI/math revision:
+Audit date: October 11, 2026. Pinned OpenAI/math revision:
 `fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb`.
 
 The source manuscript derives `2^-293`, stronger than its `2^-310` headline.
-The immediate comparison for the current refinement is the preceding
-`>(7/4)*2^-32` retained-basis certificate at
-[merged master 6d94154](https://github.com/shea256/matroid-prophet-inequality/tree/6d94154ae9961733b7604918a2d3b642d218d61e),
-following [PR #4](https://github.com/shea256/matroid-prophet-inequality/pull/4)
-and the README update in [PR #5](https://github.com/shea256/matroid-prophet-inequality/pull/5).
-Its exact coefficient is `548933908320757/1325382348737372749824000`. Both versions
-have written proofs and same-agent checks; independent review is pending.
-These are the documented comparisons. The audit does not establish an
-exhaustive strongest-current-result or priority claim.
+The immediate comparison for the selected refinement is the activation-split
+certificate `8003458533570087953/16807475946150704657203200000`, approximately
+`4.76184440734e-10`, on [merged master 4f650d6](https://github.com/shea256/matroid-prophet-inequality/tree/4f650d6d33ba4438ab32e85900aa1e13cf921f40).
+That revision includes the C4 paper from PR #6 and the README graphic from
+PR #7. The [unchanged publication](archive/activation-split/README.md) is
+preserved, and the new scalar certificate reruns its verifier before
+comparing exact coefficients. Both versions have written proofs and
+same-agent checks; independent review is pending.
+
+The October 11 [refresh receipt](verification/support_baseline_audit.json)
+records fresh hashes for nine primary artifacts: index, scope, introduction,
+setup, algorithm, safety, transfer, accounting, and secretary consequence.
+All matched the pinned files, and the upstream main revision was unchanged.
+The relevant transfer and algorithm arguments were reread for the new count.
+The two related arXiv version records remained `2609.19118v1` and
+`2609.14555v2`, with the model distinctions below. No verifiable newer
+same-model coefficient or supporting proof for the external announcement
+was located in this scoped search. This is not an exhaustive strongest-known
+result or priority claim.
 
 ## Source and theorem
 
@@ -129,3 +139,17 @@ again checked nine primary artifacts and both related arXiv versions. Their
 model distinctions remain as above; the pinned OpenAI revision was unchanged.
 No supporting proof for the external announcement was located in that scoped
 search. No exhaustive priority or best-known-bound claim is made.
+
+## Baseline for the three-state update
+
+The selected coefficient is
+`4084754449786906742230661/8009094702029267287249256448000000`, approximately
+`1.07104403012` times C4: **7.1044% higher**. It exceeds `(35/32)*2^-31`
+and remains below `2^-30`. Its finite seed uses `47n+27` fair bits, up from
+`40n+26`. The one-sample and full-seed almighty model, exact observations,
+and potentially exponential preprocessing/storage are unchanged.
+
+The written change reduces four active-generator states to three and
+restricts the overlap charge to states that can be residual. Independent
+review and formalization remain pending. The numerical search is not a
+ceiling or a proof of optimality.

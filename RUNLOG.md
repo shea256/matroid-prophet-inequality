@@ -493,3 +493,56 @@ remains in the source note. Regenerated and visually inspected the PNG/SVG,
 updated exact chart metadata and docs, and passed graphic/paper checks,
 package validation, all 13 workflow tests, and whitespace checks. No
 mathematical coefficient or theorem changed.
+
+## Three-state refinement and publication update — October 11, 2026
+
+Prepared on `shea256/three-state-refinement` from merged master
+`4f650d6d33ba4438ab32e85900aa1e13cf921f40`. Archived the announced C4
+publication before replacement with:
+
+```sh
+python3 -B scripts/archive_paper.py --result-id activation-split --commit 4f650d6d33ba4438ab32e85900aa1e13cf921f40
+```
+
+All 18 copied publication artifacts are unchanged; the total archive now
+contains 80 manifest-bound artifacts. The preceding result record and shared
+framework remain byte-for-byte equal to merged master.
+
+Integrated the three-state signed-variable argument and restricted-overlap
+law, recalling inherited reconstruction, projection, and activation lemmas
+in the selected record. Ported the new verifiers to the standalone support
+module without changing their mathematics. The scalar reference adds the
+required finite-rounding base metadata. The exact result is
+`4084754449786906742230661/8009094702029267287249256448000000`, more than
+`(35/32)*2^-31` and 7.1044% above C4, with `47n+27` initial fair bits.
+The same source/model assumptions and pending independent-review status
+are retained. The optional forced-pivot numerical mode is excluded.
+
+Regenerated the result metadata, README headline/history, complete manuscript,
+LaTeX, and PDF, plus the PNG/SVG guarantee chart. The PDF has 15 pages and
+270796 bytes; three pdfLaTeX passes produced no warnings or overfull boxes.
+Visually inspected the title, three-state table, overlap-law proof, parameter
+page, and chart. New screenshots are in the ignored `.context/` directory.
+
+Executed:
+
+```sh
+.context/chart-venv/bin/python -B scripts/build_progress_graphic.py
+python3 -B scripts/build_manuscript.py
+python3 -B scripts/run_checks.py --full --receipt verification/current_run_receipt.json
+python3 -B scripts/check_archive.py --receipt verification/support_archive_run_receipt.json
+python3 -B -m unittest discover -s scripts/tests
+python3 -B scripts/build_manuscript.py --check
+python3 -B scripts/build_progress_graphic.py --check
+python3 -B scripts/validate_repository.py
+git diff --check
+```
+
+All 17 full-suite programs passed with fresh JSON equal to references
+in 114.339 seconds on Python 3.9.25/Linux. This includes the new
+70,297 path pairs, 504,552 compressed support signs, 4,760 mask-law checks,
+adaptive tails, and the omitted-but-residual counterexample, plus retained
+exhaustive regressions. All 13 workflow tests passed. The separate archive
+run passed its three programs and all 80 hashes in 1.267 seconds.
+Paper, graphic, package, and whitespace checks passed. Receipts record actual
+program hashes and outputs; these are not independent mathematical review.

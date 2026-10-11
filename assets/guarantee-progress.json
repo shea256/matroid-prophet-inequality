@@ -3,11 +3,11 @@
     "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
     "source_coefficient": "1/15914343565113172548972231940698266883214596825515126958094847260581103904401068017057792",
     "source_description": "OpenAI manuscript derived bound; headline is 2^-310",
-    "current": "activation-split",
+    "current": "support-refinement",
     "repository": "https://github.com/shea256/matroid-prophet-inequality",
     "input_hashes": {
-      "results/registry.json": "98a3e0de5bb4705969ffd4ec6e1011eae61a69c7805e57eac3c11f63f10a5466",
-      "scripts/build_progress_graphic.py": "de964387b31c202820b7141f5ac8636b8795a660f83cb860b42ea1b39cca73e9"
+      "results/registry.json": "0a84a1885cfe60c943032814a1dbae7739fbf271a491705a4eb3536a12359a17",
+      "scripts/build_progress_graphic.py": "35fa7872ee1d591efb7f6eb102d5d7c5c6f97b30fd4aaa355a21c40b8f6b27a9"
     },
     "rows": [
       {
@@ -49,6 +49,14 @@
         "coefficient": "8003458533570087953/16807475946150704657203200000",
         "exponent": 31,
         "multiplier": "51/50"
+      },
+      {
+        "id": "support-refinement",
+        "title": "Three-state generator encoding and restricted overlap",
+        "date": "2026-10-11",
+        "coefficient": "4084754449786906742230661/8009094702029267287249256448000000",
+        "exponent": 31,
+        "multiplier": "35/32"
       }
     ],
     "scales": {
@@ -74,7 +82,7 @@
   },
   "matplotlib": "3.9.4",
   "artifacts": {
-    "png": "a7c56f5647996bfa6903457321fe28c21a2d61baa478734d885d06f4a00dc4b7",
-    "svg": "4fc1951f460dca9c4583b8ede6ba36b5a4f5e29693d1bad262494bb8a66f35a4"
+    "png": "3d7bb0b4ec7637d718d342d80a6872cf4655ec520fbfe05a416d5063dd10636b",
+    "svg": "dc881c55b09467764d5ccbef91c771916cdd47ca50ec50e725f44d216554b0dc"
   }
 }

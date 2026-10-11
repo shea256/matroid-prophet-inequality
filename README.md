@@ -9,16 +9,16 @@ By **Ryan Shea**. A living research project on
 
 **[Read the latest paper (PDF)](manuscript.pdf)** · [Read online](manuscript.md) · [LaTeX source](tex/manuscript.tex)
 
-Current result: **[Activation generators and joint mask membership](results/activation-split.md)**, 2026-10-10.
+Current result: **[Three-state generator encoding and restricted overlap](results/support-refinement.md)**, 2026-10-11.
 
 ```math
 \mathbb E[\mathrm{reward}]\ge C_\star\mathbb E[\mathrm{OPT}],\qquad
-C_\star=\frac{8003458533570087953}{16807475946150704657203200000}>\frac{51}{50}\, 2^{-31}.
+C_\star=\frac{4084754449786906742230661}{8009094702029267287249256448000000}>\frac{35}{32}\, 2^{-31}.
 ```
 
-The exact certificate is approximately **1.14973 times** the preceding [`(7/4)*2^-32` certificate](results/retained-bases.md) (**14.97% higher**). This compares guaranteed fractions, not measured performance. The construction uses **`40n+26` fair bits**.
+The exact certificate is approximately **1.07104 times** the preceding [`(51/50)*2^-31` certificate](results/activation-split.md) (**7.10% higher**). This compares guaranteed fractions, not measured performance. The construction uses **`47n+27` fair bits**.
 
-Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above $2^{-31}$.
+Three-state generator encoding and restricted overlap charges improve the guaranteed fraction by 7.10% over the preceding coefficient.
 
 **Progress since the original announcement**
 
@@ -28,7 +28,8 @@ Conditional activation safety, fixed activation scores, and joint mask membershi
 | [Joint residual encoding](results/joint-residual.md) | $>2^{-34}$ | ≈ 4.06× |
 | [Rank-charged residual entropy](results/rank-charged.md) | $>2^{-32}$ | ≈ 15.95× |
 | [Retained bases and projected residuals](results/retained-bases.md) | $>\frac{7}{4}\, 2^{-32}$ | ≈ 27.35× |
-| **[Activation generators and joint mask membership](results/activation-split.md)** | **$>\frac{51}{50}\, 2^{-31}$** | **≈ 31.45×** |
+| [Activation generators and joint mask membership](results/activation-split.md) | $>\frac{51}{50}\, 2^{-31}$ | ≈ 31.45× |
+| **[Three-state generator encoding and restricted overlap](results/support-refinement.md)** | **$>\frac{35}{32}\, 2^{-31}$** | **≈ 33.68×** |
 
 Gains compare the exact coefficients. Earlier $2^{-63}$ and $2^{-43}$
 checkpoints remain in the [full development history](IMPROVEMENTS.md).

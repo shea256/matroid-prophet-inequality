@@ -1,0 +1,39 @@
+{
+  "parameters": {
+    "kappa": 164,
+    "density_rate": "93/256",
+    "filter_rate": "3/4",
+    "guard_and_test_rate": "23/262144",
+    "mesh": "261/256",
+    "phases": 256,
+    "main_probability": "262121/262144"
+  },
+  "analysis_parameters": {
+    "active_generator_penalty": "105/8",
+    "activation_generator_penalty": "103/8",
+    "witness_penalty": "113/8",
+    "generator_tilt": "1/864",
+    "witness_tilt": "1/4000",
+    "arrangement_tilt": "1/624",
+    "effective_kappa": "1425/8"
+  },
+  "certified_bounds": {
+    "decay_lower": "253/250",
+    "base_lower": 140,
+    "gamma_lower": "69959099203/812800834560",
+    "error_upper": "69328715/2294341632",
+    "additive_upper": "250/253",
+    "slack_lower": "4874403782709953/928041574520586240",
+    "tilts": "PASS: integer powers and outward log intervals",
+    "decay": "PASS: log interval and separate 20-term positive series"
+  },
+  "certified_coefficient_lower_bound": "4084754449786906742230661/8009094702029267287249256448000000",
+  "ratio_over_2_minus_31": "4084754449786906742230661/3729525349116542976000000",
+  "ratio_over_previous_certificate": "13263374018794048216774419461/12383593620672706993390606920",
+  "ratio_over_original_certificate": "53538647827107798603639708809984/1589453988884961521913071105625",
+  "previous_certificate_recomputed": "8003458533570087953/16807475946150704657203200000",
+  "simplified_guarantee": "(35/32)*2^-31",
+  "seed_bits": "47n+27",
+  "base": "(261/256)^256 > 140",
+  "result": "PASS (exact scalar certificate, conditional on written proof)"
+}

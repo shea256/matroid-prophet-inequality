@@ -11,6 +11,8 @@ Build and publication checks are separate from mathematical verification.
 
 | Check | Scope |
 |---|---|
+| `certify_support_refinement.py` | Three-state tilts by rational powers and log intervals, separate decay bound, restricted overlap charge, all payoff costs, C4 recalculation, and 47n+27 seed count |
+| `check_support_refinement.py` | 70,297 path pairs, 504,552 compressed support signs, 4,760 exact mask laws, 30 generating bounds, 112 adaptive tails, 32 expectations, and an omitted-but-residual generator counterexample |
 | `certify_activation_split.py` | Exact joint-membership tilts by log intervals and integer powers, positive-series decay cross-check, activation charge cancellation, old/new coefficients, and 40n+26 seed count |
 | `check_activation_split.py` | 2,222 exact joint mask probabilities, 70,296 projected encodings/charges, 140,592 fixed-activation basis checks, 2,716 conditional safety bounds, and adaptive excess tails |
 | `certify_retained_basis.py` | Exact log intervals, integer-power tilt cross-checks, independent positive-series decay bound, projected rank interface, additive cancellation, old/new coefficients, and 42n+27 seed count |
@@ -23,6 +25,16 @@ Build and publication checks are separate from mathematical verification.
 | `check_quadratic_hazard.py` | 4,916 local and 3,153 global quadratic inequalities on 170 small matroid/weight cases |
 | `check_quadratic_ingredients.py` | Adaptive Boolean queries, biased filters, selected residual expectations, phase boundaries, and abstract sharpness |
 | Archived scalar certificates | Original `2^-63` and `2^-43` finite arithmetic assertions |
+
+The support checker retains the activation suite's 1,400 filter configurations
+on 170 matroid/weight instances and 2,716 conditional safety checks. It adds
+a binary rank-two example whose valid-parity generator is omitted from the
+second basis but is still residual; this tests a positive omitted score and
+rules out deleting its overlap charge. All 185 omitted scores (184 negative,
+one positive) are exercised in the compressed support representation.
+Separate mask tests use both stress rates and the new dyadic algorithm rates.
+Ten adaptive-expectation cases have positive excess. None of these finite
+tests establishes the universal counting claim.
 
 The activation path checker uses all 1,400 filter configurations on 170
 small matroid/weight instances, threshold 2, and guard/test rate `1/4`.
@@ -56,8 +68,9 @@ performance of the final competitive guarantee.
 `python3 -B scripts/check_archive.py` verifies unchanged archival artifacts
 and runs the earlier archive's default three checks; `--full` also runs its
 exhaustive structural checks. The 23 initial artifacts, six-file `2^-34`
-publication snapshot, 16-file rank-charged snapshot, and 17-file
-retained-basis snapshot have recorded hashes (62 preserved artifacts in total).
+publication snapshot, 16-file rank-charged snapshot, 17-file
+retained-basis snapshot, and 18-file activation-split snapshot have recorded
+hashes (80 preserved artifacts in total).
 
 ## Generated publication checks
 

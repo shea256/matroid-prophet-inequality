@@ -11,8 +11,9 @@
 | [Rank-charged residual entropy](results/rank-charged.md) | $>2^{-32}$ | The refinement weights residual families by generator and witness counts, charges their entropy to expected sample size and nominal rank, and removes the density cutoff. | Written proof; independent review pending |
 | [Retained bases and projected residuals](results/retained-bases.md) | $>\frac{7}{4}\, 2^{-32}$ | Retained-basis reconstruction, projected witnesses, and an additive maximum-branch charge improve the guarantee. | Written proof; independent review pending |
 | [Activation generators and joint mask membership](results/activation-split.md) | $>\frac{51}{50}\, 2^{-31}$ | Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above $2^{-31}$. | Written proof; independent review pending |
+| [Three-state generator encoding and restricted overlap](results/support-refinement.md) | $>\frac{35}{32}\, 2^{-31}$ | Three-state generator encoding and restricted overlap charges improve the guaranteed fraction by 7.10% over the preceding coefficient. | Written proof; independent review pending |
 
-The registry explicitly selects `activation-split`. Historical records and
+The registry explicitly selects `support-refinement`. Historical records and
 certificates remain unchanged. Review status and mathematical validity are
 distinct: these records have written proofs and same-agent checks, with
 independent review and formalization pending. No priority claim is made.
@@ -57,4 +58,10 @@ Retained-basis reconstruction, projected witnesses, and an additive maximum-bran
 
 Conditional activation safety, fixed activation scores, and joint mask membership raise the guarantee above $2^{-31}$.
 
-[Result record](results/activation-split.md) · [Certificate](verification/reference/activation_constants_output.json)
+[Result record](results/activation-split.md) · [Certificate](verification/reference/activation_constants_output.json) · [Preserved publication](archive/activation-split/README.md)
+
+## 2026-10-11 — Three-state generator encoding and restricted overlap
+
+Three-state generator encoding and restricted overlap charges improve the guaranteed fraction by 7.10% over the preceding coefficient.
+
+[Result record](results/support-refinement.md) · [Certificate](verification/reference/support_constants_output.json)
