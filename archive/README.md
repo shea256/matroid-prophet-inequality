@@ -93,3 +93,11 @@ artifacts from [merged commit 6d94154](https://github.com/shea256/matroid-prophe
 These include the 12-page PDF, Markdown, LaTeX, result registry and records,
 shared paper sources, and build/check receipts. Its manifest is checked
 alongside the previous 45 artifacts, for 62 immutable artifacts in total.
+
+## Activation-split publication above `(51/50)*2^-31`
+
+The [activation-split snapshot](activation-split/README.md) preserves 18
+publication artifacts from [merged commit 4f650d6](https://github.com/shea256/matroid-prophet-inequality/tree/4f650d6d33ba4438ab32e85900aa1e13cf921f40).
+They include the announced 14-page PDF, Markdown, LaTeX, result registry and
+records, shared paper sources, and build/check receipts. All snapshot bytes
+are unchanged. Its manifest brings the total to 80 preserved artifacts.

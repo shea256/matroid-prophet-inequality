@@ -6,120 +6,135 @@
     {
       "script": "verification/check_quadratic_hazard.py",
       "reference": "verification/reference/quadratic_hazard_output.json",
-      "seconds": 0.812,
+      "seconds": 0.892,
       "script_sha256": "ddffd7545a005d312e2c2e873dedd40a88dfb8fe043e03a9381d4b16f5e247b2",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_quadratic_ingredients.py",
       "reference": "verification/reference/quadratic_ingredients_output.json",
-      "seconds": 3.24,
+      "seconds": 3.66,
       "script_sha256": "4e5a479e3c2e9c8b98635bc79b7238e491efbac5c35898f87df056029cc38425",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_joint_residual.py",
       "reference": "verification/reference/joint_residual_checks_output.json",
-      "seconds": 7.72,
+      "seconds": 8.472,
       "script_sha256": "06cc790a29656d89a0615bca699cd4400e12aa53e04e815f6816a74592059785",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "archive/2026-10-10/verification/certify_constants.py",
       "reference": "archive/2026-10-10/verification/constants_output.json",
-      "seconds": 0.03,
+      "seconds": 0.027,
       "script_sha256": "74e5952aff84b66d7371c87b5bcd85cd58a83d03fe754a586146af97d079de89",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "archive/2026-10-10/verification/certify_hazard_constants.py",
       "reference": "archive/2026-10-10/verification/hazard_constants_output.json",
-      "seconds": 0.025,
+      "seconds": 0.031,
       "script_sha256": "b83dba031799830502c78e41e558c8bfda778490f54073250a397260e4f47a7a",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/certify_quadratic_constants.py",
       "reference": "verification/reference/quadratic_constants_output.json",
-      "seconds": 0.025,
+      "seconds": 0.028,
       "script_sha256": "3c1c7f1264aa86e846611e511083cef9b7ec32895476d8deeb037a61ff335770",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/certify_joint_residual.py",
       "reference": "verification/reference/joint_residual_constants_output.json",
-      "seconds": 0.035,
+      "seconds": 0.046,
       "script_sha256": "6b25c009dca0d5972aa2b56180ad4310ebbb6243ca3911754845f815e4868288",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/certify_rank_charged.py",
       "reference": "verification/reference/rank_charged_constants_output.json",
-      "seconds": 0.033,
+      "seconds": 0.055,
       "script_sha256": "6c2e2b4b78844754f818d314ca01a9d718c52d0ffba68f286abd2f44e0afb948",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_rank_charged.py",
       "reference": "verification/reference/rank_charged_checks_output.json",
-      "seconds": 2.351,
+      "seconds": 2.806,
       "script_sha256": "c57bd852f747bcff6f1a64fa272b05e9c89d899ad1d82290e73e36203f89d4df",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/certify_retained_basis.py",
       "reference": "verification/reference/retained_basis_constants_output.json",
-      "seconds": 0.034,
+      "seconds": 0.055,
       "script_sha256": "5ef55f9d33b5077b90f702a10c61f1d6fd128b04540daa7c36eec9d1ab4852d6",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_retained_basis.py",
       "reference": "verification/reference/retained_basis_checks_output.json",
-      "seconds": 10.502,
+      "seconds": 11.609,
       "script_sha256": "39726843822f63776bbff301d56a1c2bfad320907fb505515a2eb9b9cbd3f603",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/certify_activation_split.py",
       "reference": "verification/reference/activation_constants_output.json",
-      "seconds": 0.045,
+      "seconds": 0.048,
       "script_sha256": "675589f13853b9725563ed3a805751d0daa2d7b3da05d4dbb2d84df005ef6fbc",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_activation_split.py",
       "reference": "verification/reference/activation_checks_output.json",
-      "seconds": 17.382,
+      "seconds": 18.642,
       "script_sha256": "6fbde972074f166a85a18fdc2c5b99df435ac1d54e78d22bc106f7873c78a287",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "verification/certify_support_refinement.py",
+      "reference": "verification/reference/support_constants_output.json",
+      "seconds": 0.049,
+      "script_sha256": "f1e8dd12b250a48e7aa89e00eb7fa0d0b21cb5551d21254e7d4c115e54fa4435",
+      "result": "PASS; fresh JSON equals reference"
+    },
+    {
+      "script": "verification/check_support_refinement.py",
+      "reference": "verification/reference/support_checks_output.json",
+      "seconds": 21.774,
+      "script_sha256": "6665b7e085ef5505794b00222559556f7d52042a51af887d951672f6d065f5da",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/finite_checks.py",
       "reference": "verification/reference/finite_output.json",
-      "seconds": 4.085,
+      "seconds": 4.698,
       "script_sha256": "06a6daeb844b12486cb1578698bcbb8b6db6af6259a9ad111b2120ea1d67b0cb",
       "result": "PASS; fresh JSON equals reference"
     },
     {
       "script": "verification/check_online_rule.py",
       "reference": "verification/reference/online_output.json",
-      "seconds": 38.945,
+      "seconds": 41.294,
       "script_sha256": "03888c263e8ac614bbeb77a61f80abf9a1472088b07be9d0f6653c24fab74fff",
       "result": "PASS; fresh JSON equals reference"
     }
   ],
   "package": {
-    "local_links_checked": 201,
-    "immutable_artifacts_checked": 62,
-    "current_result": "activation-split",
+    "local_links_checked": 239,
+    "immutable_artifacts_checked": 80,
+    "current_result": "support-refinement",
     "generated_text_verified": true,
+    "progress_graphic_verified": true,
     "paper_input_hashes_verified": true,
     "paper_hash_verified": true,
     "source_hash_verified": true,
     "result": "PASS (package validation, not a proof check)"
   },
-  "seconds": 85.344,
+  "seconds": 114.339,
   "scope": "Exact scalar and finite checks; not independent review or universal formalization",
   "result": "PASS"
 }

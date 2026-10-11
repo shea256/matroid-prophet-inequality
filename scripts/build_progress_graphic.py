@@ -24,6 +24,7 @@ SHORT_TITLES = {
     'rank-charged': 'Rank-charged\nentropy',
     'retained-bases': 'Retained\nbases',
     'activation-split': 'Activation\nsplit',
+    'support-refinement': 'Three-state\nencoding',
 }
 
 
